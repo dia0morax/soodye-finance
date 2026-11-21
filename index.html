@@ -56,7 +56,7 @@
     }
 
     /* ==========================================
-       REDESIGNED DARK THEME (COMFORTABLE SLATE & LUMINOUS SKY)
+       DARK THEME (COMFORTABLE SLATE & LUMINOUS SKY)
        ========================================== */
     body.dark-theme {
       --bg: #0f172a;
@@ -110,17 +110,22 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border-sky-strong); border-radius: 99px; }
 
-    .icon-svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--accent);
+    /* Professional Lucide Vector Icons */
+    .lucide {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
       fill: none;
       stroke-width: 2.1;
       stroke-linecap: round;
       stroke-linejoin: round;
       flex-shrink: 0;
+      display: inline-block;
+      vertical-align: middle;
     }
-    .icon-white { stroke: #ffffff; }
+    .lucide-sm { width: 14px; height: 14px; }
+    .lucide-lg { width: 24px; height: 24px; }
+    .lucide-xl { width: 30px; height: 30px; }
 
     /* ==========================================
        HEADER
@@ -162,6 +167,7 @@
       height: 40px;
       border-radius: 13px;
       background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -270,6 +276,11 @@
       font-size: 12px;
       font-weight: 600;
       color: var(--amber);
+    }
+    .guest-banner-msg {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
     .guest-banner button {
       background: #f59e0b;
@@ -409,6 +420,9 @@
       font-weight: 700;
       background: #10b981;
       color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
     .today-required-box.clear .today-req-badge {
       background: var(--accent-soft);
@@ -459,6 +473,25 @@
       box-shadow: 0 6px 18px rgba(2, 132, 199, 0.36);
     }
     .btn-primary:active { transform: scale(0.97); }
+
+    .btn-emerald {
+      background: linear-gradient(135deg, #059669, #047857);
+      color: #ffffff;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 13px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.28);
+      transition: all 0.2s ease;
+    }
+    .btn-emerald:hover { transform: translateY(-1px); }
+    .btn-emerald:active { transform: scale(0.97); }
 
     .btn-secondary {
       background: var(--card);
@@ -529,6 +562,9 @@
       cursor: pointer;
       white-space: nowrap;
       flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
 
     /* ==========================================
@@ -614,6 +650,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
+    }
+    .day-actions-grid.has-smart-box {
       margin-bottom: 12px;
     }
     @media (max-width: 440px) {
@@ -651,6 +689,10 @@
       font-size: 17px;
       font-weight: 700;
       color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
     }
 
     .edit-chip {
@@ -660,6 +702,9 @@
       padding: 2px 8px;
       border-radius: 7px;
       font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
     }
 
     /* Smart Read-Only Box ("تودع هكذا مبلغ") */
@@ -729,27 +774,31 @@
     }
 
     /* ==========================================
-       TIPS SECTION (SECTION 4)
+       TIPS SECTION (SECTION 4 - 4 PRESETS + FREE NUMBER BUTTON)
        ========================================== */
     .tips-quick-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
       margin-top: 14px;
+    }
+    @media (max-width: 400px) {
+      .tips-quick-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     .tip-quick-btn {
       background: var(--card);
       border: 1.5px solid var(--border-sky-strong);
       color: var(--accent-dark);
-      border-radius: 14px;
-      padding: 12px 6px;
-      font-size: 15px;
+      border-radius: 13px;
+      padding: 10px 4px;
+      font-size: 14px;
       font-weight: 700;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 2px;
       box-shadow: var(--shadow-sm);
       transition: all 0.18s ease;
@@ -763,6 +812,14 @@
       font-size: 10px;
       color: var(--text-muted);
       font-weight: 600;
+    }
+    .tip-quick-btn.free-btn {
+      background: linear-gradient(135deg, #059669, #047857);
+      border-color: #059669;
+      color: #ffffff;
+    }
+    .tip-quick-btn.free-btn span {
+      color: #d1fae5;
     }
 
     .tip-day-strip {
@@ -885,6 +942,32 @@
       font-weight: 600;
       margin-bottom: 6px;
     }
+    .smart-preview-pill {
+      margin-top: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--emerald);
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald-border);
+      padding: 4px 10px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .manual-mode-pill {
+      margin-bottom: 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--amber);
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-border);
+      padding: 4px 10px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
     .form-control {
       width: 100%;
       background: var(--input-bg);
@@ -989,14 +1072,12 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .nav-item svg { stroke: var(--text-muted); width: 19px; height: 19px; transition: stroke 0.2s; }
 
     .nav-item.active {
       background: var(--accent-soft);
       border-color: var(--border-sky-strong);
       color: var(--accent-dark);
     }
-    .nav-item.active svg { stroke: var(--accent-dark); }
 
     /* ==========================================
        MODALS
@@ -1051,7 +1132,6 @@
       height: 32px;
       border-radius: 10px;
       cursor: pointer;
-      font-size: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1065,6 +1145,9 @@
       font-weight: 600;
       line-height: 1.55;
       margin-bottom: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
     }
     .alert-box.danger { background: var(--danger-bg); border: 1.5px solid var(--danger-border); color: var(--danger); }
     .alert-box.warning { background: var(--amber-bg); border: 1.5px solid var(--amber-border); color: var(--amber); }
@@ -1333,6 +1416,9 @@
       pointer-events: none;
       transition: all 0.25s ease;
       box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
     .copy-toast.show {
       opacity: 1;
@@ -1351,9 +1437,9 @@
     <div class="header-inner">
       <div class="brand-group">
         <div class="brand-badge">
-          <svg class="icon-svg icon-white" width="22" height="22" viewBox="0 0 24 24">
-            <rect x="2" y="5" width="20" height="14" rx="3"></rect>
-            <line x1="2" y1="10" x2="22" y2="10"></line>
+          <svg class="lucide lucide-lg" viewBox="0 0 24 24">
+            <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/>
+            <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>
           </svg>
         </div>
         <div>
@@ -1368,22 +1454,20 @@
       <div class="header-actions">
         <!-- Soodye AI Chat Button -->
         <button class="btn-action btn-soodye-trigger" onclick="app.openSoodye()">
-          <svg class="icon-svg icon-white" style="width:15px;height:15px;" viewBox="0 0 24 24">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          <svg class="lucide" viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
           </svg>
           <span>سودي</span>
         </button>
 
         <!-- Quick Dark/Light Theme Button -->
-        <button class="btn-action" style="padding:7px 9px;" onclick="app.toggleTheme()" id="headerThemeBtn" title="تبديل المظهر">
-          🌙
-        </button>
+        <button class="btn-action" style="padding:7px 9px;" onclick="app.toggleTheme()" id="headerThemeBtn" title="تبديل المظهر" aria-label="تبديل المظهر"></button>
 
         <!-- Settings Button -->
         <button class="btn-action" style="padding:7px 9px;" onclick="app.openSettingsModal()" aria-label="الإعدادات">
-          <svg class="icon-svg" style="width:17px;height:17px;" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="3"></circle>
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          <svg class="lucide" viewBox="0 0 24 24">
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+            <circle cx="12" cy="12" r="3"/>
           </svg>
         </button>
       </div>
@@ -1391,7 +1475,14 @@
 
     <!-- Guest Banner -->
     <div id="guestBanner" class="guest-banner" style="display: none;">
-      <span>⚠️ وضع الضيف: بياناتك محفوظة محلياً فقط وقد تُحذف عند مسح التطبيق.</span>
+      <span class="guest-banner-msg">
+        <svg class="lucide lucide-sm" viewBox="0 0 24 24">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+          <path d="M12 9v4"/>
+          <path d="M12 17h.01"/>
+        </svg>
+        <span>وضع الضيف: بياناتك محفوظة محلياً فقط وقد تُحذف عند مسح التطبيق.</span>
+      </span>
       <button onclick="app.loginWithGoogle()">ربط بالإيميل</button>
     </div>
   </header>
@@ -1409,8 +1500,19 @@
         <div class="hero-label">
           <span>كم تطلب / تطلبك الشركة</span>
           <div style="display:flex;gap:6px;">
-            <button class="btn-secondary btn-reset-salary" style="padding: 4px 9px; font-size: 11px;" onclick="app.openSalaryResetModal()">تصفير الإيداع</button>
-            <button class="btn-secondary" style="padding: 4px 9px; font-size: 11px;" onclick="app.openInitialBalanceModal()">رصيد ابتدائي</button>
+            <button class="btn-secondary btn-reset-salary" style="padding: 4px 9px; font-size: 11px;" onclick="app.openSalaryResetModal()">
+              <svg class="lucide lucide-sm" viewBox="0 0 24 24">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+              </svg>
+              <span>تصفير الإيداع</span>
+            </button>
+            <button class="btn-secondary" style="padding: 4px 9px; font-size: 11px;" onclick="app.openInitialBalanceModal()">
+              <svg class="lucide lucide-sm" viewBox="0 0 24 24">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              <span>رصيد ابتدائي</span>
+            </button>
           </div>
         </div>
         <div class="hero-amount" id="companyBalanceAmount">0 د.ع</div>
@@ -1425,7 +1527,7 @@
             <div class="today-req-amount" id="todayRequiredAmount">0 د.ع</div>
             <div class="today-req-note" id="todayRequiredNote">لا يوجد مبلغ مطلوب إيداعه اليوم</div>
           </div>
-          <span class="today-req-badge" id="todayRequiredBadge">مصفّر ✓</span>
+          <span class="today-req-badge" id="todayRequiredBadge">مصفّر</span>
         </div>
       </div>
 
@@ -1433,9 +1535,9 @@
         <h2>سجل الأيام والإيداع الذكي</h2>
         <div class="toolbar-btns">
           <button class="btn-primary" onclick="app.openAddDayModal()">
-            <svg class="icon-svg icon-white" style="width:15px;height:15px;" viewBox="0 0 24 24">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24">
+              <path d="M5 12h14"/>
+              <path d="M12 5v14"/>
             </svg>
             <span>إضافة يوم</span>
           </button>
@@ -1450,22 +1552,27 @@
          ========================================== -->
     <section id="sec-debt" class="section-view">
       <div id="debtSetupView" class="setup-card" style="display: none;">
-        <div style="width:54px;height:54px;border-radius:18px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
-          <svg class="icon-svg" style="width:28px;height:28px;" viewBox="0 0 24 24">
-            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        <div style="width:54px;height:54px;border-radius:18px;background:var(--accent-soft);color:var(--accent-dark);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+          <svg class="lucide lucide-lg" viewBox="0 0 24 24">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
           </svg>
         </div>
         <h3>قسم الدين / الأقساط / السلفة</h3>
         <p>حدد مبلغ الهدف الكلي والمبلغ الثابت لكل ضغطة دفع لفتح القسم والبدء بتسجيل دفعاتك.</p>
         <div class="form-group">
           <label>مبلغ الهدف الكلي (بالدينار العراقي)</label>
-          <input type="number" id="debtTargetInput" class="form-control" placeholder="اكتب مبلغ الهدف مثل 1000000..." min="1" />
+          <input type="number" id="debtTargetInput" class="form-control" placeholder="اكتب مبلغ الهدف (مثال: 500 يضيف 3 أصفار تلقائياً)..." min="1" oninput="app.updateSmartPreview('debtTargetInput', 'debtTargetPreview')" />
+          <div id="debtTargetPreview" class="smart-preview-pill" style="display:none;"></div>
         </div>
         <div class="form-group">
           <label>المبلغ الثابت لكل ضغطة دفع</label>
-          <input type="number" id="debtStepInput" class="form-control" placeholder="اكتب قيمة الدفعة مثل 100000..." min="1" />
+          <input type="number" id="debtStepInput" class="form-control" placeholder="اكتب قيمة الدفعة (مثال: 100 يضيف 3 أصفار تلقائياً)..." min="1" oninput="app.updateSmartPreview('debtStepInput', 'debtStepPreview')" />
+          <div id="debtStepPreview" class="smart-preview-pill" style="display:none;"></div>
         </div>
-        <button class="btn-primary" style="width: 100%; padding: 13px;" onclick="app.setupDebtSection()">فتح القسم والبدء</button>
+        <button class="btn-primary" style="width: 100%; padding: 13px;" onclick="app.setupDebtSection()">
+          <svg class="lucide" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>فتح القسم والبدء</span>
+        </button>
       </div>
 
       <div id="debtActiveView" style="display: none;">
@@ -1488,8 +1595,14 @@
               لقد دفعت (+100,000 د.ع)
             </button>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-              <button class="btn-secondary" onclick="app.triggerChangeDebtStep()">تغيير مبلغ الضغطة</button>
-              <button class="btn-secondary" onclick="app.triggerEditDebtGoal()">تعديل الهدف / تصفير</button>
+              <button class="btn-secondary" onclick="app.triggerChangeDebtStep()">
+                <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+                <span>تغيير مبلغ الضغطة</span>
+              </button>
+              <button class="btn-secondary" onclick="app.triggerEditDebtGoal()">
+                <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                <span>تعديل الهدف / تصفير</span>
+              </button>
             </div>
           </div>
         </div>
@@ -1507,18 +1620,22 @@
          ========================================== -->
     <section id="sec-savings" class="section-view">
       <div id="savingsSetupView" class="setup-card" style="display: none;">
-        <div style="width:54px;height:54px;border-radius:18px;background:var(--emerald-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
-          <svg class="icon-svg" style="width:28px;height:28px;stroke:var(--emerald);" viewBox="0 0 24 24">
-            <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z"></path>
+        <div style="width:54px;height:54px;border-radius:18px;background:var(--emerald-bg);color:var(--emerald);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+          <svg class="lucide lucide-lg" viewBox="0 0 24 24">
+            <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z"/>
           </svg>
         </div>
         <h3>قسم التجميع والادخار</h3>
         <p>أدخل هدف التجميع المطلوب لفتح القسم والبدء بإضافة المبالغ بحرية.</p>
         <div class="form-group">
           <label>هدف التجميع (بالدينار العراقي)</label>
-          <input type="number" id="savingsTargetInput" class="form-control" placeholder="اكتب هدف التجميع مثل 500000..." min="1" />
+          <input type="number" id="savingsTargetInput" class="form-control" placeholder="اكتب هدف التجميع (مثال: 500 يضيف 3 أصفار تلقائياً)..." min="1" oninput="app.updateSmartPreview('savingsTargetInput', 'savingsTargetPreview')" />
+          <div id="savingsTargetPreview" class="smart-preview-pill" style="display:none;"></div>
         </div>
-        <button class="btn-primary" style="width: 100%; padding: 13px; background:linear-gradient(135deg,#059669,#047857);" onclick="app.setupSavingsSection()">فتح قسم التجميع</button>
+        <button class="btn-emerald" style="width: 100%; padding: 13px;" onclick="app.setupSavingsSection()">
+          <svg class="lucide" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>فتح قسم التجميع</span>
+        </button>
       </div>
 
       <div id="savingsActiveView" style="display: none;">
@@ -1533,12 +1650,21 @@
           </div>
           <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-top:6px;">
             <span>المتبقي للوصول للهدف: <strong id="savingsRemainingText" style="color:var(--text);">0 د.ع</strong></span>
-            <button style="background:none;border:none;color:var(--emerald);font-weight:700;cursor:pointer;font-size:12px;" onclick="app.triggerEditSavingsGoal()">تعديل الهدف</button>
+            <button style="background:none;border:none;color:var(--emerald);font-weight:700;cursor:pointer;font-size:12px;display:inline-flex;align-items:center;gap:4px;" onclick="app.triggerEditSavingsGoal()">
+              <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+              <span>تعديل الهدف</span>
+            </button>
           </div>
 
-          <div style="margin-top: 16px; display: flex; gap: 8px;">
-            <input type="number" id="savingsAddAmountInput" class="form-control" placeholder="اكتب المبلغ المراد إضافته..." min="1" />
-            <button class="btn-primary" style="white-space: nowrap; padding: 0 18px; background:linear-gradient(135deg,#059669,#047857);" onclick="app.triggerAddSavings()">إضافة</button>
+          <div style="margin-top: 16px;">
+            <div style="display: flex; gap: 8px;">
+              <input type="number" id="savingsAddAmountInput" class="form-control" placeholder="اكتب المبلغ (مثال: 50 يضيف 3 أصفار تلقائياً)..." min="1" oninput="app.updateSmartPreview('savingsAddAmountInput', 'savingsAddPreview')" />
+              <button class="btn-emerald" style="white-space: nowrap; padding: 0 18px;" onclick="app.triggerAddSavings()">
+                <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                <span>إضافة</span>
+              </button>
+            </div>
+            <div id="savingsAddPreview" class="smart-preview-pill" style="display:none;"></div>
           </div>
         </div>
 
@@ -1551,20 +1677,23 @@
     </section>
 
     <!-- ==========================================
-         SECTION 4: الإكراميات (TIPS)
+         SECTION 4: الإكراميات (TIPS + FREE NUMBER BUTTON)
          ========================================== -->
     <section id="sec-tips" class="section-view">
       <div class="hero-card positive">
         <div class="hero-label">
           <span id="tipsTodayHeaderLabel">إكراميات اليوم الحالي</span>
-          <button class="btn-secondary" style="padding: 4px 11px; font-size: 11.5px;" onclick="app.openTipDayDetails(null)">تفاصيل اليوم</button>
+          <button class="btn-secondary" style="padding: 4px 11px; font-size: 11.5px;" onclick="app.openTipDayDetails(null)">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            <span>تفاصيل اليوم</span>
+          </button>
         </div>
         <div class="hero-amount" id="tipsTodayTotalAmount">0 د.ع</div>
         <div>
           <span class="hero-status-pill" id="tipsTodayCountPill">0 إكراميات مسجلة اليوم</span>
         </div>
 
-        <!-- 4 Quick Tip Buttons with Confirmation -->
+        <!-- 4 Quick Tip Buttons + Free Number Button ("رقم حر") -->
         <div class="tips-quick-grid">
           <button type="button" class="tip-quick-btn" onclick="app.triggerQuickTip(250)">
             +250
@@ -1581,6 +1710,10 @@
           <button type="button" class="tip-quick-btn" onclick="app.triggerQuickTip(1000)">
             +1,000
             <span>د.ع</span>
+          </button>
+          <button type="button" class="tip-quick-btn free-btn" onclick="app.triggerFreeTipToday()">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <span style="font-size:11px;font-weight:700;">رقم حر</span>
           </button>
         </div>
       </div>
@@ -1601,31 +1734,31 @@
   <nav class="bottom-nav">
     <div class="nav-inner">
       <button class="nav-item active" id="nav-deposit" onclick="app.switchTab('deposit')">
-        <svg class="icon-svg" viewBox="0 0 24 24">
-          <rect x="2" y="4" width="20" height="16" rx="3"></rect>
-          <path d="M12 12h.01"></path>
+        <svg class="lucide" viewBox="0 0 24 24">
+          <rect x="2" y="4" width="20" height="16" rx="3"/>
+          <path d="M12 12h.01"/>
         </svg>
         <span>حساب الإيداع</span>
       </button>
 
       <button class="nav-item" id="nav-debt" onclick="app.switchTab('debt')">
-        <svg class="icon-svg" viewBox="0 0 24 24">
-          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        <svg class="lucide" viewBox="0 0 24 24">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
         </svg>
         <span>الدين / الأقساط</span>
       </button>
 
       <button class="nav-item" id="nav-savings" onclick="app.switchTab('savings')">
-        <svg class="icon-svg" viewBox="0 0 24 24">
-          <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z"></path>
+        <svg class="lucide" viewBox="0 0 24 24">
+          <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z"/>
         </svg>
         <span>تجميع</span>
       </button>
 
       <button class="nav-item" id="nav-tips" onclick="app.switchTab('tips')">
-        <svg class="icon-svg" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="9"></circle>
-          <path d="M12 7v10M9 10h6M9 14h6"></path>
+        <svg class="lucide" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 7v10M9 10h6M9 14h6"/>
         </svg>
         <span>الإكراميات</span>
       </button>
@@ -1638,9 +1771,9 @@
   <div id="welcomeModal" class="modal-backdrop">
     <div class="modal-box" style="text-align: center; max-width: 420px; border-width: 2px; border-color: var(--accent);">
       <div class="brand-badge" style="width:60px;height:60px;margin:0 auto 14px;border-radius:18px;">
-        <svg class="icon-svg icon-white" style="width:30px;height:30px;" viewBox="0 0 24 24">
-          <rect x="2" y="5" width="20" height="14" rx="3"></rect>
-          <line x1="2" y1="10" x2="22" y2="10"></line>
+        <svg class="lucide lucide-xl" viewBox="0 0 24 24">
+          <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/>
+          <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>
         </svg>
       </div>
       <div style="font-size: 18px; font-weight: 700; color: var(--accent-dark); margin-bottom: 6px;">هلا يبوي، سودي لديكم لا خوف عليكم</div>
@@ -1656,23 +1789,31 @@
       </button>
 
       <div class="alert-box warning" style="text-align: right; margin-bottom: 12px;">
-        ⚠️ <strong>تحذير:</strong> عند حذف التطبيق سيُحذف كل تقدمك، اربطه بالإيميل لحفظ التقدم.
+        <svg class="lucide" style="margin-top:2px;" viewBox="0 0 24 24">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+          <path d="M12 9v4"/>
+          <path d="M12 17h.01"/>
+        </svg>
+        <span><strong>تحذير:</strong> عند حذف التطبيق سيُحذف كل تقدمك، اربطه بالإيميل لحفظ التقدم.</span>
       </div>
 
       <button class="btn-secondary" style="width:100%;padding:12px;" onclick="app.enterAsGuest()">
-        المتابعة كضيف
+        <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>المتابعة كضيف</span>
       </button>
     </div>
   </div>
 
   <!-- ==========================================
-       MODAL 2: COLLECTION INPUT (EMPTY INPUT FOR FAST TYPING)
+       MODAL 2: COLLECTION INPUT (SMART ON ADD, EXACT ON EDIT)
        ========================================== -->
   <div id="collectionModal" class="modal-backdrop">
     <div class="modal-box">
       <div class="modal-header">
         <h3 id="collectionModalTitle">تحصيل الزبائن</h3>
-        <button class="close-btn" onclick="app.closeModal('collectionModal')">×</button>
+        <button class="close-btn" onclick="app.closeModal('collectionModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
       </div>
 
       <div class="tab-row">
@@ -1684,21 +1825,29 @@
         <div class="form-group">
           <label>المبلغ المحصّل من الزبائن (د.ع)</label>
           <div class="current-val-hint" id="collectionCurrentHint">القيمة المسجلة حالياً: 0 د.ع</div>
-          <input type="number" id="collectionAmountInput" class="form-control" placeholder="اكتب المبلغ مباشرة..." min="0" />
+          <div id="collectionModeBadge" class="smart-preview-pill" style="margin-bottom:8px;"></div>
+          <input type="number" id="collectionAmountInput" class="form-control" placeholder="اكتب المبلغ مباشرة..." min="0" oninput="app.onCollectionInputChanged()" />
+          <div id="collectionLivePreview" class="smart-preview-pill" style="display:none;"></div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <button class="btn-primary" onclick="app.saveCollectionValue('set')">حفظ الرقم النهائي</button>
-          <button class="btn-secondary" onclick="app.saveCollectionValue('add')">+ إضافة فوق الحالي</button>
+          <button class="btn-primary" onclick="app.saveCollectionValue('set')">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>حفظ الرقم النهائي</span>
+          </button>
+          <button class="btn-secondary" onclick="app.saveCollectionValue('add')">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <span>إضافة فوق الحالي</span>
+          </button>
         </div>
       </div>
 
       <div id="collectionOcrPane" style="display:none;">
         <label class="upload-zone" for="ocrFileInput">
-          <div style="margin-bottom:8px;">
-            <svg class="icon-svg" style="width:34px;height:34px;" viewBox="0 0 24 24">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-              <circle cx="8.5" cy="8.5" r="1.5"></circle>
-              <polyline points="21 15 16 10 5 21"></polyline>
+          <div style="margin-bottom:8px;color:var(--accent-dark);">
+            <svg class="lucide lucide-xl" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
             </svg>
           </div>
           <div style="font-weight:700;font-size:14px;color:var(--text);">اضغط لاختيار لقطة شاشة من تطبيق العمل</div>
@@ -1711,22 +1860,39 @@
   </div>
 
   <!-- ==========================================
-       MODAL 3: DEPOSIT DAY INPUT (EMPTY INPUT)
+       MODAL 3: DEPOSIT DAY INPUT (QUICK 100,000 + SMART ON ADD + EXACT ON EDIT)
        ========================================== -->
   <div id="depositDayModal" class="modal-backdrop">
     <div class="modal-box">
       <div class="modal-header">
         <h3 id="depositDayModalTitle">إيداع نفس اليوم</h3>
-        <button class="close-btn" onclick="app.closeModal('depositDayModal')">×</button>
+        <button class="close-btn" onclick="app.closeModal('depositDayModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
       </div>
+
+      <!-- One-Tap 100,000 Deposit Button -->
+      <button type="button" class="btn-emerald" style="width:100%;padding:12px;margin-bottom:14px;font-size:14px;" onclick="app.quickDeposit100k()">
+        <svg class="lucide" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span>إيداع 100,000 د.ع مباشرة لليوم</span>
+      </button>
+
       <div class="form-group">
-        <label>المبلغ الذي أودعته في هذا اليوم (د.ع)</label>
+        <label>أو أدخل مبلغ الإيداع يدوياً (د.ع)</label>
         <div class="current-val-hint" id="depositCurrentHint">الإيداع المسجل حالياً: 0 د.ع</div>
-        <input type="number" id="depositDayAmountInput" class="form-control" placeholder="اكتب المبلغ مباشرة..." min="0" />
+        <div id="depositModeBadge" class="smart-preview-pill" style="margin-bottom:8px;"></div>
+        <input type="number" id="depositDayAmountInput" class="form-control" placeholder="اكتب المبلغ (مثال: 100 أو 150)..." min="0" oninput="app.onDepositInputChanged()" />
+        <div id="depositLivePreview" class="smart-preview-pill" style="display:none;"></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-        <button class="btn-primary" onclick="app.saveDepositDayValue('set')">حفظ الرقم النهائي</button>
-        <button class="btn-secondary" onclick="app.saveDepositDayValue('add')">+ إضافة إيداع آخر</button>
+        <button class="btn-primary" onclick="app.saveDepositDayValue('set')">
+          <svg class="lucide lucide-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>حفظ الرقم النهائي</span>
+        </button>
+        <button class="btn-secondary" onclick="app.saveDepositDayValue('add')">
+          <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+          <span>إضافة إيداع آخر</span>
+        </button>
       </div>
     </div>
   </div>
@@ -1738,7 +1904,9 @@
     <div class="modal-box">
       <div class="modal-header">
         <h3>إضافة يوم إلى السجل</h3>
-        <button class="close-btn" onclick="app.closeModal('addDayModal')">×</button>
+        <button class="close-btn" onclick="app.closeModal('addDayModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
       </div>
       <p style="font-size:12.5px;color:var(--text-muted);margin-bottom:12px;line-height:1.55;">
         يجب أن يكون التاريخ متصلاً مباشرة بسلسلة الأيام المسجلة (قبل أقدم يوم بيوم واحد أو بعد أحدث يوم بيوم واحد).
@@ -1748,7 +1916,10 @@
         <label>اختر التاريخ الدقيق</label>
         <input type="date" id="addDayDateInput" class="form-control" style="direction:ltr;" />
       </div>
-      <button class="btn-primary" style="width:100%;padding:12px;" onclick="app.confirmAddHistoricalDay()">تأكيد وإضافة اليوم</button>
+      <button class="btn-primary" style="width:100%;padding:12px;" onclick="app.confirmAddHistoricalDay()">
+        <svg class="lucide lucide-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>تأكيد وإضافة اليوم</span>
+      </button>
     </div>
   </div>
 
@@ -1759,13 +1930,14 @@
     <div class="modal-box">
       <div class="modal-header">
         <h3>تصفير الإيداع (استلام الراتب)</h3>
-        <button class="close-btn" onclick="app.closeModal('salaryResetModal')">×</button>
+        <button class="close-btn" onclick="app.closeModal('salaryResetModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
       </div>
       <p style="font-size:12.5px;color:var(--text-muted);margin-bottom:14px;line-height:1.6;">
         عند استلام الراتب، يتم تصفير جميع الأيام التي تسبق تاريخ استلام الراتب ليبدأ الحساب من الصفر، مع إمكانية حذف التصفيرة في أي وقت.
       </p>
 
-      <!-- Auto Reset Toggle (Day 1 & 15) -->
       <div class="toggle-row">
         <div>
           <div style="font-size:13px;font-weight:700;color:var(--text);">التصفير التلقائي يوم 1 و 15</div>
@@ -1783,19 +1955,22 @@
       </div>
 
       <button class="btn-primary" style="width:100%;padding:12px;" onclick="app.confirmManualSalaryReset()">
-        🔄 تنفيذ تصفير الإيداع
+        <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        <span>تنفيذ تصفير الإيداع</span>
       </button>
     </div>
   </div>
 
   <!-- ==========================================
-       MODAL 6: INITIAL BALANCE (EMPTY INPUT)
+       MODAL 6: INITIAL BALANCE
        ========================================== -->
   <div id="initialBalanceModal" class="modal-backdrop">
     <div class="modal-box">
       <div class="modal-header">
         <h3>الرصيد الابتدائي لقسم الإيداع</h3>
-        <button class="close-btn" onclick="app.closeModal('initialBalanceModal')">×</button>
+        <button class="close-btn" onclick="app.closeModal('initialBalanceModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
       </div>
       <p style="font-size:12.5px;color:var(--text-muted);margin-bottom:12px;">
         استخدم هذا الخيار فقط إذا كان لديك رصيد سابق مرحّل قبل أقدم يوم في القائمة.
@@ -1811,9 +1986,14 @@
       <div class="form-group">
         <label>قيمة المبلغ (د.ع)</label>
         <div class="current-val-hint" id="initialBalanceCurrentHint">الرصيد الابتدائي الحالي: 0 د.ع</div>
-        <input type="number" id="initialBalanceValue" class="form-control" placeholder="اكتب المبلغ مباشرة..." min="0" />
+        <div id="initBalModeBadge" class="smart-preview-pill" style="margin-bottom:8px;"></div>
+        <input type="number" id="initialBalanceValue" class="form-control" placeholder="اكتب المبلغ مباشرة..." min="0" oninput="app.onInitBalInputChanged()" />
+        <div id="initBalLivePreview" class="smart-preview-pill" style="display:none;"></div>
       </div>
-      <button class="btn-primary" style="width:100%;padding:12px;" onclick="app.saveInitialBalance()">حفظ الرصيد الابتدائي</button>
+      <button class="btn-primary" style="width:100%;padding:12px;" onclick="app.saveInitialBalance()">
+        <svg class="lucide lucide-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>حفظ الرصيد الابتدائي</span>
+      </button>
     </div>
   </div>
 
@@ -1824,7 +2004,9 @@
     <div class="modal-box">
       <div class="modal-header">
         <h3 id="tipDetailsModalTitle">تفاصيل إكراميات اليوم</h3>
-        <button class="close-btn" onclick="app.closeModal('tipDetailsModal')">×</button>
+        <button class="close-btn" onclick="app.closeModal('tipDetailsModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
       </div>
 
       <div style="background:var(--emerald-bg);border:1.5px solid var(--emerald-border);border-radius:14px;padding:11px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;">
@@ -1835,16 +2017,20 @@
       <!-- Quick Add inside Day Details -->
       <div style="margin-bottom:14px;">
         <div style="font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:6px;">إضافة إكرامية لهذا اليوم:</div>
-        <div class="tips-quick-grid" style="margin-top:0;">
+        <div class="tips-quick-grid" style="margin-top:0;grid-template-columns:repeat(4,1fr);">
           <button type="button" class="tip-quick-btn" style="padding:8px 4px;font-size:13.5px;" onclick="app.triggerAddTipForModalDay(250)">+250</button>
           <button type="button" class="tip-quick-btn" style="padding:8px 4px;font-size:13.5px;" onclick="app.triggerAddTipForModalDay(500)">+500</button>
           <button type="button" class="tip-quick-btn" style="padding:8px 4px;font-size:13.5px;" onclick="app.triggerAddTipForModalDay(750)">+750</button>
           <button type="button" class="tip-quick-btn" style="padding:8px 4px;font-size:13.5px;" onclick="app.triggerAddTipForModalDay(1000)">+1,000</button>
         </div>
         <div style="display:flex;gap:8px;margin-top:8px;">
-          <input type="number" id="customTipInput" class="form-control" placeholder="أو اكتب مبلغ إكرامية مخصص..." min="1" />
-          <button class="btn-primary" style="white-space:nowrap;" onclick="app.triggerAddCustomTipForModalDay()">إضافة</button>
+          <input type="number" id="customTipInput" class="form-control" placeholder="أو اكتب رقم حر (مثال: 2 = 2,000 أو 1500)..." min="1" oninput="app.updateTipSmartPreview('customTipInput', 'modalTipPreview')" />
+          <button class="btn-emerald" style="white-space:nowrap;" onclick="app.triggerAddCustomTipForModalDay()">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <span>إضافة</span>
+          </button>
         </div>
+        <div id="modalTipPreview" class="smart-preview-pill" style="display:none;"></div>
       </div>
 
       <div id="tipDetailsEntriesList" class="history-list" style="max-height:42vh;overflow-y:auto;"></div>
@@ -1852,22 +2038,29 @@
   </div>
 
   <!-- ==========================================
-       MODAL 8: CONFIRMATION MODAL (EMPTY INPUT)
+       MODAL 8: CONFIRMATION MODAL (SMART ON ADD, EXACT ON EDIT)
        ========================================== -->
   <div id="confirmModal" class="modal-backdrop">
     <div class="modal-box">
       <div class="modal-header">
         <h3 id="confirmModalTitle">تأكيد العملية</h3>
-        <button class="close-btn" onclick="app.closeModal('confirmModal')">×</button>
+        <button class="close-btn" onclick="app.closeModal('confirmModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
       </div>
       <p id="confirmModalMessage" style="font-size:14px;line-height:1.6;margin:0 0 14px;"></p>
       <div id="confirmModalInputWrap" class="form-group" style="display:none;">
-        <label id="confirmModalInputLabel">أدخل القيمة الجديدة</label>
+        <label id="confirmModalInputLabel">أدخل القيمة</label>
         <div class="current-val-hint" id="confirmModalCurrentHint"></div>
-        <input type="number" id="confirmModalInput" class="form-control" placeholder="اكتب الرقم الجديد مباشرة..." min="0" />
+        <div id="confirmModalModeBadge" class="manual-mode-pill" style="margin-bottom:8px;"></div>
+        <input type="number" id="confirmModalInput" class="form-control" placeholder="اكتب الرقم مباشرة..." min="0" oninput="app.onConfirmModalInputChanged()" />
+        <div id="confirmModalLivePreview" class="smart-preview-pill" style="display:none;"></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <button class="btn-primary" id="confirmModalYesBtn">نعم، تأكيد</button>
+        <button class="btn-primary" id="confirmModalYesBtn">
+          <svg class="lucide lucide-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>نعم، تأكيد</span>
+        </button>
         <button class="btn-secondary" onclick="app.closeModal('confirmModal')">إلغاء</button>
       </div>
     </div>
@@ -1881,8 +2074,8 @@
       <div class="chat-header">
         <div style="display:flex;align-items:center;gap:10px;">
           <div class="brand-badge" style="width:36px;height:36px;border-radius:11px;">
-            <svg class="icon-svg icon-white" style="width:18px;height:18px;" viewBox="0 0 24 24">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            <svg class="lucide" viewBox="0 0 24 24">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
           </div>
           <div>
@@ -1892,7 +2085,9 @@
         </div>
         <div style="display:flex;gap:6px;">
           <button class="btn-secondary" style="padding:5px 10px;font-size:11px;" onclick="app.clearSoodyeChat()">محادثة جديدة</button>
-          <button class="close-btn" onclick="app.closeModal('soodyeModal')">×</button>
+          <button class="close-btn" onclick="app.closeModal('soodyeModal')">
+            <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
         </div>
       </div>
 
@@ -1900,7 +2095,7 @@
         <div class="msg-wrapper ai">
           <span class="msg-meta-top">سودي</span>
           <div class="msg-bubble">
-            <div>هلا يبوي! شلون أثاعدك بحسابات الإيداع أو الأقساط أو التجميع أو الإكراميات اليوم؟ 😖</div>
+            <div>هلا يبوي! شلون أثاعدك بحسابات الإيداع أو الأقساط أو التجميع أو الإكراميات اليوم؟</div>
           </div>
         </div>
       </div>
@@ -1911,15 +2106,17 @@
             <img id="soodyeAttachThumb" src="" alt="" style="width:28px;height:28px;border-radius:6px;object-fit:cover;border:1px solid #38bdf8;" />
             <span id="soodyeAttachName">صورة مرفقة</span>
           </div>
-          <button style="background:none;border:none;color:var(--danger);font-weight:700;cursor:pointer;font-size:14px;" onclick="app.clearSoodyeAttachment()">×</button>
+          <button style="background:none;border:none;color:var(--danger);font-weight:700;cursor:pointer;display:flex;align-items:center;" onclick="app.clearSoodyeAttachment()">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
         </div>
 
         <form class="chat-input-row" onsubmit="app.sendSoodyeMessage(event)">
           <label class="attach-circle-btn" for="soodyeChatImgInput" title="إرفاق صورة">
-            <svg class="icon-svg" viewBox="0 0 24 24">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-              <circle cx="8.5" cy="8.5" r="1.5"></circle>
-              <polyline points="21 15 16 10 5 21"></polyline>
+            <svg class="lucide" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
             </svg>
             <input type="file" id="soodyeChatImgInput" accept="image/*" style="display:none;" onchange="app.handleSoodyeChatImage(event)" />
           </label>
@@ -1927,10 +2124,12 @@
           <input type="text" id="soodyeInput" class="form-control" style="border-radius:99px;" placeholder="اكتب سؤالك لسودي هنا..." autocomplete="off" />
 
           <button type="button" id="soodyeStopBtn" class="stop-active-btn" onclick="app.stopSoodyeStream()">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
             <span>إيقاف</span>
           </button>
 
           <button type="submit" id="soodyeSendBtn" class="btn-primary" style="border-radius:99px;padding:0 18px;height:42px;">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             <span>إرسال</span>
           </button>
         </form>
@@ -1945,7 +2144,9 @@
     <div class="modal-box" style="max-width: 720px;">
       <div class="modal-header">
         <h3>عرض مكبّر</h3>
-        <button class="close-btn" onclick="app.closeModal('fullscreenModal')">×</button>
+        <button class="close-btn" onclick="app.closeModal('fullscreenModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
       </div>
       <div id="fullscreenBody" class="msg-wrapper ai" style="max-width:100%;"></div>
     </div>
@@ -1958,7 +2159,9 @@
     <div class="modal-box">
       <div class="modal-header">
         <h3>الإعدادات والحساب والتثبيت</h3>
-        <button class="close-btn" onclick="app.closeModal('settingsModal')">×</button>
+        <button class="close-btn" onclick="app.closeModal('settingsModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
       </div>
 
       <!-- Theme Switch -->
@@ -1967,7 +2170,7 @@
           <div style="font-size:13.5px;font-weight:700;color:var(--text);">مظهر التطبيق</div>
           <div style="font-size:11.5px;color:var(--text-muted);" id="themeSubLabel">الوضع النهاري السمائي المشرق</div>
         </div>
-        <button class="btn-secondary" onclick="app.toggleTheme()" id="themeToggleBtn">🌙 الوضع الليلي</button>
+        <button class="btn-secondary" onclick="app.toggleTheme()" id="themeToggleBtn"></button>
       </div>
 
       <!-- Account Info -->
@@ -1982,10 +2185,12 @@
         <div style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text);">تثبيت التطبيق على الهاتف</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <button class="btn-primary" onclick="app.installPwa()">
-            📲 تثبيت التطبيق مباشرة على الشاشة الرئيسية
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            <span>تثبيت التطبيق مباشرة على الشاشة الرئيسية</span>
           </button>
           <button class="btn-secondary" onclick="app.downloadApkFile()">
-            📦 تحميل كـ APK (من مجلد download/app.apk)
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>تحميل كـ APK (من مجلد download/app.apk)</span>
           </button>
         </div>
       </div>
@@ -1994,9 +2199,13 @@
       <div style="background:var(--bg);border:1.5px solid var(--border-sky);border-radius:16px;padding:13px 14px;">
         <div style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text);">نسخة احتياطية يدوية (JSON)</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <button class="btn-secondary" onclick="app.exportJsonBackup()">تصدير نسخة</button>
+          <button class="btn-secondary" onclick="app.exportJsonBackup()">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>تصدير نسخة</span>
+          </button>
           <label class="btn-secondary" style="cursor:pointer;margin:0;">
-            استيراد نسخة
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>استيراد نسخة</span>
             <input type="file" accept=".json" style="display:none;" onchange="app.importJsonBackup(event)" />
           </label>
         </div>
@@ -2041,7 +2250,7 @@
     const db = getFirestore(firebaseApp);
     const googleProvider = new GoogleAuthProvider();
 
-    // 2. AI API Keys (Base64 encoded to pass GitHub Secret Scanning cleanly)
+    // 2. AI API Keys (Base64 encoded)
     const AI_KEYS_B64 = [
       "QVEuQWI4Uk42SkphQ0pjTWdZaDlkOHB1ME51RjZQN25mNW91czNpX3pCd0xFVUdpMXQ5Mmc=",
       "QVEuQWI4Uk42SUw3Rm5pT2dxVW9hVWRMenRfZl9RUEJKVnItWFZ6MkNWejlpUGFtNVRsd0E=",
@@ -2057,9 +2266,29 @@
       "gemini-2.0-flash"
     ];
 
-    const STORAGE_KEY = "soodye_finance_state_v3";
-    const GUEST_FLAG_KEY = "soodye_guest_mode_v3";
-    const THEME_KEY = "soodye_finance_theme_v3";
+    // Professional Lucide SVG Icon Dictionary (Zero Emojis)
+    const ICONS = {
+      sun: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`,
+      moon: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`,
+      check: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`,
+      checkCircle: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+      alert: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>`,
+      edit: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>`,
+      trash: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>`,
+      plus: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>`,
+      lock: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+      refresh: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>`,
+      copy: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>`,
+      expand: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>`,
+      chevronLeft: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>`,
+      sparkles: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>`,
+      award: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>`,
+      stop: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>`
+    };
+
+    const STORAGE_KEY = "soodye_finance_state_v4";
+    const GUEST_FLAG_KEY = "soodye_guest_mode_v4";
+    const THEME_KEY = "soodye_finance_theme_v4";
 
     function createDefaultState() {
       return {
@@ -2095,6 +2324,24 @@
     let chatHistory = [];
     let soodyePendingImage = null;
     let soodyeAbortController = null;
+    let confirmModalSmartMode = "none"; // "none" | "standard" | "tip"
+
+    // Smart Amount Expansion Rules (ONLY for Initial Additions, NEVER for Edits)
+    // Standard fields (Deposits, Collections, Debt, Savings): < 1000 adds 3 zeros (e.g. 100 -> 100,000, 150 -> 150,000)
+    function smartExpandStandard(val) {
+      const num = Number(val);
+      if (isNaN(num) || num <= 0) return 0;
+      if (num < 1000) return Math.round(num * 1000);
+      return Math.round(num);
+    }
+
+    // Tips free-number field: < 100 adds 3 zeros (e.g. 2 -> 2,000, 5 -> 5,000), while 250, 500, 750, 1500 stay exact
+    function smartExpandTip(val) {
+      const num = Number(val);
+      if (isNaN(num) || num <= 0) return 0;
+      if (num < 100) return Math.round(num * 1000);
+      return Math.round(num);
+    }
 
     // Theme Setup
     let isDarkTheme = localStorage.getItem(THEME_KEY) === "dark";
@@ -2103,9 +2350,17 @@
       const btn = document.getElementById("themeToggleBtn");
       const sub = document.getElementById("themeSubLabel");
       const headerBtn = document.getElementById("headerThemeBtn");
-      if (btn) btn.textContent = isDarkTheme ? "☀️ الوضع النهاري" : "🌙 الوضع الليلي";
-      if (sub) sub.textContent = isDarkTheme ? "الوضع الليلي المريح للعين" : "الوضع النهاري السمائي المشرق";
-      if (headerBtn) headerBtn.textContent = isDarkTheme ? "☀️" : "🌙";
+      if (btn) {
+        btn.innerHTML = isDarkTheme
+          ? `${ICONS.sun}<span>الوضع النهاري</span>`
+          : `${ICONS.moon}<span>الوضع الليلي</span>`;
+      }
+      if (sub) {
+        sub.textContent = isDarkTheme ? "الوضع الليلي المريح للعين" : "الوضع النهاري السمائي المشرق";
+      }
+      if (headerBtn) {
+        headerBtn.innerHTML = isDarkTheme ? ICONS.sun : ICONS.moon;
+      }
     }
     applyThemeUI();
 
@@ -2169,9 +2424,9 @@
         .replace(/"/g, "&quot;");
     }
 
-    function showToast(msg) {
+    function showToast(msg, iconKey = "checkCircle") {
       const el = document.getElementById("toast");
-      el.textContent = msg;
+      el.innerHTML = `${ICONS[iconKey] || ""}<span>${escapeHtml(msg)}</span>`;
       el.classList.add("show");
       clearTimeout(el._timer);
       el._timer = setTimeout(() => el.classList.remove("show"), 2800);
@@ -2206,7 +2461,8 @@
 
     function loadLocalState() {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
+        // Migrate from v3 if v4 not present yet
+        const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem("soodye_finance_state_v3");
         if (!raw) return createDefaultState();
         return normalizeState(JSON.parse(raw));
       } catch {
@@ -2238,7 +2494,7 @@
       label.textContent = text;
     }
 
-    // Check Auto Salary Reset on Day 1 and Day 15 immediately after midnight (12:00 AM)
+    // Auto Salary Reset on Day 1 and Day 15 immediately after midnight
     function checkAutoSalaryReset() {
       if (!state.deposit.autoSalaryReset) return false;
       const now = new Date();
@@ -2260,7 +2516,6 @@
       return false;
     }
 
-    // Automatically generate 10 consecutive days ending today on first open, and advance at midnight
     let lastKnownTodayStr = getLocalDateStr();
     function ensureTenDaysAndAutoReset(isInitialBoot = false) {
       const todayStr = getLocalDateStr();
@@ -2299,7 +2554,6 @@
       }
     }
 
-    // Periodic check every 15 seconds for midnight crossover
     setInterval(() => {
       ensureTenDaysAndAutoReset(false);
       renderDepositSection();
@@ -2310,7 +2564,7 @@
     // FIREBASE AUTH FLOW
     // ==========================================
     getRedirectResult(auth).catch((err) => {
-      if (err) showToast("تنبيه تسجيل الدخول: " + err.message);
+      if (err) showToast("تنبيه تسجيل الدخول: " + err.message, "alert");
     });
 
     onAuthStateChanged(auth, async (user) => {
@@ -2337,10 +2591,10 @@
         } catch (err) {
           console.error(err);
           updateSyncUI("guest", "خطأ بالاتصال السحابي");
-          showToast("تعذر جلب البيانات السحابية، تأكد من قواعد Firestore");
+          showToast("تعذر جلب البيانات السحابية، تأكد من قواعد Firestore", "alert");
         }
       } else {
-        const isGuest = localStorage.getItem(GUEST_FLAG_KEY) === "1";
+        const isGuest = localStorage.getItem(GUEST_FLAG_KEY) === "1" || localStorage.getItem("soodye_guest_mode_v3") === "1";
         if (!isGuest) {
           welcomeModal.classList.add("open");
         } else {
@@ -2354,7 +2608,7 @@
     });
 
     // ==========================================
-    // AI STREAMING ENGINE (SILENT FALLBACK, ZERO MODEL LABELS IN UI)
+    // AI STREAMING ENGINE
     // ==========================================
     async function callAiStream({ contents, systemInstruction, onChunk, signal }) {
       let lastErrorMsg = "تعذر الاتصال بالمساعد حالياً";
@@ -2469,7 +2723,7 @@
     }
 
     // ==========================================
-    // SECTION 1: STRICT MATHEMATICAL LEDGER + SALARY RESET + TODAY REQUIRED
+    // SECTION 1: STRICT MATHEMATICAL LEDGER + SALARY RESET + 2-DAY DEPOSIT BOX VISIBILITY
     // ==========================================
     function computeDepositLedger() {
       const todayStr = getLocalDateStr();
@@ -2479,6 +2733,16 @@
       const latestCutoff = latestReset ? latestReset.cutoffDate : null;
 
       const effectiveInitBal = latestCutoff ? 0 : (Number(state.deposit.initialBalance) || 0);
+
+      // Find the latest date where a deposit was recorded (deposit > 0)
+      const daysWithDeposit = sorted.filter((d) => (Number(d.deposit) || 0) > 0);
+      const lastDepositDate = daysWithDeposit.length > 0
+        ? daysWithDeposit[daysWithDeposit.length - 1].date
+        : null;
+
+      // Show "تودع هكذا مبلغ" ONLY on days >= (anchorDate - 2 days), hiding it on all earlier days
+      const anchorDate = lastDepositDate || todayStr;
+      const minSmartBoxDate = addDaysToStr(anchorDate, -2);
 
       let activeTotalCollection = 0;
       let activeTotalDeposit = 0;
@@ -2493,6 +2757,7 @@
         const isBeforeReset = latestCutoff ? day.date < latestCutoff : false;
         const isToday = day.date === todayStr;
         const isPast = day.date < todayStr;
+        const showSmartBox = !isBeforeReset && day.date >= minSmartBoxDate;
 
         if (!isBeforeReset) {
           activeTotalCollection += col;
@@ -2526,6 +2791,7 @@
           isToday,
           isPast,
           isBeforeReset,
+          showSmartBox,
           netBalanceAtEnd,
           debtOwedToCompany,
           hasDebt,
@@ -2535,12 +2801,11 @@
 
       const overallNetBalance = effectiveInitBal + activeTotalDeposit - activeTotalCollection;
 
-      // Smart "المطلوب إيداعه اليوم" (Ended days < todayStr minus deposits already paid)
       const netEndedDebt = endedDaysCollection - (effectiveInitBal + endedDaysDeposit + todayDepositPaid);
       let requiredTodayAmount = 0;
       let actualEndedOwed = Math.max(0, netEndedDebt);
       if (actualEndedOwed > 0) {
-        requiredTodayAmount = actualEndedOwed < 100000 ? 100000 : actualEndedOwed;
+        requiredTodayAmount = actualEndedOwed < 100000 ? 100000 : actualEndedDebt;
       }
 
       let runningDepositAfter = 0;
@@ -2560,6 +2825,8 @@
         todayStr,
         effectiveInitBal,
         latestCutoff,
+        lastDepositDate,
+        minSmartBoxDate,
         resetsSorted,
         overallNetBalance,
         actualEndedOwed,
@@ -2602,7 +2869,6 @@
         statusEl.textContent = "حسابك مصفّر بالكامل";
       }
 
-      // Render Smart "المطلوب إيداعه اليوم"
       const reqBox = document.getElementById("todayRequiredBox");
       const reqAmtEl = document.getElementById("todayRequiredAmount");
       const reqNoteEl = document.getElementById("todayRequiredNote");
@@ -2611,7 +2877,7 @@
       if (ledger.requiredTodayAmount > 0) {
         reqBox.className = "today-required-box due";
         reqAmtEl.textContent = `${formatIQD(ledger.requiredTodayAmount)} د.ع`;
-        reqBadgeEl.textContent = "ودع هذا المبلغ";
+        reqBadgeEl.innerHTML = `${ICONS.check}<span>ودع هذا المبلغ</span>`;
         if (ledger.actualEndedOwed < 100000) {
           reqNoteEl.textContent = `المتبقي الفعلي عن الأيام المنتهية ${formatIQD(ledger.actualEndedOwed)} د.ع — لأن أقل إيداع 100 ألف يُطلب 100,000 د.ع`;
         } else {
@@ -2620,11 +2886,10 @@
       } else {
         reqBox.className = "today-required-box clear";
         reqAmtEl.textContent = "0 د.ع";
-        reqBadgeEl.textContent = "لا تحتاج إيداع ✓";
+        reqBadgeEl.innerHTML = `${ICONS.checkCircle}<span>لا تحتاج إيداع</span>`;
         reqNoteEl.textContent = "جميع الأيام المنتهية مسددة ومصفّرة بالكامل";
       }
 
-      // Render Timeline (Newest First) + Salary Reset Banners right above the last day before reset
       const listEl = document.getElementById("daysListContainer");
       const renderedResetIds = new Set();
       let htmlParts = [];
@@ -2640,13 +2905,17 @@
                 <div class="salary-reset-bar">
                   <div class="salary-reset-info">
                     <div class="salary-reset-title">
-                      <span>🔄 تصفير الإيداع (استلام الراتب: ${r.cutoffDate})</span>
+                      ${ICONS.refresh}
+                      <span>تصفير الإيداع (استلام الراتب: ${r.cutoffDate})</span>
                     </div>
                     <div class="salary-reset-sub">
                       ${r.auto ? "تصفير تلقائي يوم 1 / 15 • " : ""}تم تصفير جميع الأيام التي تسبق هذا التاريخ
                     </div>
                   </div>
-                  <button type="button" class="btn-del-reset" onclick="app.triggerDeleteSalaryReset('${r.id}')">حذف التصفيرة</button>
+                  <button type="button" class="btn-del-reset" onclick="app.triggerDeleteSalaryReset('${r.id}')">
+                    ${ICONS.trash}
+                    <span>حذف التصفيرة</span>
+                  </button>
                 </div>
               `);
             }
@@ -2664,38 +2933,51 @@
 
         const canDelete = day.isFirst || day.isLast;
         const deleteBtnHtml = canDelete
-          ? `<button type="button" class="btn-del-day" onclick="app.triggerDeleteDepositDay('${day.date}')" title="حذف هذا اليوم">🗑️ حذف</button>`
+          ? `<button type="button" class="btn-del-day" onclick="app.triggerDeleteDepositDay('${day.date}')" title="حذف هذا اليوم">${ICONS.trash}<span>حذف</span></button>`
           : "";
 
-        let smartMainText = "";
-        let smartBadgeText = "";
-        let smartSubText = "";
+        let smartBoxHtml = "";
+        if (day.showSmartBox) {
+          let smartMainText = "";
+          let smartBadgeText = "";
+          let smartSubText = "";
 
-        if (day.isBeforeReset) {
-          smartMainText = "0 د.ع (مصفّر باستلام الراتب)";
-          smartBadgeText = "مغلق";
-          smartSubText = "تم تصفير هذا اليوم ضمن دورة الراتب السابقة.";
-        } else if (!day.hasDebt) {
-          smartMainText = "0 د.ع (رصيدك مغطى)";
-          smartBadgeText = day.isToday ? "تلقائي" : "لا يحتاج إيداع";
-          if (day.netBalanceAtEnd > 0) {
-            smartSubText = `لديك فائض لصالحك بقيمة ${formatIQD(day.netBalanceAtEnd)} د.ع يُخصم تلقائياً من القادم.`;
+          if (!day.hasDebt) {
+            smartMainText = "0 د.ع (رصيدك مغطى)";
+            smartBadgeText = day.isToday ? "تلقائي" : "لا يحتاج إيداع";
+            if (day.netBalanceAtEnd > 0) {
+              smartSubText = `لديك فائض لصالحك بقيمة ${formatIQD(day.netBalanceAtEnd)} د.ع يُخصم تلقائياً من القادم.`;
+            } else {
+              smartSubText = "الرصيد متعادل تماماً بنهاية هذا اليوم.";
+            }
           } else {
-            smartSubText = "الرصيد متعادل تماماً بنهاية هذا اليوم.";
-          }
-        } else {
-          smartMainText = `ودع ${formatIQD(day.requiredDepositDisplay)} د.ع`;
-          smartBadgeText = day.isToday ? "يتحدث تلقائياً" : "ودع هذا المبلغ";
+            smartMainText = `ودع ${formatIQD(day.requiredDepositDisplay)} د.ع`;
+            smartBadgeText = day.isToday ? "يتحدث تلقائياً" : "ودع هذا المبلغ";
 
-          if (day.debtOwedToCompany < 100000) {
-            smartSubText = `المتبقي الفعلي ${formatIQD(day.debtOwedToCompany)} د.ع — لأن أقل إيداع 100 ألف يُكتب 100,000 ويُرحّل الفائض (${formatIQD(100000 - day.debtOwedToCompany)} د.ع) لصالحك.`;
-          } else {
-            smartSubText = `المبلغ الدقيق المطلوب لتصفير الذمة حتى نهاية هذا اليوم.`;
+            if (day.debtOwedToCompany < 100000) {
+              smartSubText = `المتبقي الفعلي ${formatIQD(day.debtOwedToCompany)} د.ع — لأن أقل إيداع 100 ألف يُكتب 100,000 ويُرحّل الفائض (${formatIQD(100000 - day.debtOwedToCompany)} د.ع) لصالحك.`;
+            } else {
+              smartSubText = `المبلغ الدقيق المطلوب لتصفير الذمة حتى نهاية هذا اليوم.`;
+            }
+
+            if (day.coveredByFuture) {
+              smartSubText += " • (تمت تغطيته بإيداع لاحق)";
+            }
           }
 
-          if (day.coveredByFuture) {
-            smartSubText += " • (تمت تغطيته بإيداع لاحق ✓)";
-          }
+          smartBoxHtml = `
+            <div class="smart-deposit-box ${boxColorClass}" aria-readonly="true">
+              <div class="smart-box-header">
+                <span>تودع هكذا مبلغ (حساب ذكي تلقائي)</span>
+                <span style="display:inline-flex;align-items:center;gap:4px;">${ICONS.lock}<span>غير قابل للتغيير</span></span>
+              </div>
+              <div class="smart-box-main">
+                <span class="smart-amount">${smartMainText}</span>
+                <span class="smart-action-badge">${smartBadgeText}</span>
+              </div>
+              <div class="smart-subtext">${smartSubText}</div>
+            </div>
+          `;
         }
 
         htmlParts.push(`
@@ -2711,11 +2993,11 @@
               </div>
             </div>
 
-            <div class="day-actions-grid">
+            <div class="day-actions-grid ${smartBoxHtml ? "has-smart-box" : ""}">
               <button type="button" class="action-box" onclick="app.openCollectionModal('${day.date}')">
                 <div class="action-box-top">
                   <span>كم حصلت من الزبائن</span>
-                  <span class="edit-chip">${day.collection > 0 ? "تعديل" : "+ أضف"}</span>
+                  <span class="edit-chip">${day.collection > 0 ? `${ICONS.edit}<span>تعديل</span>` : `${ICONS.plus}<span>أضف</span>`}</span>
                 </div>
                 <div class="action-box-val">${formatIQD(day.collection)} د.ع</div>
               </button>
@@ -2723,23 +3005,13 @@
               <button type="button" class="action-box" onclick="app.openDepositDayModal('${day.date}')">
                 <div class="action-box-top">
                   <span>ودعت هذا المبلغ بنفس اليوم</span>
-                  <span class="edit-chip">${day.deposit > 0 ? "تعديل" : "+ أضف"}</span>
+                  <span class="edit-chip">${day.deposit > 0 ? `${ICONS.edit}<span>تعديل</span>` : `${ICONS.plus}<span>أضف</span>`}</span>
                 </div>
                 <div class="action-box-val">${formatIQD(day.deposit)} د.ع</div>
               </button>
             </div>
 
-            <div class="smart-deposit-box ${boxColorClass}" aria-readonly="true">
-              <div class="smart-box-header">
-                <span>تودع هكذا مبلغ (حساب ذكي تلقائي)</span>
-                <span>🔒 غير قابل للتغيير</span>
-              </div>
-              <div class="smart-box-main">
-                <span class="smart-amount">${smartMainText}</span>
-                <span class="smart-action-badge">${smartBadgeText}</span>
-              </div>
-              <div class="smart-subtext">${smartSubText}</div>
-            </div>
+            ${smartBoxHtml}
           </article>
         `);
       });
@@ -2753,11 +3025,15 @@
               <div class="salary-reset-bar">
                 <div class="salary-reset-info">
                   <div class="salary-reset-title">
-                    <span>🔄 تصفير الإيداع (استلام الراتب: ${r.cutoffDate})</span>
+                    ${ICONS.refresh}
+                    <span>تصفير الإيداع (استلام الراتب: ${r.cutoffDate})</span>
                   </div>
                   <div class="salary-reset-sub">تم تصفير ما قبل هذا التاريخ</div>
                 </div>
-                <button type="button" class="btn-del-reset" onclick="app.triggerDeleteSalaryReset('${r.id}')">حذف التصفيرة</button>
+                <button type="button" class="btn-del-reset" onclick="app.triggerDeleteSalaryReset('${r.id}')">
+                  ${ICONS.trash}
+                  <span>حذف التصفيرة</span>
+                </button>
               </div>
             `);
           }
@@ -2792,8 +3068,10 @@
       document.getElementById("debtCountLabel").textContent = `${history.length} دفعات`;
 
       const payBtn = document.getElementById("debtPayBtn");
-      payBtn.textContent =
-        totalPaid >= target ? "🎉 تم الوصول للهدف بالكامل!" : `لقد دفعت (+${formatIQD(step)} د.ع)`;
+      payBtn.innerHTML =
+        totalPaid >= target
+          ? `${ICONS.award}<span>تم الوصول للهدف بالكامل</span>`
+          : `${ICONS.check}<span>لقد دفعت (+${formatIQD(step)} د.ع)</span>`;
 
       const listEl = document.getElementById("debtHistoryList");
       if (history.length === 0) {
@@ -2809,8 +3087,8 @@
                 <span>${escapeHtml(item.dateTime)}</span>
               </div>
               <div class="history-btns">
-                <button class="icon-btn" title="تعديل" onclick="app.triggerEditDebtItem('${item.id}')">✏️</button>
-                <button class="icon-btn danger" title="حذف" onclick="app.triggerDeleteDebtItem('${item.id}')">🗑️</button>
+                <button class="icon-btn" title="تعديل" onclick="app.triggerEditDebtItem('${item.id}')">${ICONS.edit}</button>
+                <button class="icon-btn danger" title="حذف" onclick="app.triggerDeleteDebtItem('${item.id}')">${ICONS.trash}</button>
               </div>
             </div>
           `
@@ -2857,8 +3135,8 @@
                 <span>${escapeHtml(item.dateTime)}</span>
               </div>
               <div class="history-btns">
-                <button class="icon-btn" title="تعديل" onclick="app.triggerEditSavingsItem('${item.id}')">✏️</button>
-                <button class="icon-btn danger" title="حذف" onclick="app.triggerDeleteSavingsItem('${item.id}')">🗑️</button>
+                <button class="icon-btn" title="تعديل" onclick="app.triggerEditSavingsItem('${item.id}')">${ICONS.edit}</button>
+                <button class="icon-btn danger" title="حذف" onclick="app.triggerDeleteSavingsItem('${item.id}')">${ICONS.trash}</button>
               </div>
             </div>
           `
@@ -2904,7 +3182,7 @@
                 </div>
                 <div style="display:flex;align-items:center;gap:8px;">
                   <strong style="font-size:16px;color:var(--emerald);">${formatIQD(sum)} د.ع</strong>
-                  <span style="font-size:12px;color:var(--accent-dark);font-weight:700;">التفاصيل ◀</span>
+                  <span style="font-size:12px;color:var(--accent-dark);font-weight:700;display:inline-flex;align-items:center;gap:3px;"><span>التفاصيل</span>${ICONS.chevronLeft}</span>
                 </div>
               </div>
             `;
@@ -2938,8 +3216,8 @@
                 <span>الساعة: ${escapeHtml(item.time || "")}</span>
               </div>
               <div class="history-btns">
-                <button class="icon-btn" title="تعديل" onclick="app.triggerEditSingleTip('${dateStr}', '${item.id}')">✏️</button>
-                <button class="icon-btn danger" title="حذف" onclick="app.triggerDeleteSingleTip('${dateStr}', '${item.id}')">🗑️</button>
+                <button class="icon-btn" title="تعديل" onclick="app.triggerEditSingleTip('${dateStr}', '${item.id}')">${ICONS.edit}</button>
+                <button class="icon-btn danger" title="حذف" onclick="app.triggerDeleteSingleTip('${dateStr}', '${item.id}')">${ICONS.trash}</button>
               </div>
             </div>
           `
@@ -2954,43 +3232,65 @@
       if (!infoEl || !actionsEl) return;
 
       if (currentUser) {
-        infoEl.innerHTML = `✅ متصل بحساب: <span style="color:var(--accent-dark);">${escapeHtml(currentUser.email)}</span>`;
+        infoEl.innerHTML = `<span style="display:inline-flex;align-items:center;gap:6px;color:var(--emerald);">${ICONS.checkCircle}<span>متصل بحساب: ${escapeHtml(currentUser.email)}</span></span>`;
         actionsEl.innerHTML = `<button class="btn-secondary" style="width:100%;color:var(--danger);border-color:var(--danger-border);" onclick="app.logoutGoogle()">تسجيل الخروج</button>`;
       } else {
-        infoEl.innerHTML = `⚠️ وضع الضيف (غير مرتبط بإيميل)`;
+        infoEl.innerHTML = `<span style="display:inline-flex;align-items:center;gap:6px;color:var(--amber);">${ICONS.alert}<span>وضع الضيف (غير مرتبط بإيميل)</span></span>`;
         actionsEl.innerHTML = `<button class="btn-primary" style="width:100%;" onclick="app.loginWithGoogle()">ربط بحساب Google الآن</button>`;
       }
     }
 
+    // Confirmation Modal Helper
+    // smartMode: "none" (exact edit - NO smart expansion), "standard" (<1000 * 1000), "tip" (<100 * 1000)
     function askConfirmation({
       title,
       message,
       showInput = false,
       inputLabel = "",
       currentHint = "",
+      smartMode = "none",
       onConfirm
     }) {
+      confirmModalSmartMode = smartMode;
       document.getElementById("confirmModalTitle").textContent = title;
       document.getElementById("confirmModalMessage").textContent = message;
       const inputWrap = document.getElementById("confirmModalInputWrap");
       const inputEl = document.getElementById("confirmModalInput");
       const hintEl = document.getElementById("confirmModalCurrentHint");
+      const modeBadgeEl = document.getElementById("confirmModalModeBadge");
+      const previewEl = document.getElementById("confirmModalLivePreview");
 
       if (showInput) {
         inputWrap.style.display = "block";
         document.getElementById("confirmModalInputLabel").textContent = inputLabel;
         hintEl.textContent = currentHint;
         inputEl.value = "";
+        previewEl.style.display = "none";
+
+        if (smartMode === "none") {
+          modeBadgeEl.className = "manual-mode-pill";
+          modeBadgeEl.innerHTML = `${ICONS.edit}<span>تعديل يدوي دقيق (بدون إضافة أصفار تلقائية)</span>`;
+        } else {
+          modeBadgeEl.className = "smart-preview-pill";
+          modeBadgeEl.innerHTML = `${ICONS.sparkles}<span>إدخال ذكي (يضيف 3 أصفار للأرقام الصغيرة تلقائياً)</span>`;
+        }
       } else {
         inputWrap.style.display = "none";
       }
 
       const yesBtn = document.getElementById("confirmModalYesBtn");
       yesBtn.onclick = () => {
-        const val = showInput ? Number(inputEl.value) : null;
-        if (showInput && (inputEl.value.trim() === "" || isNaN(val) || val < 0)) {
-          showToast("يرجى إدخال رقم صحيح");
-          return;
+        let val = null;
+        if (showInput) {
+          const raw = inputEl.value.trim();
+          const parsed = Number(raw);
+          if (raw === "" || isNaN(parsed) || parsed < 0) {
+            showToast("يرجى إدخال رقم صحيح", "alert");
+            return;
+          }
+          if (smartMode === "standard") val = smartExpandStandard(parsed);
+          else if (smartMode === "tip") val = smartExpandTip(parsed);
+          else val = Math.round(parsed); // Exact literal value for all edits!
         }
         app.closeModal("confirmModal");
         onConfirm(val);
@@ -3028,19 +3328,61 @@
         isDarkTheme = !isDarkTheme;
         localStorage.setItem(THEME_KEY, isDarkTheme ? "dark" : "light");
         applyThemeUI();
-        showToast(isDarkTheme ? "🌙 تم تفعيل الوضع الليلي المريح" : "☀️ تم تفعيل الوضع النهاري");
+        showToast(isDarkTheme ? "تم تفعيل الوضع الليلي المريح" : "تم تفعيل الوضع النهاري", isDarkTheme ? "moon" : "sun");
+      },
+
+      // Live Smart Preview Helpers
+      updateSmartPreview(inputId, previewId) {
+        const raw = document.getElementById(inputId).value.trim();
+        const previewEl = document.getElementById(previewId);
+        const num = Number(raw);
+        if (raw !== "" && !isNaN(num) && num > 0 && num < 1000) {
+          const expanded = smartExpandStandard(num);
+          previewEl.style.display = "inline-flex";
+          previewEl.innerHTML = `${ICONS.sparkles}<span>سيتم حفظه تلقائياً: ${formatIQD(expanded)} د.ع</span>`;
+        } else {
+          previewEl.style.display = "none";
+        }
+      },
+
+      updateTipSmartPreview(inputId, previewId) {
+        const raw = document.getElementById(inputId).value.trim();
+        const previewEl = document.getElementById(previewId);
+        const num = Number(raw);
+        if (raw !== "" && !isNaN(num) && num > 0 && num < 100) {
+          const expanded = smartExpandTip(num);
+          previewEl.style.display = "inline-flex";
+          previewEl.innerHTML = `${ICONS.sparkles}<span>سيتم حفظه تلقائياً: ${formatIQD(expanded)} د.ع</span>`;
+        } else {
+          previewEl.style.display = "none";
+        }
+      },
+
+      onConfirmModalInputChanged() {
+        const raw = document.getElementById("confirmModalInput").value.trim();
+        const previewEl = document.getElementById("confirmModalLivePreview");
+        const num = Number(raw);
+        if (confirmModalSmartMode === "standard" && raw !== "" && !isNaN(num) && num > 0 && num < 1000) {
+          previewEl.style.display = "inline-flex";
+          previewEl.innerHTML = `${ICONS.sparkles}<span>سيتم حفظه: ${formatIQD(smartExpandStandard(num))} د.ع</span>`;
+        } else if (confirmModalSmartMode === "tip" && raw !== "" && !isNaN(num) && num > 0 && num < 100) {
+          previewEl.style.display = "inline-flex";
+          previewEl.innerHTML = `${ICONS.sparkles}<span>سيتم حفظه: ${formatIQD(smartExpandTip(num))} د.ع</span>`;
+        } else {
+          previewEl.style.display = "none";
+        }
       },
 
       // Auth Actions
       async loginWithGoogle() {
         try {
           await signInWithPopup(auth, googleProvider);
-          showToast("✓ تم تسجيل الدخول بحساب Google");
+          showToast("تم تسجيل الدخول بحساب Google");
         } catch (err) {
           if (err.code === "auth/popup-blocked" || err.code === "auth/cancelled-popup-request") {
             await signInWithRedirect(auth, googleProvider);
           } else {
-            showToast("خطأ بتسجيل الدخول: " + err.message);
+            showToast("خطأ بتسجيل الدخول: " + err.message, "alert");
           }
         }
       },
@@ -3061,20 +3403,49 @@
       },
 
       // ==========================================
-      // SECTION 1: COLLECTION, DEPOSIT, ADD/DELETE DAY, SALARY RESET
+      // SECTION 1: COLLECTION (SMART ON INITIAL ADD, EXACT ON EDIT)
       // ==========================================
       openCollectionModal(dateStr) {
         editingDayDate = dateStr;
         const day = state.deposit.days.find((d) => d.date === dateStr);
         const cur = day ? Number(day.collection) || 0 : 0;
+        const isEditingExisting = cur > 0;
+
         document.getElementById("collectionModalTitle").textContent = `تحصيل الزبائن (${dateStr})`;
         document.getElementById("collectionCurrentHint").textContent = `القيمة المسجلة حالياً: ${formatIQD(cur)} د.ع`;
+
+        const badgeEl = document.getElementById("collectionModeBadge");
+        if (isEditingExisting) {
+          badgeEl.className = "manual-mode-pill";
+          badgeEl.innerHTML = `${ICONS.edit}<span>وضع التعديل اليدوي الدقيق (بدون إضافة أصفار تلقائية)</span>`;
+        } else {
+          badgeEl.className = "smart-preview-pill";
+          badgeEl.innerHTML = `${ICONS.sparkles}<span>إضافة أولية ذكية (مثال: 100 تصبح 100,000 د.ع)</span>`;
+        }
+
         const inputEl = document.getElementById("collectionAmountInput");
         inputEl.value = "";
+        document.getElementById("collectionLivePreview").style.display = "none";
         document.getElementById("ocrStatusBox").textContent = "";
         app.switchCollectionTab("manual");
         document.getElementById("collectionModal").classList.add("open");
         setTimeout(() => inputEl.focus(), 80);
+      },
+
+      onCollectionInputChanged() {
+        const day = state.deposit.days.find((d) => d.date === editingDayDate);
+        const cur = day ? Number(day.collection) || 0 : 0;
+        const isEditingExisting = cur > 0;
+        const raw = document.getElementById("collectionAmountInput").value.trim();
+        const previewEl = document.getElementById("collectionLivePreview");
+        const num = Number(raw);
+
+        if (!isEditingExisting && raw !== "" && !isNaN(num) && num > 0 && num < 1000) {
+          previewEl.style.display = "inline-flex";
+          previewEl.innerHTML = `${ICONS.sparkles}<span>سيتم حفظه: ${formatIQD(smartExpandStandard(num))} د.ع</span>`;
+        } else {
+          previewEl.style.display = "none";
+        }
       },
 
       switchCollectionTab(tab) {
@@ -3086,16 +3457,23 @@
 
       saveCollectionValue(mode) {
         const raw = document.getElementById("collectionAmountInput").value.trim();
-        const val = Number(raw);
-        if (raw === "" || isNaN(val) || val < 0) {
-          showToast("اكتب رقماً صحيحاً");
+        const parsed = Number(raw);
+        if (raw === "" || isNaN(parsed) || parsed < 0) {
+          showToast("اكتب رقماً صحيحاً", "alert");
           return;
         }
         const day = state.deposit.days.find((d) => d.date === editingDayDate);
         if (day) {
-          day.collection = mode === "add" ? (Number(day.collection) || 0) + val : val;
+          const cur = Number(day.collection) || 0;
+          const isEditingExisting = cur > 0;
+          // Smart expansion ONLY on initial add (when cur === 0 or adding new amount on top)
+          const finalVal = (!isEditingExisting || mode === "add")
+            ? smartExpandStandard(parsed)
+            : Math.round(parsed);
+
+          day.collection = mode === "add" ? cur + finalVal : finalVal;
           saveState();
-          showToast("✓ تم تحديث تحصيل الزبائن");
+          showToast("تم تحديث تحصيل الزبائن");
         }
         app.closeModal("collectionModal");
       },
@@ -3104,7 +3482,7 @@
         const file = event.target.files?.[0];
         if (!file) return;
         const statusBox = document.getElementById("ocrStatusBox");
-        statusBox.textContent = "⏳ سودي يضغط الصورة ويقرأ الرقم...";
+        statusBox.textContent = "سودي يضغط الصورة ويقرأ الرقم...";
 
         try {
           const compressed = await compressImageFile(file);
@@ -3131,39 +3509,89 @@
           const digits = result.text.replace(/[^\d]/g, "");
           const extracted = Number(digits) || 0;
           document.getElementById("collectionAmountInput").value = extracted > 0 ? extracted : "";
+          app.onCollectionInputChanged();
           app.switchCollectionTab("manual");
-          showToast(`✓ استخرج سودي: ${formatIQD(extracted)} د.ع`);
+          showToast(`استخرج سودي: ${formatIQD(extracted)} د.ع`);
         } catch {
-          statusBox.textContent = "❌ تعذرت قراءة الصورة. حاول مرة أخرى أو أدخل الرقم يدوياً.";
+          statusBox.textContent = "تعذرت قراءة الصورة. حاول مرة أخرى أو أدخل الرقم يدوياً.";
         } finally {
           event.target.value = "";
         }
       },
 
+      // ==========================================
+      // SECTION 1: DEPOSIT DAY (QUICK 100,000 + SMART ON INITIAL ADD + EXACT ON EDIT)
+      // ==========================================
       openDepositDayModal(dateStr) {
         editingDayDate = dateStr;
         const day = state.deposit.days.find((d) => d.date === dateStr);
         const cur = day ? Number(day.deposit) || 0 : 0;
+        const isEditingExisting = cur > 0;
+
         document.getElementById("depositDayModalTitle").textContent = `إيداع نفس اليوم (${dateStr})`;
         document.getElementById("depositCurrentHint").textContent = `الإيداع المسجل حالياً: ${formatIQD(cur)} د.ع`;
+
+        const badgeEl = document.getElementById("depositModeBadge");
+        if (isEditingExisting) {
+          badgeEl.className = "manual-mode-pill";
+          badgeEl.innerHTML = `${ICONS.edit}<span>وضع التعديل اليدوي الدقيق (بدون إضافة أصفار تلقائية)</span>`;
+        } else {
+          badgeEl.className = "smart-preview-pill";
+          badgeEl.innerHTML = `${ICONS.sparkles}<span>إضافة أولية ذكية (مثال: 100 تصبح 100,000 و 150 تصبح 150,000)</span>`;
+        }
+
         const inputEl = document.getElementById("depositDayAmountInput");
         inputEl.value = "";
+        document.getElementById("depositLivePreview").style.display = "none";
         document.getElementById("depositDayModal").classList.add("open");
         setTimeout(() => inputEl.focus(), 80);
       },
 
+      onDepositInputChanged() {
+        const day = state.deposit.days.find((d) => d.date === editingDayDate);
+        const cur = day ? Number(day.deposit) || 0 : 0;
+        const isEditingExisting = cur > 0;
+        const raw = document.getElementById("depositDayAmountInput").value.trim();
+        const previewEl = document.getElementById("depositLivePreview");
+        const num = Number(raw);
+
+        if (!isEditingExisting && raw !== "" && !isNaN(num) && num > 0 && num < 1000) {
+          previewEl.style.display = "inline-flex";
+          previewEl.innerHTML = `${ICONS.sparkles}<span>سيتم حفظه: ${formatIQD(smartExpandStandard(num))} د.ع</span>`;
+        } else {
+          previewEl.style.display = "none";
+        }
+      },
+
+      quickDeposit100k() {
+        const day = state.deposit.days.find((d) => d.date === editingDayDate);
+        if (day) {
+          day.deposit = (Number(day.deposit) || 0) + 100000;
+          saveState();
+          showToast("تم إيداع 100,000 د.ع مباشرة");
+        }
+        app.closeModal("depositDayModal");
+      },
+
       saveDepositDayValue(mode) {
         const raw = document.getElementById("depositDayAmountInput").value.trim();
-        const val = Number(raw);
-        if (raw === "" || isNaN(val) || val < 0) {
-          showToast("اكتب رقماً صحيحاً");
+        const parsed = Number(raw);
+        if (raw === "" || isNaN(parsed) || parsed < 0) {
+          showToast("اكتب رقماً صحيحاً", "alert");
           return;
         }
         const day = state.deposit.days.find((d) => d.date === editingDayDate);
         if (day) {
-          day.deposit = mode === "add" ? (Number(day.deposit) || 0) + val : val;
+          const cur = Number(day.deposit) || 0;
+          const isEditingExisting = cur > 0;
+          // Smart expansion ONLY on initial add (when cur === 0 or adding extra on top); exact literal on edit
+          const finalVal = (!isEditingExisting || mode === "add")
+            ? smartExpandStandard(parsed)
+            : Math.round(parsed);
+
+          day.deposit = mode === "add" ? cur + finalVal : finalVal;
           saveState();
-          showToast("✓ تم حفظ الإيداع وتحديث الحسابات");
+          showToast("تم حفظ الإيداع وتحديث الحسابات");
         }
         app.closeModal("depositDayModal");
       },
@@ -3182,15 +3610,15 @@
         alertEl.style.display = "none";
 
         if (!picked) {
-          alertEl.textContent = "يرجى اختيار تاريخ صحيح.";
-          alertEl.style.display = "block";
+          alertEl.innerHTML = `${ICONS.alert}<span>يرجى اختيار تاريخ صحيح.</span>`;
+          alertEl.style.display = "flex";
           return;
         }
 
         const existingDates = new Set(state.deposit.days.map((d) => d.date));
         if (existingDates.has(picked)) {
-          alertEl.textContent = "هذا اليوم مسجل مسبقاً في التطبيق.";
-          alertEl.style.display = "block";
+          alertEl.innerHTML = `${ICONS.alert}<span>هذا اليوم مسجل مسبقاً في التطبيق.</span>`;
+          alertEl.style.display = "flex";
           return;
         }
 
@@ -3199,8 +3627,8 @@
           const nextDay = addDaysToStr(picked, 1);
           const isConnected = existingDates.has(prevDay) || existingDates.has(nextDay);
           if (!isConnected) {
-            alertEl.textContent = "عذراً هذا اليوم يخرب سلسلة الأيام";
-            alertEl.style.display = "block";
+            alertEl.innerHTML = `${ICONS.alert}<span>عذراً هذا اليوم يخرب سلسلة الأيام</span>`;
+            alertEl.style.display = "flex";
             return;
           }
         }
@@ -3209,7 +3637,7 @@
         state.deposit.days.sort((a, b) => a.date.localeCompare(b.date));
         saveState();
         app.closeModal("addDayModal");
-        showToast(`✓ تمت إضافة يوم ${picked} بدقة`);
+        showToast(`تمت إضافة يوم ${picked} بدقة`);
       },
 
       triggerDeleteDepositDay(dateStr) {
@@ -3219,7 +3647,7 @@
         const isLast = sorted[sorted.length - 1].date === dateStr;
 
         if (!isFirst && !isLast) {
-          showToast("يُسمح بحذف أول يوم أو آخر يوم فقط للحفاظ على سلسلة الأيام");
+          showToast("يُسمح بحذف أول يوم أو آخر يوم فقط للحفاظ على سلسلة الأيام", "alert");
           return;
         }
 
@@ -3229,7 +3657,7 @@
           onConfirm: () => {
             state.deposit.days = state.deposit.days.filter((d) => d.date !== dateStr);
             saveState();
-            showToast(`🗑️ تم حذف يوم ${dateStr}`);
+            showToast(`تم حذف يوم ${dateStr}`, "trash");
           }
         });
       },
@@ -3248,7 +3676,7 @@
         saveState();
         showToast(
           enabled
-            ? "✓ تم تفعيل التصفير التلقائي يوم 1 و 15 (محفوظ تلقائياً)"
+            ? "تم تفعيل التصفير التلقائي يوم 1 و 15 (محفوظ تلقائياً)"
             : "تم إيقاف التصفير التلقائي"
         );
       },
@@ -3256,7 +3684,7 @@
       confirmManualSalaryReset() {
         const cutoffDate = document.getElementById("salaryResetDateInput").value;
         if (!cutoffDate) {
-          showToast("اختر تاريخ استلام الراتب أولاً");
+          showToast("اختر تاريخ استلام الراتب أولاً", "alert");
           return;
         }
         app.closeModal("salaryResetModal");
@@ -3274,7 +3702,7 @@
               (d) => d !== cutoffDate
             );
             saveState();
-            showToast(`✓ تم تصفير الحساب لما قبل ${cutoffDate}`);
+            showToast(`تم تصفير الحساب لما قبل ${cutoffDate}`);
           }
         });
       },
@@ -3291,7 +3719,7 @@
             }
             state.deposit.resets = state.deposit.resets.filter((r) => r.id !== resetId);
             saveState();
-            showToast("✓ تم حذف التصفيرة واستعادة جميع الحسابات السابقة");
+            showToast("تم حذف التصفيرة واستعادة جميع الحسابات السابقة");
           }
         });
       },
@@ -3301,8 +3729,18 @@
         const typeEl = document.getElementById("initialBalanceType");
         const valEl = document.getElementById("initialBalanceValue");
         const hintEl = document.getElementById("initialBalanceCurrentHint");
+        const badgeEl = document.getElementById("initBalModeBadge");
         hintEl.textContent = `الرصيد الابتدائي الحالي: ${formatIQD(init)} د.ع`;
         valEl.value = "";
+        document.getElementById("initBalLivePreview").style.display = "none";
+
+        if (init !== 0) {
+          badgeEl.className = "manual-mode-pill";
+          badgeEl.innerHTML = `${ICONS.edit}<span>وضع التعديل اليدوي الدقيق (بدون إضافة أصفار تلقائية)</span>`;
+        } else {
+          badgeEl.className = "smart-preview-pill";
+          badgeEl.innerHTML = `${ICONS.sparkles}<span>إضافة أولية ذكية (مثال: 100 تصبح 100,000 د.ع)</span>`;
+        }
 
         if (init > 0) typeEl.value = "positive";
         else if (init < 0) typeEl.value = "negative";
@@ -3311,27 +3749,46 @@
         document.getElementById("initialBalanceModal").classList.add("open");
       },
 
+      onInitBalInputChanged() {
+        const init = state.deposit.initialBalance || 0;
+        const raw = document.getElementById("initialBalanceValue").value.trim();
+        const previewEl = document.getElementById("initBalLivePreview");
+        const num = Number(raw);
+        if (init === 0 && raw !== "" && !isNaN(num) && num > 0 && num < 1000) {
+          previewEl.style.display = "inline-flex";
+          previewEl.innerHTML = `${ICONS.sparkles}<span>سيتم حفظه: ${formatIQD(smartExpandStandard(num))} د.ع</span>`;
+        } else {
+          previewEl.style.display = "none";
+        }
+      },
+
       saveInitialBalance() {
+        const init = state.deposit.initialBalance || 0;
         const type = document.getElementById("initialBalanceType").value;
         const raw = document.getElementById("initialBalanceValue").value.trim();
-        const val = raw === "" ? 0 : Math.abs(Number(raw) || 0);
+        const parsed = raw === "" ? 0 : Math.abs(Number(raw) || 0);
+        const val = init === 0 ? smartExpandStandard(parsed) : Math.round(parsed);
+
         if (type === "positive") state.deposit.initialBalance = val;
         else if (type === "negative") state.deposit.initialBalance = -val;
         else state.deposit.initialBalance = 0;
 
         saveState();
         app.closeModal("initialBalanceModal");
-        showToast("✓ تم تحديث الرصيد الابتدائي");
+        showToast("تم تحديث الرصيد الابتدائي");
       },
 
       // ==========================================
-      // SECTION 2: DEBT / INSTALLMENTS
+      // SECTION 2: DEBT / INSTALLMENTS (SMART ON SETUP, EXACT ON EDIT)
       // ==========================================
       setupDebtSection() {
-        const target = Number(document.getElementById("debtTargetInput").value);
-        const step = Number(document.getElementById("debtStepInput").value);
+        const rawTarget = Number(document.getElementById("debtTargetInput").value);
+        const rawStep = Number(document.getElementById("debtStepInput").value);
+        const target = smartExpandStandard(rawTarget);
+        const step = smartExpandStandard(rawStep);
+
         if (!target || target <= 0 || !step || step <= 0) {
-          showToast("يرجى إدخال مبلغ الهدف ومبلغ الضغطة الثابت");
+          showToast("يرجى إدخال مبلغ الهدف ومبلغ الضغطة الثابت", "alert");
           return;
         }
         askConfirmation({
@@ -3340,7 +3797,7 @@
           onConfirm: () => {
             state.debt = { target, step, history: [] };
             saveState();
-            showToast("✓ تم فتح القسم بنجاح");
+            showToast("تم فتح القسم بنجاح");
           }
         });
       },
@@ -3357,7 +3814,7 @@
               dateTime: getLocalDateTimeStr()
             });
             saveState();
-            showToast(`✓ تمت إضافة دفعة ${formatIQD(step)} د.ع`);
+            showToast(`تمت إضافة دفعة ${formatIQD(step)} د.ع`);
           }
         });
       },
@@ -3369,11 +3826,12 @@
           showInput: true,
           inputLabel: "المبلغ الثابت الجديد (د.ع)",
           currentHint: `القيمة الحالية: ${formatIQD(state.debt.step)} د.ع`,
+          smartMode: "none",
           onConfirm: (newVal) => {
-            if (!newVal || newVal <= 0) return showToast("أدخل مبلغاً أكبر من صفر");
+            if (!newVal || newVal <= 0) return showToast("أدخل مبلغاً أكبر من صفر", "alert");
             state.debt.step = newVal;
             saveState();
-            showToast("✓ تم تحديث قيمة الضغطة");
+            showToast("تم تحديث قيمة الضغطة");
           }
         });
       },
@@ -3385,6 +3843,7 @@
           showInput: true,
           inputLabel: "مبلغ الهدف الكلي (د.ع)",
           currentHint: `الهدف الحالي: ${formatIQD(state.debt.target)} د.ع`,
+          smartMode: "none",
           onConfirm: (newTarget) => {
             if (newTarget === 0) {
               state.debt = { target: 0, step: 0, history: [] };
@@ -3392,7 +3851,7 @@
               state.debt.target = newTarget;
             }
             saveState();
-            showToast("✓ تم تحديث الهدف");
+            showToast("تم تحديث الهدف");
           }
         });
       },
@@ -3406,10 +3865,11 @@
           showInput: true,
           inputLabel: "المبلغ الصحيح (د.ع)",
           currentHint: `المبلغ الحالي: ${formatIQD(item.amount)} د.ع`,
+          smartMode: "none",
           onConfirm: (newAmt) => {
             item.amount = newAmt;
             saveState();
-            showToast("✓ تم تعديل السجل");
+            showToast("تم تعديل السجل");
           }
         });
       },
@@ -3423,18 +3883,19 @@
           onConfirm: () => {
             state.debt.history = state.debt.history.filter((x) => x.id !== id);
             saveState();
-            showToast("🗑️ تم حذف الدفعة");
+            showToast("تم حذف الدفعة", "trash");
           }
         });
       },
 
       // ==========================================
-      // SECTION 3: SAVINGS
+      // SECTION 3: SAVINGS (SMART ON SETUP & ADD, EXACT ON EDIT)
       // ==========================================
       setupSavingsSection() {
-        const target = Number(document.getElementById("savingsTargetInput").value);
+        const rawTarget = Number(document.getElementById("savingsTargetInput").value);
+        const target = smartExpandStandard(rawTarget);
         if (!target || target <= 0) {
-          showToast("أدخل هدف تجميع صحيح");
+          showToast("أدخل هدف تجميع صحيح", "alert");
           return;
         }
         askConfirmation({
@@ -3443,16 +3904,17 @@
           onConfirm: () => {
             state.savings = { target, history: [] };
             saveState();
-            showToast("✓ تم فتح قسم التجميع");
+            showToast("تم فتح قسم التجميع");
           }
         });
       },
 
       triggerAddSavings() {
         const inputEl = document.getElementById("savingsAddAmountInput");
-        const amt = Number(inputEl.value);
+        const rawAmt = Number(inputEl.value);
+        const amt = smartExpandStandard(rawAmt);
         if (!amt || amt <= 0) {
-          showToast("اكتب المبلغ المراد إضافته للتجميع");
+          showToast("اكتب المبلغ المراد إضافته للتجميع", "alert");
           return;
         }
         askConfirmation({
@@ -3465,8 +3927,9 @@
               dateTime: getLocalDateTimeStr()
             });
             inputEl.value = "";
+            document.getElementById("savingsAddPreview").style.display = "none";
             saveState();
-            showToast(`✓ تمت إضافة ${formatIQD(amt)} د.ع`);
+            showToast(`تمت إضافة ${formatIQD(amt)} د.ع`);
           }
         });
       },
@@ -3478,6 +3941,7 @@
           showInput: true,
           inputLabel: "هدف التجميع (د.ع)",
           currentHint: `الهدف الحالي: ${formatIQD(state.savings.target)} د.ع`,
+          smartMode: "none",
           onConfirm: (newTarget) => {
             if (newTarget === 0) {
               state.savings = { target: 0, history: [] };
@@ -3485,7 +3949,7 @@
               state.savings.target = newTarget;
             }
             saveState();
-            showToast("✓ تم تحديث الهدف");
+            showToast("تم تحديث الهدف");
           }
         });
       },
@@ -3499,10 +3963,11 @@
           showInput: true,
           inputLabel: "المبلغ الصحيح (د.ع)",
           currentHint: `المبلغ الحالي: ${formatIQD(item.amount)} د.ع`,
+          smartMode: "none",
           onConfirm: (newAmt) => {
             item.amount = newAmt;
             saveState();
-            showToast("✓ تم تعديل الحركة");
+            showToast("تم تعديل الحركة");
           }
         });
       },
@@ -3516,13 +3981,13 @@
           onConfirm: () => {
             state.savings.history = state.savings.history.filter((x) => x.id !== id);
             saveState();
-            showToast("🗑️ تم حذف الحركة");
+            showToast("تم حذف الحركة", "trash");
           }
         });
       },
 
       // ==========================================
-      // SECTION 4: TIPS ("الإكراميات")
+      // SECTION 4: TIPS ("الإكراميات" + FREE NUMBER BUTTON + EXACT EDIT)
       // ==========================================
       triggerQuickTip(amount) {
         const todayStr = getLocalDateStr();
@@ -3537,7 +4002,30 @@
               time: getLocalTimeStr()
             });
             saveState();
-            showToast(`✓ تمت إضافة إكرامية ${formatIQD(amount)} د.ع`);
+            showToast(`تمت إضافة إكرامية ${formatIQD(amount)} د.ع`);
+          }
+        });
+      },
+
+      triggerFreeTipToday() {
+        const todayStr = getLocalDateStr();
+        askConfirmation({
+          title: "إضافة إكرامية برقم حر",
+          message: `أدخل مبلغ الإكرامية لليوم الحالي (${todayStr}):`,
+          showInput: true,
+          inputLabel: "مبلغ الإكرامية (د.ع)",
+          currentHint: "مثال: اكتب 2 لإضافة 2,000 د.ع أو اكتب 1500 مباشرة",
+          smartMode: "tip",
+          onConfirm: (amt) => {
+            if (!amt || amt <= 0) return showToast("أدخل مبلغاً صحيحاً", "alert");
+            if (!state.tips.days[todayStr]) state.tips.days[todayStr] = [];
+            state.tips.days[todayStr].push({
+              id: "t_" + Date.now(),
+              amount: amt,
+              time: getLocalTimeStr()
+            });
+            saveState();
+            showToast(`تمت إضافة إكرامية ${formatIQD(amt)} د.ع`);
           }
         });
       },
@@ -3545,6 +4033,7 @@
       openTipDayDetails(dateStr) {
         viewingTipDate = dateStr || getLocalDateStr();
         document.getElementById("customTipInput").value = "";
+        document.getElementById("modalTipPreview").style.display = "none";
         renderTipDetailsModalContent(viewingTipDate);
         document.getElementById("tipDetailsModal").classList.add("open");
       },
@@ -3562,16 +4051,17 @@
               time: getLocalTimeStr()
             });
             saveState();
-            showToast(`✓ تمت إضافة ${formatIQD(amount)} د.ع`);
+            showToast(`تمت إضافة ${formatIQD(amount)} د.ع`);
           }
         });
       },
 
       triggerAddCustomTipForModalDay() {
         const inputEl = document.getElementById("customTipInput");
-        const amt = Number(inputEl.value);
+        const rawAmt = Number(inputEl.value);
+        const amt = smartExpandTip(rawAmt);
         if (!amt || amt <= 0) {
-          showToast("اكتب مبلغ إكرامية صحيح");
+          showToast("اكتب مبلغ إكرامية صحيح", "alert");
           return;
         }
         const targetDate = viewingTipDate || getLocalDateStr();
@@ -3586,8 +4076,9 @@
               time: getLocalTimeStr()
             });
             inputEl.value = "";
+            document.getElementById("modalTipPreview").style.display = "none";
             saveState();
-            showToast(`✓ تمت إضافة ${formatIQD(amt)} د.ع`);
+            showToast(`تمت إضافة ${formatIQD(amt)} د.ع`);
           }
         });
       },
@@ -3602,10 +4093,11 @@
           showInput: true,
           inputLabel: "المبلغ الصحيح (د.ع)",
           currentHint: `المبلغ الحالي: ${formatIQD(item.amount)} د.ع`,
+          smartMode: "none",
           onConfirm: (newAmt) => {
             item.amount = newAmt;
             saveState();
-            showToast("✓ تم تعديل الإكرامية");
+            showToast("تم تعديل الإكرامية");
           }
         });
       },
@@ -3623,7 +4115,7 @@
               delete state.tips.days[dateStr];
             }
             saveState();
-            showToast("🗑️ تم حذف الإكرامية");
+            showToast("تم حذف الإكرامية", "trash");
           }
         });
       },
@@ -3650,7 +4142,7 @@
           <div class="msg-wrapper ai">
             <span class="msg-meta-top">سودي</span>
             <div class="msg-bubble">
-              <div>تم بدء محادثة جديدة نظيفة! شلون أثاعدك بأرقامك اليوم؟ 😖</div>
+              <div>تم بدء محادثة جديدة نظيفة! شلون أثاعدك بأرقامك اليوم؟</div>
             </div>
           </div>`;
       },
@@ -3663,9 +4155,9 @@
           document.getElementById("soodyeAttachThumb").src = soodyePendingImage.dataUrl;
           document.getElementById("soodyeAttachName").textContent = `صورة: ${file.name}`;
           document.getElementById("soodyeAttachBar").style.display = "flex";
-          showToast("✓ تم إرفاق الصورة لسودي");
+          showToast("تم إرفاق الصورة لسودي");
         } catch {
-          showToast("تعذر قراءة الصورة");
+          showToast("تعذر قراءة الصورة", "alert");
         } finally {
           event.target.value = "";
         }
@@ -3683,12 +4175,12 @@
         }
         document.getElementById("soodyeStopBtn").style.display = "none";
         document.getElementById("soodyeSendBtn").style.display = "inline-flex";
-        showToast("⏹️ تم إيقاف التوليد");
+        showToast("تم إيقاف التوليد", "stop");
       },
 
       copyText(encodedText) {
         const text = decodeURIComponent(encodedText);
-        navigator.clipboard.writeText(text).then(() => showToast("✓ تم نسخ النص"));
+        navigator.clipboard.writeText(text).then(() => showToast("تم نسخ النص", "copy"));
       },
 
       openFullscreenFromBubble(btnEl) {
@@ -3773,22 +4265,21 @@
 
 1. قواعد الاسم والهوية (صارمة جداً):
    - اسمك دائماً هو: "سودي". لا تذكر اسمك إطلاقاً من تلقاء نفسك في بداية الردود.
-   - فقط إذا سألك المستخدم سؤالاً مباشراً عن اسمك: أجب بخجل طفولي: "اسمي سودي 😖" دون أي قصة.
+   - فقط إذا سألك المستخدم سؤالاً مباشراً عن اسمك: أجب بخجل طفولي: "اسمي سودي" دون أي قصة.
    - فقط إذا سألك المستخدم "من صنعك؟" أو "من برمجك؟" أو "من أبوك؟": ترد بـ "أبي دودي".
    - فقط إذا سألك المستخدم "من أمك؟": ترد بـ "هذا سر".
+   - لا تستخدم الإيموجي نهائياً في ردودك.
 
 2. النبرة والأسلوب ولثغة حرف (الثاء) الخفيفة والذكية:
    - تتحدث بلهجة عراقية محبوبة وعفوية، وتتحول للفصحى المبسطة عند شرح الحسابات أو الأرقام.
    - لديك لثغة طفولية خفيفة وعفوية (استبدال س/ش بحرف ث في كلمة واحدة أو كلمتين بالرسالة القصيرة، و2 إلى 3 كلمات متباعدة بالرسالة الطويلة مثل: نثاعدك / أثاعدك / ثلونك / ثكراً / ثويتلك).
    - ممنوع تكديس كلمتين بالثاء في نفس الجملة، وتُكتب جميع الأرقام والمصطلحات المالية صحيحة 100% دون أي تحريف.
-   - لوازم اختيارية نادرة عند ملاءمة الموقف: "وييييهههه"، "يبوي من جدك انت"، "هيهيهيهي".
-   - إيموجيات نادرة (واحد فقط عند الحاجة): [ 😖 ، 😭 ، 😏 ، 😭🙏 ، 😎 ].
 
 3. الفهم الكامل للأقسام الأربعة المنفصلة تماماً في التطبيق:
    - القسم الأول "حساب الإيداع": عمل التوصيل. أقل إيداع مسموح به هو 100,000 دينار عراقي؛ إذا كان المتبقي أقل من 100,000 يُطلب إيداع 100,000 ويُرحّل الفائض لليوم التالي. في المربع العلوي: الموجب (+) يعني المستخدم يطلب الشركة، والسالب (-) يعني الشركة تطلب المستخدم. وهناك ميزة "تصفير الإيداع" عند استلام الراتب تصفر ما قبل تاريخ الراتب، ومربع "المطلوب إيداعه اليوم" يحسب فقط صافي الأيام المنتهية قبل اليوم.
    - القسم الثاني "الدين / الأقساط / السلفة": مستقل تماماً.
    - القسم الثالث "التجميع": مستقل تماماً.
-   - القسم الرابع "الإكراميات": مستقل تماماً (أزرار 250، 500، 750، 1000 لكل يوم).
+   - القسم الرابع "الإكراميات": مستقل تماماً (أزرار 250، 500، 750، 1000 وزر رقم حر لكل يوم).
    - اعتمد حصرياً وبأقصى دقة حسابية على البيانات الحية التالية:
 
 --- البيانات الحية للتطبيق ---
@@ -3852,8 +4343,8 @@ ${JSON.stringify(last10Days, null, 2)}
           bubbleEl.innerHTML = `
             <div>${formatMarkdownSafe(result.text)}</div>
             <div class="msg-corner-actions">
-              <button type="button" class="btn-mini-icon" title="نسخ" onclick="app.copyText('${encoded}')">📋</button>
-              ${hasTable ? `<button type="button" class="btn-mini-icon" title="عرض مكبّر" onclick="app.openFullscreenFromBubble(this)">⛶</button>` : ""}
+              <button type="button" class="btn-mini-icon" title="نسخ" onclick="app.copyText('${encoded}')">${ICONS.copy}</button>
+              ${hasTable ? `<button type="button" class="btn-mini-icon" title="عرض مكبّر" onclick="app.openFullscreenFromBubble(this)">${ICONS.expand}</button>` : ""}
             </div>`;
 
           chatHistory.push({ role: "model", parts: [{ text: result.text }] });
@@ -3864,9 +4355,9 @@ ${JSON.stringify(last10Days, null, 2)}
           bubbleEl.style.display = "block";
           bubbleEl.classList.remove("typing-cursor");
           if (err.name === "AbortError") {
-            bubbleEl.innerHTML = `<div>⏹️ تم إيقاف الرد.</div>`;
+            bubbleEl.innerHTML = `<div>تم إيقاف الرد.</div>`;
           } else {
-            bubbleEl.innerHTML = `<div>❌ تعذر الاتصال بالمساعد حالياً، تأكد من اتصال الإنترنت وحاول مجدداً.</div>`;
+            bubbleEl.innerHTML = `<div>تعذر الاتصال بالمساعد حالياً، تأكد من اتصال الإنترنت وحاول مجدداً.</div>`;
           }
         } finally {
           soodyeAbortController = null;
@@ -3893,7 +4384,7 @@ ${JSON.stringify(last10Days, null, 2)}
           deferredInstallPrompt = null;
         } else {
           alert(
-            "لتثبيت التطبيق مباشرة على هاتفك:\n1. اضغط على قائمة المتصفح (النقاط الثلاث ⋮ في الأعلى).\n2. اختر (تثبيت التطبيق / Install App) أو (الإضافة إلى الشاشة الرئيسية)."
+            "لتثبيت التطبيق مباشرة على هاتفك:\n1. اضغط على قائمة المتصفح (النقاط الثلاث في الأعلى).\n2. اختر (تثبيت التطبيق / Install App) أو (الإضافة إلى الشاشة الرئيسية)."
           );
         }
       },
@@ -3929,7 +4420,7 @@ ${JSON.stringify(last10Days, null, 2)}
         a.click();
         a.remove();
         URL.revokeObjectURL(url);
-        showToast("✓ تم تنزيل النسخة الاحتياطية");
+        showToast("تم تنزيل النسخة الاحتياطية");
       },
 
       importJsonBackup(event) {
@@ -3944,10 +4435,10 @@ ${JSON.stringify(last10Days, null, 2)}
             }
             state = normalizeState(parsed);
             saveState();
-            showToast("✓ تم استرجاع النسخة الاحتياطية");
+            showToast("تم استرجاع النسخة الاحتياطية");
             app.closeModal("settingsModal");
           } catch {
-            showToast("ملف النسخة الاحتياطية غير صالح");
+            showToast("ملف النسخة الاحتياطية غير صالح", "alert");
           }
         };
         reader.readAsText(file);
@@ -3955,7 +4446,7 @@ ${JSON.stringify(last10Days, null, 2)}
       }
     };
 
-    // Initial boot: create 10 consecutive days automatically if empty & check auto salary reset
+    // Initial boot
     ensureTenDaysAndAutoReset(state.deposit.days.length === 0);
     renderAll();
   </script>
