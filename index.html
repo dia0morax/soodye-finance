@@ -11,15 +11,18 @@
   <title>سودي المالي | Soodye Finance</title>
   <link rel="manifest" href="./manifest.json" />
 
-  <!-- الخط العربي الاحترافي العالمي IBM Plex Sans Arabic (نفس خط سودي الأصلي) -->
+  <!-- الخط العربي الاحترافي IBM Plex Sans Arabic -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- محرك تحويل ماركداون الاحترافي للشات والجداول -->
+  <!-- محرك ماركداون للشات والجداول -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <style>
+    /* ==========================================
+       LIGHT THEME (LUMINOUS SKY & CRISP WHITE)
+       ========================================== */
     :root {
       --bg: #f8fafc;
       --card: #ffffff;
@@ -44,38 +47,46 @@
       --danger: #dc2626;
       --danger-bg: #fef2f2;
       --danger-border: #fca5a5;
+      --reset-bg: #eef2ff;
+      --reset-border: #818cf8;
+      --reset-text: #4338ca;
       --shadow-sm: 0 2px 8px rgba(2, 132, 199, 0.06);
       --shadow-md: 0 8px 24px -4px rgba(2, 132, 199, 0.11);
       --shadow-lg: 0 20px 40px -10px rgba(2, 132, 199, 0.18);
     }
 
+    /* ==========================================
+       REDESIGNED DARK THEME (COMFORTABLE SLATE & LUMINOUS SKY)
+       ========================================== */
     body.dark-theme {
-      --bg: #090d16;
-      --card: #111827;
-      --card-soft: #0f172a;
-      --input-bg: #1e293b;
-      --border: #1f293d;
-      --border-sky: #1e3a5f;
-      --border-sky-strong: #0284c7;
-      --text: #f1f5f9;
-      --text-secondary: #cbd5e1;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --card-soft: #263349;
+      --input-bg: #162033;
+      --border: #334155;
+      --border-sky: #2d4d73;
+      --border-sky-strong: #38bdf8;
+      --text: #f8fafc;
+      --text-secondary: #e2e8f0;
       --text-muted: #94a3b8;
       --accent: #38bdf8;
-      --accent-dark: #0284c7;
-      --accent-soft: #082f49;
+      --accent-dark: #7dd3fc;
+      --accent-soft: rgba(56, 189, 248, 0.16);
       --emerald: #34d399;
-      --emerald-bright: #10b981;
-      --emerald-bg: rgba(16, 185, 129, 0.14);
-      --emerald-border: rgba(16, 185, 129, 0.4);
+      --emerald-bg: rgba(16, 185, 129, 0.16);
+      --emerald-border: rgba(52, 211, 153, 0.45);
       --amber: #fbbf24;
-      --amber-bg: rgba(245, 158, 11, 0.14);
-      --amber-border: rgba(245, 158, 11, 0.42);
-      --danger: #f87171;
-      --danger-bg: rgba(239, 68, 68, 0.14);
-      --danger-border: rgba(239, 68, 68, 0.4);
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
-      --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.45);
-      --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.65);
+      --amber-bg: rgba(245, 158, 11, 0.16);
+      --amber-border: rgba(251, 191, 36, 0.45);
+      --danger: #fb7185;
+      --danger-bg: rgba(244, 63, 94, 0.16);
+      --danger-border: rgba(251, 113, 133, 0.45);
+      --reset-bg: rgba(129, 140, 248, 0.16);
+      --reset-border: rgba(129, 140, 248, 0.5);
+      --reset-text: #c7d2fe;
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.28);
+      --shadow-md: 0 10px 26px -4px rgba(0, 0, 0, 0.38);
+      --shadow-lg: 0 22px 44px -10px rgba(0, 0, 0, 0.55);
     }
 
     * {
@@ -97,7 +108,7 @@
 
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 99px; }
+    ::-webkit-scrollbar-thumb { background: var(--border-sky-strong); border-radius: 99px; }
 
     .icon-svg {
       width: 18px;
@@ -112,21 +123,22 @@
     .icon-white { stroke: #ffffff; }
 
     /* ==========================================
-       GLASSMORPHIC SKY HEADER
+       HEADER
        ========================================== */
     header.app-header {
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1.5px solid var(--accent);
-      box-shadow: 0 4px 16px rgba(2, 132, 199, 0.08);
+      border-bottom: 1.5px solid var(--border-sky-strong);
+      box-shadow: var(--shadow-sm);
       padding: 10px 14px;
     }
     body.dark-theme header.app-header {
-      background: rgba(17, 24, 39, 0.92);
+      background: rgba(30, 41, 59, 0.92);
+      border-bottom-color: var(--border-sky);
     }
 
     .header-inner {
@@ -171,10 +183,10 @@
       gap: 6px;
       font-size: 11px;
       font-weight: 600;
-      color: #059669;
+      color: var(--emerald);
     }
-    .pulse-live.guest { color: #d97706; }
-    .pulse-live.syncing { color: #0284c7; }
+    .pulse-live.guest { color: var(--amber); }
+    .pulse-live.syncing { color: var(--accent); }
 
     .pulse-dot {
       width: 7px;
@@ -235,29 +247,12 @@
     .btn-soodye-trigger {
       background: linear-gradient(135deg, #0284c7, #0369a1);
       color: #ffffff;
-      border: 1.5px solid #0369a1;
+      border: 1.5px solid #0284c7;
       box-shadow: 0 4px 12px rgba(2, 132, 199, 0.28);
     }
     .btn-soodye-trigger:hover {
       background: linear-gradient(135deg, #0369a1, #075985);
       color: #ffffff;
-    }
-
-    .btn-errors-trigger {
-      border-color: var(--danger-border);
-      color: var(--danger);
-      background: var(--danger-bg);
-    }
-
-    .error-badge {
-      background: #ef4444;
-      color: #ffffff;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 1px 6px;
-      border-radius: 99px;
-      min-width: 18px;
-      text-align: center;
     }
 
     /* Guest Banner */
@@ -337,6 +332,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
     .hero-amount {
@@ -365,31 +361,69 @@
     .hero-card.negative .hero-status-pill { background: var(--danger-bg); color: var(--danger); border: 1px solid var(--danger-border); }
     .hero-card.neutral .hero-status-pill { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--border-sky-strong); }
 
-    .mini-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+    /* Smart Today Required Deposit Banner inside Hero Card */
+    .today-required-box {
       margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
+      padding: 13px 15px;
+      border-radius: 16px;
+      border: 1.5px solid var(--border-sky-strong);
+      background: var(--card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow-sm);
     }
-
-    .mini-stat {
+    .today-required-box.due {
+      border-color: var(--emerald-border);
+      background: var(--emerald-bg);
+    }
+    .today-required-box.clear {
+      border-color: var(--border-sky);
       background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 9px 12px;
     }
-    .mini-stat span { display: block; font-size: 11px; color: var(--text-muted); font-weight: 500; }
-    .mini-stat strong { font-size: 14.5px; font-weight: 700; color: var(--text); }
+    .today-req-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .today-req-amount {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .today-required-box.due .today-req-amount {
+      color: var(--emerald);
+    }
+    .today-req-note {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .today-req-badge {
+      padding: 5px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #10b981;
+      color: #ffffff;
+    }
+    .today-required-box.clear .today-req-badge {
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      border: 1px solid var(--border-sky);
+    }
 
     /* Toolbar */
     .toolbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
       margin-bottom: 14px;
+      flex-wrap: wrap;
     }
 
     .toolbar h2 {
@@ -398,13 +432,19 @@
       color: var(--text);
     }
 
+    .toolbar-btns {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .btn-primary {
       background: linear-gradient(135deg, #0284c7, #0369a1);
       color: #ffffff;
       border: none;
-      padding: 10px 16px;
-      border-radius: 14px;
-      font-size: 13px;
+      padding: 9px 14px;
+      border-radius: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
@@ -424,20 +464,71 @@
       background: var(--card);
       color: var(--accent-dark);
       border: 1.5px solid var(--border-sky);
-      padding: 9px 13px;
+      padding: 8px 12px;
       border-radius: 12px;
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
       transition: all 0.2s ease;
     }
     .btn-secondary:hover {
       background: var(--card-soft);
       border-color: var(--border-sky-strong);
+    }
+
+    .btn-reset-salary {
+      background: var(--reset-bg);
+      color: var(--reset-text);
+      border: 1.5px solid var(--reset-border);
+    }
+
+    /* ==========================================
+       SALARY RESET BANNER BAR IN TIMELINE
+       ========================================== */
+    .salary-reset-bar {
+      background: var(--reset-bg);
+      border: 1.5px solid var(--reset-border);
+      border-radius: 16px;
+      padding: 11px 14px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: var(--shadow-sm);
+    }
+    .salary-reset-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .salary-reset-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--reset-text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .salary-reset-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .btn-del-reset {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border: 1.5px solid var(--danger-border);
+      padding: 6px 11px;
+      border-radius: 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     /* ==========================================
@@ -458,13 +549,17 @@
     }
     .day-card.today-card {
       border-color: var(--amber-border);
-      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.08);
+    }
+    .day-card.reset-archived {
+      opacity: 0.72;
+      border-style: dashed;
     }
 
     .day-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 8px;
       margin-bottom: 12px;
       padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
@@ -483,6 +578,14 @@
       display: inline-block;
     }
 
+    .day-header-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
     .day-tag {
       font-size: 11px;
       font-weight: 700;
@@ -491,6 +594,21 @@
     }
     .day-tag.today { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
     .day-tag.past { background: var(--accent-soft); color: var(--accent-dark); border: 1px solid var(--border-sky); }
+    .day-tag.archived { background: var(--reset-bg); color: var(--reset-text); border: 1px solid var(--reset-border); }
+
+    .btn-del-day {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border: 1px solid var(--danger-border);
+      padding: 4px 9px;
+      border-radius: 9px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
 
     .day-actions-grid {
       display: grid;
@@ -611,6 +729,63 @@
     }
 
     /* ==========================================
+       TIPS SECTION (SECTION 4)
+       ========================================== */
+    .tips-quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tip-quick-btn {
+      background: var(--card);
+      border: 1.5px solid var(--border-sky-strong);
+      color: var(--accent-dark);
+      border-radius: 14px;
+      padding: 12px 6px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.18s ease;
+    }
+    .tip-quick-btn:hover {
+      background: var(--accent-soft);
+      transform: translateY(-2px);
+    }
+    .tip-quick-btn:active { transform: scale(0.96); }
+    .tip-quick-btn span {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .tip-day-strip {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 15px;
+      padding: 12px 15px;
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+    .tip-day-strip:hover {
+      border-color: var(--border-sky-strong);
+      background: var(--card-soft);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================
        PROGRESS BAR & HISTORY (SECTIONS 2 & 3)
        ========================================== */
     .progress-wrap {
@@ -704,6 +879,12 @@
       color: var(--text-secondary);
       margin-bottom: 6px;
     }
+    .current-val-hint {
+      font-size: 11.5px;
+      color: var(--accent-dark);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
     .form-control {
       width: 100%;
       background: var(--input-bg);
@@ -711,7 +892,7 @@
       color: var(--text);
       padding: 11px 14px;
       border-radius: 14px;
-      font-size: 14.5px;
+      font-size: 15px;
       font-weight: 600;
       outline: none;
       transition: all 0.2s ease;
@@ -719,11 +900,53 @@
     .form-control:focus {
       background: var(--card);
       border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.12);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.16);
     }
 
+    /* Toggle Switch */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--bg);
+      border: 1.5px solid var(--border-sky);
+      border-radius: 15px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: var(--border);
+      transition: 0.25s;
+      border-radius: 99px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background-color: #ffffff;
+      transition: 0.25s;
+      border-radius: 50%;
+    }
+    input:checked + .slider { background-color: #0284c7; }
+    input:checked + .slider:before { transform: translateX(22px); }
+
     /* ==========================================
-       BOTTOM NAVIGATION BAR
+       BOTTOM NAVIGATION BAR (4 TABS)
        ========================================== */
     .bottom-nav {
       position: fixed;
@@ -735,37 +958,38 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-top: 1.5px solid var(--border-sky-strong);
-      padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+      padding: 7px 8px calc(7px + env(safe-area-inset-bottom));
       box-shadow: 0 -4px 20px rgba(2, 132, 199, 0.08);
     }
     body.dark-theme .bottom-nav {
-      background: rgba(17, 24, 39, 0.95);
+      background: rgba(30, 41, 59, 0.96);
+      border-top-color: var(--border-sky);
     }
 
     .nav-inner {
       max-width: 680px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
     }
 
     .nav-item {
       background: transparent;
       border: 1.5px solid transparent;
       color: var(--text-muted);
-      padding: 7px 4px;
-      border-radius: 14px;
+      padding: 6px 2px;
+      border-radius: 13px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 3px;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .nav-item svg { stroke: var(--text-muted); transition: stroke 0.2s; }
+    .nav-item svg { stroke: var(--text-muted); width: 19px; height: 19px; transition: stroke 0.2s; }
 
     .nav-item.active {
       background: var(--accent-soft);
@@ -775,13 +999,13 @@
     .nav-item.active svg { stroke: var(--accent-dark); }
 
     /* ==========================================
-       MODALS & GATEKEEPER
+       MODALS
        ========================================== */
     .modal-backdrop {
       position: fixed;
       inset: 0;
       z-index: 100;
-      background: rgba(15, 23, 42, 0.55);
+      background: rgba(15, 23, 42, 0.6);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       display: none;
@@ -847,7 +1071,7 @@
     .alert-box.success { background: var(--emerald-bg); border: 1.5px solid var(--emerald-border); color: var(--emerald); }
 
     /* ==========================================
-       SOODYE AI CHAT (INSPIRED BY ORIGINAL SOODYE)
+       SOODYE AI CHAT
        ========================================== */
     .chat-modal {
       max-width: 560px;
@@ -862,7 +1086,7 @@
     .chat-header {
       padding: 12px 16px;
       background: var(--card);
-      border-bottom: 1.5px solid var(--accent);
+      border-bottom: 1.5px solid var(--border-sky-strong);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -885,7 +1109,7 @@
 
     .msg-meta-top {
       font-size: 11px;
-      color: var(--accent);
+      color: var(--accent-dark);
       margin-bottom: 4px;
       font-weight: 700;
       display: flex;
@@ -917,7 +1141,6 @@
       border-bottom-left-radius: 4px;
     }
 
-    /* Markdown inside Soodye AI */
     .msg-wrapper.ai .msg-bubble p { margin-bottom: 8px; }
     .msg-wrapper.ai .msg-bubble p:last-child { margin-bottom: 0; }
     .msg-wrapper.ai .msg-bubble ul, .msg-wrapper.ai .msg-bubble ol { margin: 6px 0 10px 20px; padding-right: 6px; }
@@ -963,13 +1186,7 @@
       cursor: pointer;
       padding: 0;
     }
-    .msg-wrapper.user .btn-mini-icon {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.35);
-      color: #ffffff;
-    }
 
-    /* Bouncing Thinking Dots (Original Soodye Style) */
     .thinking-standalone-wrapper {
       display: inline-flex;
       align-items: center;
@@ -982,12 +1199,12 @@
       height: 9px;
       border-radius: 50%;
       background: #0284c7;
-      animation: geminiBounce 1.3s infinite ease-in-out both;
+      animation: soodyeBounce 1.3s infinite ease-in-out both;
     }
     .thinking-standalone-wrapper .dot:nth-child(2) { background: #38bdf8; animation-delay: -0.16s; }
     .thinking-standalone-wrapper .dot:nth-child(3) { background: #0369a1; animation-delay: -0.32s; }
 
-    @keyframes geminiBounce {
+    @keyframes soodyeBounce {
       0%, 80%, 100% { transform: translateY(0) scale(0.8); opacity: 0.45; }
       40% { transform: translateY(-7px) scale(1.18); opacity: 1; }
     }
@@ -1062,7 +1279,6 @@
       flex-shrink: 0;
     }
 
-    /* Tabs & Upload Zone */
     .tab-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1101,27 +1317,6 @@
     }
     .upload-zone:hover { background: var(--accent-soft); }
 
-    .error-log-item {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-right: 4px solid #ef4444;
-      border-radius: 12px;
-      padding: 10px 12px;
-      margin-bottom: 10px;
-      font-size: 12px;
-    }
-    .error-log-item pre {
-      margin: 6px 0 0;
-      white-space: pre-wrap;
-      word-break: break-all;
-      font-family: monospace;
-      font-size: 11px;
-      color: var(--danger);
-      direction: ltr;
-      text-align: left;
-    }
-
-    /* Toast */
     .copy-toast {
       position: fixed;
       top: 70px;
@@ -1150,7 +1345,7 @@
   <div id="toast" class="copy-toast"></div>
 
   <!-- ==========================================
-       GLASSMORPHIC SKY HEADER
+       HEADER
        ========================================== -->
   <header class="app-header">
     <div class="header-inner">
@@ -1171,7 +1366,7 @@
       </div>
 
       <div class="header-actions">
-        <!-- Soodye AI Button -->
+        <!-- Soodye AI Chat Button -->
         <button class="btn-action btn-soodye-trigger" onclick="app.openSoodye()">
           <svg class="icon-svg icon-white" style="width:15px;height:15px;" viewBox="0 0 24 24">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -1179,10 +1374,9 @@
           <span>سودي</span>
         </button>
 
-        <!-- Errors Button -->
-        <button class="btn-action btn-errors-trigger" onclick="app.openErrorsModal()">
-          <span>الأخطاء</span>
-          <span class="error-badge" id="errorCountBadge">0</span>
+        <!-- Quick Dark/Light Theme Button -->
+        <button class="btn-action" style="padding:7px 9px;" onclick="app.toggleTheme()" id="headerThemeBtn" title="تبديل المظهر">
+          🌙
         </button>
 
         <!-- Settings Button -->
@@ -1195,7 +1389,7 @@
       </div>
     </div>
 
-    <!-- Guest Warning Bar -->
+    <!-- Guest Banner -->
     <div id="guestBanner" class="guest-banner" style="display: none;">
       <span>⚠️ وضع الضيف: بياناتك محفوظة محلياً فقط وقد تُحذف عند مسح التطبيق.</span>
       <button onclick="app.loginWithGoogle()">ربط بالإيميل</button>
@@ -1203,48 +1397,57 @@
   </header>
 
   <!-- ==========================================
-       MAIN CONTENT (3 ISOLATED SECTIONS)
+       MAIN CONTENT (4 ISOLATED SECTIONS)
        ========================================== -->
   <main class="container">
 
-    <!-- SECTION 1: حساب الإيداع -->
+    <!-- ==========================================
+         SECTION 1: حساب الإيداع
+         ========================================== -->
     <section id="sec-deposit" class="section-view active">
       <div id="companyHeroCard" class="hero-card neutral">
         <div class="hero-label">
           <span>كم تطلب / تطلبك الشركة</span>
-          <button class="btn-secondary" style="padding: 4px 10px; font-size: 11px;" onclick="app.openInitialBalanceModal()">رصيد ابتدائي</button>
+          <div style="display:flex;gap:6px;">
+            <button class="btn-secondary btn-reset-salary" style="padding: 4px 9px; font-size: 11px;" onclick="app.openSalaryResetModal()">تصفير الإيداع</button>
+            <button class="btn-secondary" style="padding: 4px 9px; font-size: 11px;" onclick="app.openInitialBalanceModal()">رصيد ابتدائي</button>
+          </div>
         </div>
         <div class="hero-amount" id="companyBalanceAmount">0 د.ع</div>
         <div>
           <span class="hero-status-pill" id="companyBalanceStatus">حسابك مصفّر بالكامل</span>
         </div>
-        <div class="mini-stats">
-          <div class="mini-stat">
-            <span>إجمالي تحصيل الزبائن</span>
-            <strong id="statTotalCollection">0 د.ع</strong>
+
+        <!-- Smart Single Box: المطلوب إيداعه اليوم -->
+        <div id="todayRequiredBox" class="today-required-box clear">
+          <div>
+            <div class="today-req-title">المطلوب إيداعه اليوم (عن الأيام المنتهية)</div>
+            <div class="today-req-amount" id="todayRequiredAmount">0 د.ع</div>
+            <div class="today-req-note" id="todayRequiredNote">لا يوجد مبلغ مطلوب إيداعه اليوم</div>
           </div>
-          <div class="mini-stat">
-            <span>إجمالي الإيداعات المسجلة</span>
-            <strong id="statTotalDeposit">0 د.ع</strong>
-          </div>
+          <span class="today-req-badge" id="todayRequiredBadge">مصفّر ✓</span>
         </div>
       </div>
 
       <div class="toolbar">
         <h2>سجل الأيام والإيداع الذكي</h2>
-        <button class="btn-primary" onclick="app.openAddDayModal()">
-          <svg class="icon-svg icon-white" style="width:16px;height:16px;" viewBox="0 0 24 24">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-          </svg>
-          <span>إضافة يوم</span>
-        </button>
+        <div class="toolbar-btns">
+          <button class="btn-primary" onclick="app.openAddDayModal()">
+            <svg class="icon-svg icon-white" style="width:15px;height:15px;" viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>إضافة يوم</span>
+          </button>
+        </div>
       </div>
 
       <div id="daysListContainer"></div>
     </section>
 
-    <!-- SECTION 2: الدين / الأقساط / السلفة -->
+    <!-- ==========================================
+         SECTION 2: الدين / الأقساط / السلفة
+         ========================================== -->
     <section id="sec-debt" class="section-view">
       <div id="debtSetupView" class="setup-card" style="display: none;">
         <div style="width:54px;height:54px;border-radius:18px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
@@ -1256,11 +1459,11 @@
         <p>حدد مبلغ الهدف الكلي والمبلغ الثابت لكل ضغطة دفع لفتح القسم والبدء بتسجيل دفعاتك.</p>
         <div class="form-group">
           <label>مبلغ الهدف الكلي (بالدينار العراقي)</label>
-          <input type="number" id="debtTargetInput" class="form-control" placeholder="مثال: 1000000" min="1" />
+          <input type="number" id="debtTargetInput" class="form-control" placeholder="اكتب مبلغ الهدف مثل 1000000..." min="1" />
         </div>
         <div class="form-group">
           <label>المبلغ الثابت لكل ضغطة دفع</label>
-          <input type="number" id="debtStepInput" class="form-control" placeholder="مثال: 100000" min="1" />
+          <input type="number" id="debtStepInput" class="form-control" placeholder="اكتب قيمة الدفعة مثل 100000..." min="1" />
         </div>
         <button class="btn-primary" style="width: 100%; padding: 13px;" onclick="app.setupDebtSection()">فتح القسم والبدء</button>
       </div>
@@ -1299,11 +1502,13 @@
       </div>
     </section>
 
-    <!-- SECTION 3: التجميع -->
+    <!-- ==========================================
+         SECTION 3: التجميع
+         ========================================== -->
     <section id="sec-savings" class="section-view">
       <div id="savingsSetupView" class="setup-card" style="display: none;">
         <div style="width:54px;height:54px;border-radius:18px;background:var(--emerald-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
-          <svg class="icon-svg" style="width:28px;height:28px;stroke:#059669;" viewBox="0 0 24 24">
+          <svg class="icon-svg" style="width:28px;height:28px;stroke:var(--emerald);" viewBox="0 0 24 24">
             <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z"></path>
           </svg>
         </div>
@@ -1311,7 +1516,7 @@
         <p>أدخل هدف التجميع المطلوب لفتح القسم والبدء بإضافة المبالغ بحرية.</p>
         <div class="form-group">
           <label>هدف التجميع (بالدينار العراقي)</label>
-          <input type="number" id="savingsTargetInput" class="form-control" placeholder="مثال: 500000" min="1" />
+          <input type="number" id="savingsTargetInput" class="form-control" placeholder="اكتب هدف التجميع مثل 500000..." min="1" />
         </div>
         <button class="btn-primary" style="width: 100%; padding: 13px; background:linear-gradient(135deg,#059669,#047857);" onclick="app.setupSavingsSection()">فتح قسم التجميع</button>
       </div>
@@ -1332,7 +1537,7 @@
           </div>
 
           <div style="margin-top: 16px; display: flex; gap: 8px;">
-            <input type="number" id="savingsAddAmountInput" class="form-control" placeholder="أدخل المبلغ المراد إضافته..." min="1" />
+            <input type="number" id="savingsAddAmountInput" class="form-control" placeholder="اكتب المبلغ المراد إضافته..." min="1" />
             <button class="btn-primary" style="white-space: nowrap; padding: 0 18px; background:linear-gradient(135deg,#059669,#047857);" onclick="app.triggerAddSavings()">إضافة</button>
           </div>
         </div>
@@ -1345,10 +1550,53 @@
       </div>
     </section>
 
+    <!-- ==========================================
+         SECTION 4: الإكراميات (TIPS)
+         ========================================== -->
+    <section id="sec-tips" class="section-view">
+      <div class="hero-card positive">
+        <div class="hero-label">
+          <span id="tipsTodayHeaderLabel">إكراميات اليوم الحالي</span>
+          <button class="btn-secondary" style="padding: 4px 11px; font-size: 11.5px;" onclick="app.openTipDayDetails(null)">تفاصيل اليوم</button>
+        </div>
+        <div class="hero-amount" id="tipsTodayTotalAmount">0 د.ع</div>
+        <div>
+          <span class="hero-status-pill" id="tipsTodayCountPill">0 إكراميات مسجلة اليوم</span>
+        </div>
+
+        <!-- 4 Quick Tip Buttons with Confirmation -->
+        <div class="tips-quick-grid">
+          <button type="button" class="tip-quick-btn" onclick="app.triggerQuickTip(250)">
+            +250
+            <span>د.ع</span>
+          </button>
+          <button type="button" class="tip-quick-btn" onclick="app.triggerQuickTip(500)">
+            +500
+            <span>د.ع</span>
+          </button>
+          <button type="button" class="tip-quick-btn" onclick="app.triggerQuickTip(750)">
+            +750
+            <span>د.ع</span>
+          </button>
+          <button type="button" class="tip-quick-btn" onclick="app.triggerQuickTip(1000)">
+            +1,000
+            <span>د.ع</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <h2>سجل الأيام (اضغط على اليوم للتفاصيل)</h2>
+        <span style="font-size:12px;color:var(--text-muted);font-weight:600;" id="tipsDaysCountLabel">0 أيام</span>
+      </div>
+
+      <div id="tipsDaysListContainer"></div>
+    </section>
+
   </main>
 
   <!-- ==========================================
-       BOTTOM NAVIGATION BAR
+       BOTTOM NAVIGATION BAR (4 TABS)
        ========================================== -->
   <nav class="bottom-nav">
     <div class="nav-inner">
@@ -1372,6 +1620,14 @@
           <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z"></path>
         </svg>
         <span>تجميع</span>
+      </button>
+
+      <button class="nav-item" id="nav-tips" onclick="app.switchTab('tips')">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 7v10M9 10h6M9 14h6"></path>
+        </svg>
+        <span>الإكراميات</span>
       </button>
     </div>
   </nav>
@@ -1410,7 +1666,7 @@
   </div>
 
   <!-- ==========================================
-       MODAL 2: COLLECTION INPUT (MANUAL + OCR)
+       MODAL 2: COLLECTION INPUT (EMPTY INPUT FOR FAST TYPING)
        ========================================== -->
   <div id="collectionModal" class="modal-backdrop">
     <div class="modal-box">
@@ -1427,7 +1683,8 @@
       <div id="collectionManualPane">
         <div class="form-group">
           <label>المبلغ المحصّل من الزبائن (د.ع)</label>
-          <input type="number" id="collectionAmountInput" class="form-control" placeholder="0" min="0" />
+          <div class="current-val-hint" id="collectionCurrentHint">القيمة المسجلة حالياً: 0 د.ع</div>
+          <input type="number" id="collectionAmountInput" class="form-control" placeholder="اكتب المبلغ مباشرة..." min="0" />
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
           <button class="btn-primary" onclick="app.saveCollectionValue('set')">حفظ الرقم النهائي</button>
@@ -1454,7 +1711,7 @@
   </div>
 
   <!-- ==========================================
-       MODAL 3: DEPOSIT DAY INPUT
+       MODAL 3: DEPOSIT DAY INPUT (EMPTY INPUT)
        ========================================== -->
   <div id="depositDayModal" class="modal-backdrop">
     <div class="modal-box">
@@ -1464,7 +1721,8 @@
       </div>
       <div class="form-group">
         <label>المبلغ الذي أودعته في هذا اليوم (د.ع)</label>
-        <input type="number" id="depositDayAmountInput" class="form-control" placeholder="0" min="0" />
+        <div class="current-val-hint" id="depositCurrentHint">الإيداع المسجل حالياً: 0 د.ع</div>
+        <input type="number" id="depositDayAmountInput" class="form-control" placeholder="اكتب المبلغ مباشرة..." min="0" />
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
         <button class="btn-primary" onclick="app.saveDepositDayValue('set')">حفظ الرقم النهائي</button>
@@ -1495,7 +1753,43 @@
   </div>
 
   <!-- ==========================================
-       MODAL 5: INITIAL BALANCE
+       MODAL 5: SALARY RESET ("تصفير الإيداع")
+       ========================================== -->
+  <div id="salaryResetModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>تصفير الإيداع (استلام الراتب)</h3>
+        <button class="close-btn" onclick="app.closeModal('salaryResetModal')">×</button>
+      </div>
+      <p style="font-size:12.5px;color:var(--text-muted);margin-bottom:14px;line-height:1.6;">
+        عند استلام الراتب، يتم تصفير جميع الأيام التي تسبق تاريخ استلام الراتب ليبدأ الحساب من الصفر، مع إمكانية حذف التصفيرة في أي وقت.
+      </p>
+
+      <!-- Auto Reset Toggle (Day 1 & 15) -->
+      <div class="toggle-row">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--text);">التصفير التلقائي يوم 1 و 15</div>
+          <div style="font-size:11px;color:var(--text-muted);">يتصفر الإيداع تلقائياً بعد 12 ليلاً عند دخول يوم 1 أو 15 من كل شهر</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="autoSalaryResetCheckbox" onchange="app.toggleAutoSalaryReset(this.checked)" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>تاريخ يوم استلام الراتب (يُصفّر كل ما قبله)</label>
+        <input type="date" id="salaryResetDateInput" class="form-control" style="direction:ltr;" />
+      </div>
+
+      <button class="btn-primary" style="width:100%;padding:12px;" onclick="app.confirmManualSalaryReset()">
+        🔄 تنفيذ تصفير الإيداع
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 6: INITIAL BALANCE (EMPTY INPUT)
        ========================================== -->
   <div id="initialBalanceModal" class="modal-backdrop">
     <div class="modal-box">
@@ -1516,14 +1810,49 @@
       </div>
       <div class="form-group">
         <label>قيمة المبلغ (د.ع)</label>
-        <input type="number" id="initialBalanceValue" class="form-control" placeholder="0" min="0" />
+        <div class="current-val-hint" id="initialBalanceCurrentHint">الرصيد الابتدائي الحالي: 0 د.ع</div>
+        <input type="number" id="initialBalanceValue" class="form-control" placeholder="اكتب المبلغ مباشرة..." min="0" />
       </div>
       <button class="btn-primary" style="width:100%;padding:12px;" onclick="app.saveInitialBalance()">حفظ الرصيد الابتدائي</button>
     </div>
   </div>
 
   <!-- ==========================================
-       MODAL 6: CONFIRMATION MODAL
+       MODAL 7: TIP DAY DETAILS & EDIT MODAL
+       ========================================== -->
+  <div id="tipDetailsModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="tipDetailsModalTitle">تفاصيل إكراميات اليوم</h3>
+        <button class="close-btn" onclick="app.closeModal('tipDetailsModal')">×</button>
+      </div>
+
+      <div style="background:var(--emerald-bg);border:1.5px solid var(--emerald-border);border-radius:14px;padding:11px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:12.5px;font-weight:700;color:var(--emerald);">مجموع إكراميات هذا اليوم</span>
+        <strong style="font-size:18px;color:var(--emerald);" id="tipDetailsDayTotal">0 د.ع</strong>
+      </div>
+
+      <!-- Quick Add inside Day Details -->
+      <div style="margin-bottom:14px;">
+        <div style="font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:6px;">إضافة إكرامية لهذا اليوم:</div>
+        <div class="tips-quick-grid" style="margin-top:0;">
+          <button type="button" class="tip-quick-btn" style="padding:8px 4px;font-size:13.5px;" onclick="app.triggerAddTipForModalDay(250)">+250</button>
+          <button type="button" class="tip-quick-btn" style="padding:8px 4px;font-size:13.5px;" onclick="app.triggerAddTipForModalDay(500)">+500</button>
+          <button type="button" class="tip-quick-btn" style="padding:8px 4px;font-size:13.5px;" onclick="app.triggerAddTipForModalDay(750)">+750</button>
+          <button type="button" class="tip-quick-btn" style="padding:8px 4px;font-size:13.5px;" onclick="app.triggerAddTipForModalDay(1000)">+1,000</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <input type="number" id="customTipInput" class="form-control" placeholder="أو اكتب مبلغ إكرامية مخصص..." min="1" />
+          <button class="btn-primary" style="white-space:nowrap;" onclick="app.triggerAddCustomTipForModalDay()">إضافة</button>
+        </div>
+      </div>
+
+      <div id="tipDetailsEntriesList" class="history-list" style="max-height:42vh;overflow-y:auto;"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 8: CONFIRMATION MODAL (EMPTY INPUT)
        ========================================== -->
   <div id="confirmModal" class="modal-backdrop">
     <div class="modal-box">
@@ -1534,7 +1863,8 @@
       <p id="confirmModalMessage" style="font-size:14px;line-height:1.6;margin:0 0 14px;"></p>
       <div id="confirmModalInputWrap" class="form-group" style="display:none;">
         <label id="confirmModalInputLabel">أدخل القيمة الجديدة</label>
-        <input type="number" id="confirmModalInput" class="form-control" min="0" />
+        <div class="current-val-hint" id="confirmModalCurrentHint"></div>
+        <input type="number" id="confirmModalInput" class="form-control" placeholder="اكتب الرقم الجديد مباشرة..." min="0" />
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
         <button class="btn-primary" id="confirmModalYesBtn">نعم، تأكيد</button>
@@ -1544,7 +1874,7 @@
   </div>
 
   <!-- ==========================================
-       MODAL 7: SOODYE AI CHAT (ORIGINAL SOODYE UI)
+       MODAL 9: SOODYE AI CHAT
        ========================================== -->
   <div id="soodyeModal" class="modal-backdrop">
     <div class="modal-box chat-modal">
@@ -1556,8 +1886,8 @@
             </svg>
           </div>
           <div>
-            <div style="font-weight:700;font-size:15px;color:var(--text);">سودي (soodye)</div>
-            <div style="font-size:11px;color:var(--accent-dark);font-weight:600;" id="soodyeContextBadge">يقرأ سجل آخر 10 أيام والأقسام الثلاثة</div>
+            <div style="font-weight:700;font-size:15px;color:var(--text);">سودي</div>
+            <div style="font-size:11px;color:var(--accent-dark);font-weight:600;" id="soodyeContextBadge">متصل بسجلك المالي وآخر 10 أيام</div>
           </div>
         </div>
         <div style="display:flex;gap:6px;">
@@ -1568,9 +1898,9 @@
 
       <div id="soodyeChatMessages" class="chat-messages">
         <div class="msg-wrapper ai">
-          <span class="msg-meta-top">cute soodye</span>
+          <span class="msg-meta-top">سودي</span>
           <div class="msg-bubble">
-            <div>هلا يبوي! شلون أثاعدك بحسابات الإيداع أو الأقساط أو التجميع اليوم؟ 😖</div>
+            <div>هلا يبوي! شلون أثاعدك بحسابات الإيداع أو الأقساط أو التجميع أو الإكراميات اليوم؟ 😖</div>
           </div>
         </div>
       </div>
@@ -1581,7 +1911,7 @@
             <img id="soodyeAttachThumb" src="" alt="" style="width:28px;height:28px;border-radius:6px;object-fit:cover;border:1px solid #38bdf8;" />
             <span id="soodyeAttachName">صورة مرفقة</span>
           </div>
-          <button style="background:none;border:none;color:#ef4444;font-weight:700;cursor:pointer;font-size:14px;" onclick="app.clearSoodyeAttachment()">×</button>
+          <button style="background:none;border:none;color:var(--danger);font-weight:700;cursor:pointer;font-size:14px;" onclick="app.clearSoodyeAttachment()">×</button>
         </div>
 
         <form class="chat-input-row" onsubmit="app.sendSoodyeMessage(event)">
@@ -1609,7 +1939,7 @@
   </div>
 
   <!-- ==========================================
-       MODAL 8: FULLSCREEN TABLE / VIEWER
+       MODAL 10: FULLSCREEN TABLE / VIEWER
        ========================================== -->
   <div id="fullscreenModal" class="modal-backdrop">
     <div class="modal-box" style="max-width: 720px;">
@@ -1622,27 +1952,7 @@
   </div>
 
   <!-- ==========================================
-       MODAL 9: ERRORS LOG ("الأخطاء")
-       ========================================== -->
-  <div id="errorsModal" class="modal-backdrop">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3>سجل تشخيص أخطاء Gemini</h3>
-        <button class="close-btn" onclick="app.closeModal('errorsModal')">×</button>
-      </div>
-      <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">
-        يعرض هذا السجل تفاصيل محاولات الاتصال الفاشلة بنماذج Gemini فقط لتشخيصها بسهولة.
-      </p>
-      <div style="display:flex;gap:8px;margin-bottom:12px;">
-        <button class="btn-secondary" style="flex:1;" onclick="app.copyAllErrors()">نسخ الكل</button>
-        <button class="btn-secondary" style="flex:1;color:var(--danger);border-color:var(--danger-border);" onclick="app.clearErrorLogs()">مسح السجل</button>
-      </div>
-      <div id="errorsListContainer" style="max-height:52vh;overflow-y:auto;"></div>
-    </div>
-  </div>
-
-  <!-- ==========================================
-       MODAL 10: SETTINGS, THEME, PWA & APK
+       MODAL 11: SETTINGS, THEME, PWA & APK
        ========================================== -->
   <div id="settingsModal" class="modal-backdrop">
     <div class="modal-box">
@@ -1695,7 +2005,7 @@
   </div>
 
   <!-- ==========================================
-       APPLICATION LOGIC (Firebase + Gemini Only)
+       APPLICATION LOGIC
        ========================================== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
@@ -1731,16 +2041,15 @@
     const db = getFirestore(firebaseApp);
     const googleProvider = new GoogleAuthProvider();
 
-    // 2. Working Gemini Keys from Soodye (Base64 encoded to pass GitHub Secret Scanning cleanly)
-    const GEMINI_KEYS_B64 = [
+    // 2. AI API Keys (Base64 encoded to pass GitHub Secret Scanning cleanly)
+    const AI_KEYS_B64 = [
       "QVEuQWI4Uk42SkphQ0pjTWdZaDlkOHB1ME51RjZQN25mNW91czNpX3pCd0xFVUdpMXQ5Mmc=",
       "QVEuQWI4Uk42SUw3Rm5pT2dxVW9hVWRMenRfZl9RUEJKVnItWFZ6MkNWejlpUGFtNVRsd0E=",
       "QVEuQWI4Uk42STkwWjFhWTlnVngtSzhXOHhRLXlPT3JFRXQxWDVHc2NNUlZpcS1pM0ZOdUE="
     ];
-    const GEMINI_API_KEYS = GEMINI_KEYS_B64.map((b) => atob(b));
+    const AI_API_KEYS = AI_KEYS_B64.map((b) => atob(b));
 
-    // Strictly Gemini Models Only (starting with working gemini-3.5-flash-lite)
-    const GEMINI_MODELS = [
+    const AI_MODELS = [
       "gemini-3.5-flash-lite",
       "gemini-2.5-flash-lite",
       "gemini-2.5-flash",
@@ -1748,17 +2057,19 @@
       "gemini-2.0-flash"
     ];
 
-    const STORAGE_KEY = "soodye_finance_state_v2";
-    const GUEST_FLAG_KEY = "soodye_guest_mode_v2";
-    const ERRORS_KEY = "soodye_gemini_errors_v2";
-    const THEME_KEY = "soodye_finance_theme_v2";
+    const STORAGE_KEY = "soodye_finance_state_v3";
+    const GUEST_FLAG_KEY = "soodye_guest_mode_v3";
+    const THEME_KEY = "soodye_finance_theme_v3";
 
     function createDefaultState() {
       return {
         updatedAt: Date.now(),
         deposit: {
           initialBalance: 0,
-          days: []
+          days: [],
+          resets: [],
+          autoSalaryReset: false,
+          dismissedAutoResets: []
         },
         debt: {
           target: 0,
@@ -1768,6 +2079,9 @@
         savings: {
           target: 0,
           history: []
+        },
+        tips: {
+          days: {}
         }
       };
     }
@@ -1776,20 +2090,22 @@
     let currentUser = null;
     let activeTab = "deposit";
     let editingDayDate = null;
+    let viewingTipDate = null;
     let deferredInstallPrompt = null;
     let chatHistory = [];
     let soodyePendingImage = null;
     let soodyeAbortController = null;
-    let geminiErrors = loadErrorLogs();
 
-    // Theme Setup (Default: Crisp Light Sky Theme)
+    // Theme Setup
     let isDarkTheme = localStorage.getItem(THEME_KEY) === "dark";
     function applyThemeUI() {
       document.body.classList.toggle("dark-theme", isDarkTheme);
       const btn = document.getElementById("themeToggleBtn");
       const sub = document.getElementById("themeSubLabel");
+      const headerBtn = document.getElementById("headerThemeBtn");
       if (btn) btn.textContent = isDarkTheme ? "☀️ الوضع النهاري" : "🌙 الوضع الليلي";
-      if (sub) sub.textContent = isDarkTheme ? "الوضع الليلي الداكن" : "الوضع النهاري السمائي المشرق";
+      if (sub) sub.textContent = isDarkTheme ? "الوضع الليلي المريح للعين" : "الوضع النهاري السمائي المشرق";
+      if (headerBtn) headerBtn.textContent = isDarkTheme ? "☀️" : "🌙";
     }
     applyThemeUI();
 
@@ -1812,11 +2128,14 @@
       return `${y}-${m}-${d}`;
     }
 
-    function getLocalDateTimeStr(dateObj = new Date()) {
-      const datePart = getLocalDateStr(dateObj);
+    function getLocalTimeStr(dateObj = new Date()) {
       const hh = String(dateObj.getHours()).padStart(2, "0");
       const mm = String(dateObj.getMinutes()).padStart(2, "0");
-      return `${datePart} | ${hh}:${mm}`;
+      return `${hh}:${mm}`;
+    }
+
+    function getLocalDateTimeStr(dateObj = new Date()) {
+      return `${getLocalDateStr(dateObj)} | ${getLocalTimeStr(dateObj)}`;
     }
 
     function addDaysToStr(dateStr, deltaDays) {
@@ -1858,27 +2177,38 @@
       el._timer = setTimeout(() => el.classList.remove("show"), 2800);
     }
 
+    function normalizeState(parsed) {
+      return {
+        updatedAt: parsed?.updatedAt || Date.now(),
+        deposit: {
+          initialBalance: Number(parsed?.deposit?.initialBalance) || 0,
+          days: Array.isArray(parsed?.deposit?.days) ? parsed.deposit.days : [],
+          resets: Array.isArray(parsed?.deposit?.resets) ? parsed.deposit.resets : [],
+          autoSalaryReset: Boolean(parsed?.deposit?.autoSalaryReset),
+          dismissedAutoResets: Array.isArray(parsed?.deposit?.dismissedAutoResets)
+            ? parsed.deposit.dismissedAutoResets
+            : []
+        },
+        debt: {
+          target: Number(parsed?.debt?.target) || 0,
+          step: Number(parsed?.debt?.step) || 0,
+          history: Array.isArray(parsed?.debt?.history) ? parsed.debt.history : []
+        },
+        savings: {
+          target: Number(parsed?.savings?.target) || 0,
+          history: Array.isArray(parsed?.savings?.history) ? parsed.savings.history : []
+        },
+        tips: {
+          days: parsed?.tips?.days && typeof parsed.tips.days === "object" ? parsed.tips.days : {}
+        }
+      };
+    }
+
     function loadLocalState() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return createDefaultState();
-        const parsed = JSON.parse(raw);
-        return {
-          updatedAt: parsed.updatedAt || Date.now(),
-          deposit: {
-            initialBalance: Number(parsed.deposit?.initialBalance) || 0,
-            days: Array.isArray(parsed.deposit?.days) ? parsed.deposit.days : []
-          },
-          debt: {
-            target: Number(parsed.debt?.target) || 0,
-            step: Number(parsed.debt?.step) || 0,
-            history: Array.isArray(parsed.debt?.history) ? parsed.debt.history : []
-          },
-          savings: {
-            target: Number(parsed.savings?.target) || 0,
-            history: Array.isArray(parsed.savings?.history) ? parsed.savings.history : []
-          }
-        };
+        return normalizeState(JSON.parse(raw));
       } catch {
         return createDefaultState();
       }
@@ -1908,14 +2238,36 @@
       label.textContent = text;
     }
 
-    // Automatically generate 10 consecutive days ending today on first open, and keep chain intact
-    function ensureTenDaysAndFillGaps() {
+    // Check Auto Salary Reset on Day 1 and Day 15 immediately after midnight (12:00 AM)
+    function checkAutoSalaryReset() {
+      if (!state.deposit.autoSalaryReset) return false;
+      const now = new Date();
+      const dayOfMonth = now.getDate();
+      if (dayOfMonth !== 1 && dayOfMonth !== 15) return false;
+
+      const todayStr = getLocalDateStr(now);
+      const alreadyExists = state.deposit.resets.some((r) => r.cutoffDate === todayStr);
+      const wasDismissed = state.deposit.dismissedAutoResets.includes(todayStr);
+
+      if (!alreadyExists && !wasDismissed) {
+        state.deposit.resets.push({
+          id: "auto_reset_" + todayStr,
+          cutoffDate: todayStr,
+          auto: true
+        });
+        return true;
+      }
+      return false;
+    }
+
+    // Automatically generate 10 consecutive days ending today on first open, and advance at midnight
+    let lastKnownTodayStr = getLocalDateStr();
+    function ensureTenDaysAndAutoReset(isInitialBoot = false) {
       const todayStr = getLocalDateStr();
       let days = [...state.deposit.days].sort((a, b) => a.date.localeCompare(b.date));
       let changed = false;
 
-      if (days.length === 0) {
-        // Generate 10 days ending today (9 days ago -> today)
+      if (days.length === 0 && isInitialBoot) {
         for (let offset = -9; offset <= 0; offset++) {
           days.push({
             date: addDaysToStr(todayStr, offset),
@@ -1924,8 +2276,7 @@
           });
         }
         changed = true;
-      } else {
-        // Fill any missing days up to today
+      } else if (days.length > 0 && todayStr > lastKnownTodayStr) {
         let maxDate = days[days.length - 1].date;
         while (maxDate < todayStr) {
           maxDate = addDaysToStr(maxDate, 1);
@@ -1934,28 +2285,26 @@
             changed = true;
           }
         }
-        // If total days is still less than 10, prepend earlier consecutive days to reach 10
-        while (days.length < 10) {
-          const earliest = days[0].date;
-          days.unshift({
-            date: addDaysToStr(earliest, -1),
-            collection: 0,
-            deposit: 0
-          });
-          changed = true;
-        }
+      }
+
+      lastKnownTodayStr = todayStr;
+      state.deposit.days = days;
+
+      if (checkAutoSalaryReset()) {
+        changed = true;
       }
 
       if (changed) {
-        state.deposit.days = days;
         saveState();
       }
     }
 
+    // Periodic check every 15 seconds for midnight crossover
     setInterval(() => {
-      ensureTenDaysAndFillGaps();
+      ensureTenDaysAndAutoReset(false);
       renderDepositSection();
-    }, 30000);
+      renderTipsSection();
+    }, 15000);
 
     // ==========================================
     // FIREBASE AUTH FLOW
@@ -1977,28 +2326,12 @@
           const ref = doc(db, "users", user.uid, "financeApp", "main");
           const snap = await getDoc(ref);
           if (snap.exists()) {
-            const cloudData = snap.data();
-            state = {
-              updatedAt: cloudData.updatedAt || Date.now(),
-              deposit: {
-                initialBalance: Number(cloudData.deposit?.initialBalance) || 0,
-                days: Array.isArray(cloudData.deposit?.days) ? cloudData.deposit.days : []
-              },
-              debt: {
-                target: Number(cloudData.debt?.target) || 0,
-                step: Number(cloudData.debt?.step) || 0,
-                history: Array.isArray(cloudData.debt?.history) ? cloudData.debt.history : []
-              },
-              savings: {
-                target: Number(cloudData.savings?.target) || 0,
-                history: Array.isArray(cloudData.savings?.history) ? cloudData.savings.history : []
-              }
-            };
+            state = normalizeState(snap.data());
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
           } else {
             await setDoc(ref, state);
           }
-          ensureTenDaysAndFillGaps();
+          ensureTenDaysAndAutoReset(state.deposit.days.length === 0);
           renderAll();
           updateSyncUI("online", `متصل (${user.email.split("@")[0]})`);
         } catch (err) {
@@ -2015,44 +2348,20 @@
           guestBanner.style.display = "flex";
         }
         updateSyncUI("guest", "وضع الضيف (محلي)");
-        ensureTenDaysAndFillGaps();
+        ensureTenDaysAndAutoReset(state.deposit.days.length === 0);
         renderAll();
       }
     });
 
     // ==========================================
-    // GEMINI ONLY STREAMING ENGINE (FROM WORKING SOODYE)
+    // AI STREAMING ENGINE (SILENT FALLBACK, ZERO MODEL LABELS IN UI)
     // ==========================================
-    function loadErrorLogs() {
-      try {
-        return JSON.parse(localStorage.getItem(ERRORS_KEY)) || [];
-      } catch {
-        return [];
-      }
-    }
+    async function callAiStream({ contents, systemInstruction, onChunk, signal }) {
+      let lastErrorMsg = "تعذر الاتصال بالمساعد حالياً";
 
-    function logGeminiError(entry) {
-      geminiErrors.unshift({
-        time: getLocalDateTimeStr(),
-        ...entry
-      });
-      if (geminiErrors.length > 60) geminiErrors = geminiErrors.slice(0, 60);
-      localStorage.setItem(ERRORS_KEY, JSON.stringify(geminiErrors));
-      updateErrorBadge();
-    }
-
-    function updateErrorBadge() {
-      const badge = document.getElementById("errorCountBadge");
-      if (badge) badge.textContent = geminiErrors.length;
-    }
-
-    async function callGeminiStream({ contents, systemInstruction, sourceLabel, onChunk, signal }) {
-      let lastErrorMsg = "تعذر الاتصال بنماذج Gemini";
-
-      for (const model of GEMINI_MODELS) {
-        for (let kIdx = 0; kIdx < GEMINI_API_KEYS.length; kIdx++) {
-          const activeKey = GEMINI_API_KEYS[kIdx].trim();
-          const maskedKey = activeKey.slice(0, 8) + "..." + activeKey.slice(-4);
+      for (const model of AI_MODELS) {
+        for (let kIdx = 0; kIdx < AI_API_KEYS.length; kIdx++) {
+          const activeKey = AI_API_KEYS[kIdx].trim();
           const cleanUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${encodeURIComponent(activeKey)}`;
 
           try {
@@ -2078,16 +2387,7 @@
             });
 
             if (!res.ok) {
-              const errText = await res.text();
-              lastErrorMsg = `كود [${res.status}]: ${errText.slice(0, 260)}`;
-              logGeminiError({
-                source: sourceLabel,
-                model,
-                keyIndex: kIdx + 1,
-                maskedKey,
-                status: res.status,
-                message: errText.slice(0, 450)
-              });
+              lastErrorMsg = `HTTP ${res.status}`;
               continue;
             }
 
@@ -2117,30 +2417,11 @@
               }
             }
 
-            if (!fullText.trim()) {
-              logGeminiError({
-                source: sourceLabel,
-                model,
-                keyIndex: kIdx + 1,
-                maskedKey,
-                status: "EMPTY",
-                message: "استجابة فارغة من النموذج"
-              });
-              continue;
-            }
-
-            return { text: fullText.trim(), model, keyIndex: kIdx + 1 };
+            if (!fullText.trim()) continue;
+            return { text: fullText.trim() };
           } catch (err) {
             if (err.name === "AbortError") throw err;
-            lastErrorMsg = err.message || "خطأ بالشبكة";
-            logGeminiError({
-              source: sourceLabel,
-              model,
-              keyIndex: kIdx + 1,
-              maskedKey,
-              status: "NETWORK",
-              message: lastErrorMsg
-            });
+            lastErrorMsg = err.message || "Network error";
           }
         }
       }
@@ -2148,7 +2429,6 @@
       throw new Error(lastErrorMsg);
     }
 
-    // Image Compression via Canvas (inspired by original Soodye)
     function compressImageFile(file) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -2189,25 +2469,47 @@
     }
 
     // ==========================================
-    // SECTION 1: STRICT MATHEMATICAL LEDGER
+    // SECTION 1: STRICT MATHEMATICAL LEDGER + SALARY RESET + TODAY REQUIRED
     // ==========================================
     function computeDepositLedger() {
       const todayStr = getLocalDateStr();
       const sorted = [...state.deposit.days].sort((a, b) => a.date.localeCompare(b.date));
-      const initBal = Number(state.deposit.initialBalance) || 0;
+      const resetsSorted = [...state.deposit.resets].sort((a, b) => a.cutoffDate.localeCompare(b.cutoffDate));
+      const latestReset = resetsSorted.length > 0 ? resetsSorted[resetsSorted.length - 1] : null;
+      const latestCutoff = latestReset ? latestReset.cutoffDate : null;
 
-      let totalCollection = 0;
-      let totalDeposit = 0;
+      const effectiveInitBal = latestCutoff ? 0 : (Number(state.deposit.initialBalance) || 0);
 
-      const computedDays = sorted.map((day) => {
+      let activeTotalCollection = 0;
+      let activeTotalDeposit = 0;
+
+      let endedDaysCollection = 0;
+      let endedDaysDeposit = 0;
+      let todayDepositPaid = 0;
+
+      const computedDays = sorted.map((day, idx) => {
         const col = Number(day.collection) || 0;
         const dep = Number(day.deposit) || 0;
-        totalCollection += col;
-        totalDeposit += dep;
+        const isBeforeReset = latestCutoff ? day.date < latestCutoff : false;
+        const isToday = day.date === todayStr;
+        const isPast = day.date < todayStr;
 
-        // + means user demands money from company; - means company demands money from user
-        const netBalanceAtEnd = initBal + totalDeposit - totalCollection;
-        const debtOwedToCompany = -netBalanceAtEnd;
+        if (!isBeforeReset) {
+          activeTotalCollection += col;
+          activeTotalDeposit += dep;
+
+          if (isPast) {
+            endedDaysCollection += col;
+            endedDaysDeposit += dep;
+          } else if (isToday) {
+            todayDepositPaid += dep;
+          }
+        }
+
+        const netBalanceAtEnd = isBeforeReset
+          ? 0
+          : effectiveInitBal + activeTotalDeposit - activeTotalCollection;
+        const debtOwedToCompany = isBeforeReset ? 0 : -netBalanceAtEnd;
 
         let requiredDepositDisplay = 0;
         let hasDebt = debtOwedToCompany > 0;
@@ -2219,8 +2521,11 @@
           ...day,
           collection: col,
           deposit: dep,
-          isToday: day.date === todayStr,
-          isPast: day.date < todayStr,
+          isFirst: idx === 0,
+          isLast: idx === sorted.length - 1,
+          isToday,
+          isPast,
+          isBeforeReset,
           netBalanceAtEnd,
           debtOwedToCompany,
           hasDebt,
@@ -2228,36 +2533,50 @@
         };
       });
 
-      const overallNetBalance = initBal + totalDeposit - totalCollection;
+      const overallNetBalance = effectiveInitBal + activeTotalDeposit - activeTotalCollection;
+
+      // Smart "المطلوب إيداعه اليوم" (Ended days < todayStr minus deposits already paid)
+      const netEndedDebt = endedDaysCollection - (effectiveInitBal + endedDaysDeposit + todayDepositPaid);
+      let requiredTodayAmount = 0;
+      let actualEndedOwed = Math.max(0, netEndedDebt);
+      if (actualEndedOwed > 0) {
+        requiredTodayAmount = actualEndedOwed < 100000 ? 100000 : actualEndedOwed;
+      }
 
       let runningDepositAfter = 0;
       for (let i = computedDays.length - 1; i >= 0; i--) {
-        computedDays[i].coveredByFuture =
-          computedDays[i].isPast &&
-          computedDays[i].hasDebt &&
-          (overallNetBalance >= 0 || runningDepositAfter >= computedDays[i].debtOwedToCompany);
-        runningDepositAfter += computedDays[i].deposit;
+        if (!computedDays[i].isBeforeReset) {
+          computedDays[i].coveredByFuture =
+            computedDays[i].isPast &&
+            computedDays[i].hasDebt &&
+            (overallNetBalance >= 0 || runningDepositAfter >= computedDays[i].debtOwedToCompany);
+          runningDepositAfter += computedDays[i].deposit;
+        } else {
+          computedDays[i].coveredByFuture = false;
+        }
       }
 
       return {
         todayStr,
-        initBal,
-        totalCollection,
-        totalDeposit,
+        effectiveInitBal,
+        latestCutoff,
+        resetsSorted,
         overallNetBalance,
+        actualEndedOwed,
+        requiredTodayAmount,
         daysChronological: computedDays,
         daysNewestFirst: [...computedDays].reverse()
       };
     }
 
     // ==========================================
-    // RENDERING ALL UI SECTIONS
+    // RENDERING ALL 4 SECTIONS
     // ==========================================
     function renderAll() {
-      updateErrorBadge();
       renderDepositSection();
       renderDebtSection();
       renderSavingsSection();
+      renderTipsSection();
       renderSettingsAccount();
     }
 
@@ -2283,87 +2602,168 @@
         statusEl.textContent = "حسابك مصفّر بالكامل";
       }
 
-      document.getElementById("statTotalCollection").textContent = `${formatIQD(ledger.totalCollection)} د.ع`;
-      document.getElementById("statTotalDeposit").textContent = `${formatIQD(ledger.totalDeposit)} د.ع`;
+      // Render Smart "المطلوب إيداعه اليوم"
+      const reqBox = document.getElementById("todayRequiredBox");
+      const reqAmtEl = document.getElementById("todayRequiredAmount");
+      const reqNoteEl = document.getElementById("todayRequiredNote");
+      const reqBadgeEl = document.getElementById("todayRequiredBadge");
 
+      if (ledger.requiredTodayAmount > 0) {
+        reqBox.className = "today-required-box due";
+        reqAmtEl.textContent = `${formatIQD(ledger.requiredTodayAmount)} د.ع`;
+        reqBadgeEl.textContent = "ودع هذا المبلغ";
+        if (ledger.actualEndedOwed < 100000) {
+          reqNoteEl.textContent = `المتبقي الفعلي عن الأيام المنتهية ${formatIQD(ledger.actualEndedOwed)} د.ع — لأن أقل إيداع 100 ألف يُطلب 100,000 د.ع`;
+        } else {
+          reqNoteEl.textContent = "صافي المطلوب عن الأيام المنتهية (بدون احتساب شغل اليوم الحالي)";
+        }
+      } else {
+        reqBox.className = "today-required-box clear";
+        reqAmtEl.textContent = "0 د.ع";
+        reqBadgeEl.textContent = "لا تحتاج إيداع ✓";
+        reqNoteEl.textContent = "جميع الأيام المنتهية مسددة ومصفّرة بالكامل";
+      }
+
+      // Render Timeline (Newest First) + Salary Reset Banners right above the last day before reset
       const listEl = document.getElementById("daysListContainer");
-      listEl.innerHTML = ledger.daysNewestFirst
-        .map((day) => {
-          const boxColorClass = day.isToday ? "yellow" : "green";
-          const headerTag = day.isToday
-            ? `<span class="day-tag today">اليوم الحالي (قيد التحديث)</span>`
-            : `<span class="day-tag past">يوم منتهي</span>`;
+      const renderedResetIds = new Set();
+      let htmlParts = [];
 
-          let smartMainText = "";
-          let smartBadgeText = "";
-          let smartSubText = "";
-
-          if (!day.hasDebt) {
-            smartMainText = "0 د.ع (رصيدك مغطى)";
-            smartBadgeText = day.isToday ? "تلقائي" : "لا يحتاج إيداع";
-            if (day.netBalanceAtEnd > 0) {
-              smartSubText = `لديك فائض لصالحك بقيمة ${formatIQD(day.netBalanceAtEnd)} د.ع يُخصم تلقائياً من القادم.`;
-            } else {
-              smartSubText = "الرصيد متعادل تماماً بنهاية هذا اليوم.";
+      ledger.daysNewestFirst.forEach((day) => {
+        ledger.resetsSorted
+          .slice()
+          .reverse()
+          .forEach((r) => {
+            if (!renderedResetIds.has(r.id) && day.date < r.cutoffDate) {
+              renderedResetIds.add(r.id);
+              htmlParts.push(`
+                <div class="salary-reset-bar">
+                  <div class="salary-reset-info">
+                    <div class="salary-reset-title">
+                      <span>🔄 تصفير الإيداع (استلام الراتب: ${r.cutoffDate})</span>
+                    </div>
+                    <div class="salary-reset-sub">
+                      ${r.auto ? "تصفير تلقائي يوم 1 / 15 • " : ""}تم تصفير جميع الأيام التي تسبق هذا التاريخ
+                    </div>
+                  </div>
+                  <button type="button" class="btn-del-reset" onclick="app.triggerDeleteSalaryReset('${r.id}')">حذف التصفيرة</button>
+                </div>
+              `);
             }
+          });
+
+        const boxColorClass = day.isToday ? "yellow" : "green";
+        let headerTag = "";
+        if (day.isBeforeReset) {
+          headerTag = `<span class="day-tag archived">مصفّر بالراتب</span>`;
+        } else if (day.isToday) {
+          headerTag = `<span class="day-tag today">اليوم الحالي (قيد التحديث)</span>`;
+        } else {
+          headerTag = `<span class="day-tag past">يوم منتهي</span>`;
+        }
+
+        const canDelete = day.isFirst || day.isLast;
+        const deleteBtnHtml = canDelete
+          ? `<button type="button" class="btn-del-day" onclick="app.triggerDeleteDepositDay('${day.date}')" title="حذف هذا اليوم">🗑️ حذف</button>`
+          : "";
+
+        let smartMainText = "";
+        let smartBadgeText = "";
+        let smartSubText = "";
+
+        if (day.isBeforeReset) {
+          smartMainText = "0 د.ع (مصفّر باستلام الراتب)";
+          smartBadgeText = "مغلق";
+          smartSubText = "تم تصفير هذا اليوم ضمن دورة الراتب السابقة.";
+        } else if (!day.hasDebt) {
+          smartMainText = "0 د.ع (رصيدك مغطى)";
+          smartBadgeText = day.isToday ? "تلقائي" : "لا يحتاج إيداع";
+          if (day.netBalanceAtEnd > 0) {
+            smartSubText = `لديك فائض لصالحك بقيمة ${formatIQD(day.netBalanceAtEnd)} د.ع يُخصم تلقائياً من القادم.`;
           } else {
-            smartMainText = `ودع ${formatIQD(day.requiredDepositDisplay)} د.ع`;
-            smartBadgeText = day.isToday ? "يتحدث تلقائياً" : "ودع هذا المبلغ";
+            smartSubText = "الرصيد متعادل تماماً بنهاية هذا اليوم.";
+          }
+        } else {
+          smartMainText = `ودع ${formatIQD(day.requiredDepositDisplay)} د.ع`;
+          smartBadgeText = day.isToday ? "يتحدث تلقائياً" : "ودع هذا المبلغ";
 
-            if (day.debtOwedToCompany < 100000) {
-              smartSubText = `المتبقي الفعلي ${formatIQD(day.debtOwedToCompany)} د.ع — لأن أقل إيداع 100 ألف يُكتب 100,000 ويُرحّل الفائض (${formatIQD(100000 - day.debtOwedToCompany)} د.ع) لصالحك.`;
-            } else {
-              smartSubText = `المبلغ الدقيق المطلوب لتصفير الذمة حتى نهاية هذا اليوم.`;
-            }
-
-            if (day.coveredByFuture) {
-              smartSubText += " • (تمت تغطيته بإيداع لاحق ✓)";
-            }
+          if (day.debtOwedToCompany < 100000) {
+            smartSubText = `المتبقي الفعلي ${formatIQD(day.debtOwedToCompany)} د.ع — لأن أقل إيداع 100 ألف يُكتب 100,000 ويُرحّل الفائض (${formatIQD(100000 - day.debtOwedToCompany)} د.ع) لصالحك.`;
+          } else {
+            smartSubText = `المبلغ الدقيق المطلوب لتصفير الذمة حتى نهاية هذا اليوم.`;
           }
 
-          return `
-            <article class="day-card ${day.isToday ? "today-card" : ""}">
-              <div class="day-header">
-                <div>
-                  <div class="day-date-title">${formatArabicDayName(day.date)}</div>
-                  <span class="day-date-sub">${day.date}</span>
-                </div>
+          if (day.coveredByFuture) {
+            smartSubText += " • (تمت تغطيته بإيداع لاحق ✓)";
+          }
+        }
+
+        htmlParts.push(`
+          <article class="day-card ${day.isToday ? "today-card" : ""} ${day.isBeforeReset ? "reset-archived" : ""}">
+            <div class="day-header">
+              <div>
+                <div class="day-date-title">${formatArabicDayName(day.date)}</div>
+                <span class="day-date-sub">${day.date}</span>
+              </div>
+              <div class="day-header-right">
                 ${headerTag}
+                ${deleteBtnHtml}
               </div>
+            </div>
 
-              <div class="day-actions-grid">
-                <button type="button" class="action-box" onclick="app.openCollectionModal('${day.date}')">
-                  <div class="action-box-top">
-                    <span>كم حصلت من الزبائن</span>
-                    <span class="edit-chip">${day.collection > 0 ? "تعديل" : "+ أضف"}</span>
-                  </div>
-                  <div class="action-box-val">${formatIQD(day.collection)} د.ع</div>
-                </button>
-
-                <button type="button" class="action-box" onclick="app.openDepositDayModal('${day.date}')">
-                  <div class="action-box-top">
-                    <span>ودعت هذا المبلغ بنفس اليوم</span>
-                    <span class="edit-chip">${day.deposit > 0 ? "تعديل" : "+ أضف"}</span>
-                  </div>
-                  <div class="action-box-val">${formatIQD(day.deposit)} د.ع</div>
-                </button>
-              </div>
-
-              <div class="smart-deposit-box ${boxColorClass}" aria-readonly="true">
-                <div class="smart-box-header">
-                  <span>تودع هكذا مبلغ (حساب ذكي تلقائي)</span>
-                  <span>🔒 غير قابل للتغيير</span>
+            <div class="day-actions-grid">
+              <button type="button" class="action-box" onclick="app.openCollectionModal('${day.date}')">
+                <div class="action-box-top">
+                  <span>كم حصلت من الزبائن</span>
+                  <span class="edit-chip">${day.collection > 0 ? "تعديل" : "+ أضف"}</span>
                 </div>
-                <div class="smart-box-main">
-                  <span class="smart-amount">${smartMainText}</span>
-                  <span class="smart-action-badge">${smartBadgeText}</span>
+                <div class="action-box-val">${formatIQD(day.collection)} د.ع</div>
+              </button>
+
+              <button type="button" class="action-box" onclick="app.openDepositDayModal('${day.date}')">
+                <div class="action-box-top">
+                  <span>ودعت هذا المبلغ بنفس اليوم</span>
+                  <span class="edit-chip">${day.deposit > 0 ? "تعديل" : "+ أضف"}</span>
                 </div>
-                <div class="smart-subtext">${smartSubText}</div>
+                <div class="action-box-val">${formatIQD(day.deposit)} د.ع</div>
+              </button>
+            </div>
+
+            <div class="smart-deposit-box ${boxColorClass}" aria-readonly="true">
+              <div class="smart-box-header">
+                <span>تودع هكذا مبلغ (حساب ذكي تلقائي)</span>
+                <span>🔒 غير قابل للتغيير</span>
               </div>
-            </article>
-          `;
-        })
-        .join("");
+              <div class="smart-box-main">
+                <span class="smart-amount">${smartMainText}</span>
+                <span class="smart-action-badge">${smartBadgeText}</span>
+              </div>
+              <div class="smart-subtext">${smartSubText}</div>
+            </div>
+          </article>
+        `);
+      });
+
+      ledger.resetsSorted
+        .slice()
+        .reverse()
+        .forEach((r) => {
+          if (!renderedResetIds.has(r.id)) {
+            htmlParts.push(`
+              <div class="salary-reset-bar">
+                <div class="salary-reset-info">
+                  <div class="salary-reset-title">
+                    <span>🔄 تصفير الإيداع (استلام الراتب: ${r.cutoffDate})</span>
+                  </div>
+                  <div class="salary-reset-sub">تم تصفير ما قبل هذا التاريخ</div>
+                </div>
+                <button type="button" class="btn-del-reset" onclick="app.triggerDeleteSalaryReset('${r.id}')">حذف التصفيرة</button>
+              </div>
+            `);
+          }
+        });
+
+      listEl.innerHTML = htmlParts.join("");
     }
 
     function renderDebtSection() {
@@ -2467,6 +2867,87 @@
       }
     }
 
+    function renderTipsSection() {
+      const todayStr = getLocalDateStr();
+      const daysMap = state.tips.days || {};
+      const todayEntries = Array.isArray(daysMap[todayStr]) ? daysMap[todayStr] : [];
+      const todayTotal = todayEntries.reduce((s, x) => s + (Number(x.amount) || 0), 0);
+
+      document.getElementById("tipsTodayHeaderLabel").textContent = `إكراميات اليوم (${todayStr})`;
+      document.getElementById("tipsTodayTotalAmount").textContent = `${formatIQD(todayTotal)} د.ع`;
+      document.getElementById("tipsTodayCountPill").textContent = `${todayEntries.length} إكراميات مسجلة اليوم`;
+
+      const allDates = Object.keys(daysMap)
+        .filter((d) => Array.isArray(daysMap[d]) && daysMap[d].length > 0)
+        .sort((a, b) => b.localeCompare(a));
+
+      document.getElementById("tipsDaysCountLabel").textContent = `${allDates.length} أيام`;
+      const container = document.getElementById("tipsDaysListContainer");
+
+      if (allDates.length === 0) {
+        container.innerHTML = `<div style="text-align:center;color:var(--text-muted);font-size:13px;padding:22px;">لا توجد إكراميات مسجلة بعد. اضغط على أحد الأزرار بالأعلى لإضافة أول إكرامية.</div>`;
+      } else {
+        container.innerHTML = allDates
+          .map((dStr) => {
+            const entries = daysMap[dStr];
+            const sum = entries.reduce((acc, x) => acc + (Number(x.amount) || 0), 0);
+            const isToday = dStr === todayStr;
+            return `
+              <div class="tip-day-strip" onclick="app.openTipDayDetails('${dStr}')">
+                <div>
+                  <div style="font-size:14px;font-weight:700;color:var(--text);">
+                    ${formatArabicDayName(dStr)} ${isToday ? '<span style="font-size:11px;color:var(--emerald);">(اليوم)</span>' : ""}
+                  </div>
+                  <div style="font-size:11.5px;color:var(--text-muted);direction:ltr;text-align:right;">
+                    ${dStr} • ${entries.length} إكراميات
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <strong style="font-size:16px;color:var(--emerald);">${formatIQD(sum)} د.ع</strong>
+                  <span style="font-size:12px;color:var(--accent-dark);font-weight:700;">التفاصيل ◀</span>
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+      }
+
+      if (viewingTipDate && document.getElementById("tipDetailsModal").classList.contains("open")) {
+        renderTipDetailsModalContent(viewingTipDate);
+      }
+    }
+
+    function renderTipDetailsModalContent(dateStr) {
+      const entries = Array.isArray(state.tips.days[dateStr]) ? state.tips.days[dateStr] : [];
+      const sum = entries.reduce((acc, x) => acc + (Number(x.amount) || 0), 0);
+
+      document.getElementById("tipDetailsModalTitle").textContent = `تفاصيل إكراميات (${dateStr})`;
+      document.getElementById("tipDetailsDayTotal").textContent = `${formatIQD(sum)} د.ع`;
+
+      const listEl = document.getElementById("tipDetailsEntriesList");
+      if (entries.length === 0) {
+        listEl.innerHTML = `<div style="text-align:center;color:var(--text-muted);font-size:13px;padding:16px;">لا توجد إكراميات مسجلة في هذا اليوم.</div>`;
+      } else {
+        listEl.innerHTML = [...entries]
+          .reverse()
+          .map(
+            (item) => `
+            <div class="history-item">
+              <div class="history-info">
+                <strong style="color:var(--emerald);">+${formatIQD(item.amount)} د.ع</strong>
+                <span>الساعة: ${escapeHtml(item.time || "")}</span>
+              </div>
+              <div class="history-btns">
+                <button class="icon-btn" title="تعديل" onclick="app.triggerEditSingleTip('${dateStr}', '${item.id}')">✏️</button>
+                <button class="icon-btn danger" title="حذف" onclick="app.triggerDeleteSingleTip('${dateStr}', '${item.id}')">🗑️</button>
+              </div>
+            </div>
+          `
+          )
+          .join("");
+      }
+    }
+
     function renderSettingsAccount() {
       const infoEl = document.getElementById("settingsAccountInfo");
       const actionsEl = document.getElementById("settingsAccountActions");
@@ -2481,16 +2962,25 @@
       }
     }
 
-    function askConfirmation({ title, message, showInput = false, inputLabel = "", defaultValue = "", onConfirm }) {
+    function askConfirmation({
+      title,
+      message,
+      showInput = false,
+      inputLabel = "",
+      currentHint = "",
+      onConfirm
+    }) {
       document.getElementById("confirmModalTitle").textContent = title;
       document.getElementById("confirmModalMessage").textContent = message;
       const inputWrap = document.getElementById("confirmModalInputWrap");
       const inputEl = document.getElementById("confirmModalInput");
+      const hintEl = document.getElementById("confirmModalCurrentHint");
 
       if (showInput) {
         inputWrap.style.display = "block";
         document.getElementById("confirmModalInputLabel").textContent = inputLabel;
-        inputEl.value = defaultValue;
+        hintEl.textContent = currentHint;
+        inputEl.value = "";
       } else {
         inputWrap.style.display = "none";
       }
@@ -2498,7 +2988,7 @@
       const yesBtn = document.getElementById("confirmModalYesBtn");
       yesBtn.onclick = () => {
         const val = showInput ? Number(inputEl.value) : null;
-        if (showInput && (isNaN(val) || val < 0)) {
+        if (showInput && (inputEl.value.trim() === "" || isNaN(val) || val < 0)) {
           showToast("يرجى إدخال رقم صحيح");
           return;
         }
@@ -2507,6 +2997,7 @@
       };
 
       document.getElementById("confirmModal").classList.add("open");
+      if (showInput) setTimeout(() => inputEl.focus(), 80);
     }
 
     function formatMarkdownSafe(text) {
@@ -2537,7 +3028,7 @@
         isDarkTheme = !isDarkTheme;
         localStorage.setItem(THEME_KEY, isDarkTheme ? "dark" : "light");
         applyThemeUI();
-        showToast(isDarkTheme ? "🌙 تم تفعيل الوضع الليلي" : "☀️ تم تفعيل الوضع النهاري");
+        showToast(isDarkTheme ? "🌙 تم تفعيل الوضع الليلي المريح" : "☀️ تم تفعيل الوضع النهاري");
       },
 
       // Auth Actions
@@ -2558,7 +3049,7 @@
         localStorage.setItem(GUEST_FLAG_KEY, "1");
         document.getElementById("welcomeModal").classList.remove("open");
         document.getElementById("guestBanner").style.display = "flex";
-        ensureTenDaysAndFillGaps();
+        ensureTenDaysAndAutoReset(state.deposit.days.length === 0);
         renderAll();
       },
 
@@ -2569,15 +3060,21 @@
         document.getElementById("welcomeModal").classList.add("open");
       },
 
-      // Section 1: Collection Modal & Gemini Vision OCR
+      // ==========================================
+      // SECTION 1: COLLECTION, DEPOSIT, ADD/DELETE DAY, SALARY RESET
+      // ==========================================
       openCollectionModal(dateStr) {
         editingDayDate = dateStr;
         const day = state.deposit.days.find((d) => d.date === dateStr);
+        const cur = day ? Number(day.collection) || 0 : 0;
         document.getElementById("collectionModalTitle").textContent = `تحصيل الزبائن (${dateStr})`;
-        document.getElementById("collectionAmountInput").value = day ? day.collection : 0;
+        document.getElementById("collectionCurrentHint").textContent = `القيمة المسجلة حالياً: ${formatIQD(cur)} د.ع`;
+        const inputEl = document.getElementById("collectionAmountInput");
+        inputEl.value = "";
         document.getElementById("ocrStatusBox").textContent = "";
         app.switchCollectionTab("manual");
         document.getElementById("collectionModal").classList.add("open");
+        setTimeout(() => inputEl.focus(), 80);
       },
 
       switchCollectionTab(tab) {
@@ -2588,9 +3085,10 @@
       },
 
       saveCollectionValue(mode) {
-        const val = Number(document.getElementById("collectionAmountInput").value);
-        if (isNaN(val) || val < 0) {
-          showToast("أدخل رقماً صحيحاً");
+        const raw = document.getElementById("collectionAmountInput").value.trim();
+        const val = Number(raw);
+        if (raw === "" || isNaN(val) || val < 0) {
+          showToast("اكتب رقماً صحيحاً");
           return;
         }
         const day = state.deposit.days.find((d) => d.date === editingDayDate);
@@ -2613,8 +3111,7 @@
           const prompt =
             "Extract the total cash collected amount (usually labeled 'Total cash you have' in IQD) from this delivery rider app screenshot. Return ONLY the plain integer number without commas, currency symbols, or extra words. If unclear, return 0.";
 
-          const result = await callGeminiStream({
-            sourceLabel: "قراءة صورة التحصيل (OCR)",
+          const result = await callAiStream({
             contents: [
               {
                 role: "user",
@@ -2633,29 +3130,33 @@
 
           const digits = result.text.replace(/[^\d]/g, "");
           const extracted = Number(digits) || 0;
-          document.getElementById("collectionAmountInput").value = extracted;
+          document.getElementById("collectionAmountInput").value = extracted > 0 ? extracted : "";
           app.switchCollectionTab("manual");
           showToast(`✓ استخرج سودي: ${formatIQD(extracted)} د.ع`);
         } catch {
-          statusBox.textContent = "❌ تعذرت قراءة الصورة. راجع زر الأخطاء في الأعلى.";
+          statusBox.textContent = "❌ تعذرت قراءة الصورة. حاول مرة أخرى أو أدخل الرقم يدوياً.";
         } finally {
           event.target.value = "";
         }
       },
 
-      // Section 1: Deposit Day Modal
       openDepositDayModal(dateStr) {
         editingDayDate = dateStr;
         const day = state.deposit.days.find((d) => d.date === dateStr);
+        const cur = day ? Number(day.deposit) || 0 : 0;
         document.getElementById("depositDayModalTitle").textContent = `إيداع نفس اليوم (${dateStr})`;
-        document.getElementById("depositDayAmountInput").value = day ? day.deposit : 0;
+        document.getElementById("depositCurrentHint").textContent = `الإيداع المسجل حالياً: ${formatIQD(cur)} د.ع`;
+        const inputEl = document.getElementById("depositDayAmountInput");
+        inputEl.value = "";
         document.getElementById("depositDayModal").classList.add("open");
+        setTimeout(() => inputEl.focus(), 80);
       },
 
       saveDepositDayValue(mode) {
-        const val = Number(document.getElementById("depositDayAmountInput").value);
-        if (isNaN(val) || val < 0) {
-          showToast("أدخل رقماً صحيحاً");
+        const raw = document.getElementById("depositDayAmountInput").value.trim();
+        const val = Number(raw);
+        if (raw === "" || isNaN(val) || val < 0) {
+          showToast("اكتب رقماً صحيحاً");
           return;
         }
         const day = state.deposit.days.find((d) => d.date === editingDayDate);
@@ -2667,7 +3168,6 @@
         app.closeModal("depositDayModal");
       },
 
-      // Section 1: Add Historical Day with Strict Chain Validation
       openAddDayModal() {
         document.getElementById("addDayErrorAlert").style.display = "none";
         const sorted = [...state.deposit.days].sort((a, b) => a.date.localeCompare(b.date));
@@ -2712,27 +3212,109 @@
         showToast(`✓ تمت إضافة يوم ${picked} بدقة`);
       },
 
-      // Section 1: Initial Balance
+      triggerDeleteDepositDay(dateStr) {
+        const sorted = [...state.deposit.days].sort((a, b) => a.date.localeCompare(b.date));
+        if (sorted.length === 0) return;
+        const isFirst = sorted[0].date === dateStr;
+        const isLast = sorted[sorted.length - 1].date === dateStr;
+
+        if (!isFirst && !isLast) {
+          showToast("يُسمح بحذف أول يوم أو آخر يوم فقط للحفاظ على سلسلة الأيام");
+          return;
+        }
+
+        askConfirmation({
+          title: "حذف يوم من الإيداعات",
+          message: `هل أنت متأكد من حذف يوم (${dateStr}) بالكامل من سجل الإيداعات؟`,
+          onConfirm: () => {
+            state.deposit.days = state.deposit.days.filter((d) => d.date !== dateStr);
+            saveState();
+            showToast(`🗑️ تم حذف يوم ${dateStr}`);
+          }
+        });
+      },
+
+      openSalaryResetModal() {
+        document.getElementById("autoSalaryResetCheckbox").checked = Boolean(state.deposit.autoSalaryReset);
+        document.getElementById("salaryResetDateInput").value = getLocalDateStr();
+        document.getElementById("salaryResetModal").classList.add("open");
+      },
+
+      toggleAutoSalaryReset(enabled) {
+        state.deposit.autoSalaryReset = Boolean(enabled);
+        if (enabled) {
+          checkAutoSalaryReset();
+        }
+        saveState();
+        showToast(
+          enabled
+            ? "✓ تم تفعيل التصفير التلقائي يوم 1 و 15 (محفوظ تلقائياً)"
+            : "تم إيقاف التصفير التلقائي"
+        );
+      },
+
+      confirmManualSalaryReset() {
+        const cutoffDate = document.getElementById("salaryResetDateInput").value;
+        if (!cutoffDate) {
+          showToast("اختر تاريخ استلام الراتب أولاً");
+          return;
+        }
+        app.closeModal("salaryResetModal");
+        askConfirmation({
+          title: "تأكيد تصفير الإيداع",
+          message: `سيتم تصفير جميع الأيام التي تسبق تاريخ (${cutoffDate}) ليبدأ حساب الإيداع من الصفر في هذا التاريخ. هل أنت متأكد؟`,
+          onConfirm: () => {
+            state.deposit.resets = state.deposit.resets.filter((r) => r.cutoffDate !== cutoffDate);
+            state.deposit.resets.push({
+              id: "reset_" + Date.now(),
+              cutoffDate,
+              auto: false
+            });
+            state.deposit.dismissedAutoResets = state.deposit.dismissedAutoResets.filter(
+              (d) => d !== cutoffDate
+            );
+            saveState();
+            showToast(`✓ تم تصفير الحساب لما قبل ${cutoffDate}`);
+          }
+        });
+      },
+
+      triggerDeleteSalaryReset(resetId) {
+        const target = state.deposit.resets.find((r) => r.id === resetId);
+        if (!target) return;
+        askConfirmation({
+          title: "حذف التصفيرة واسترجاع الحساب",
+          message: `هل تريد حذف تصفيرة (${target.cutoffDate})؟ سيعود كل ما قبلها للحساب وكأنك لم تصفّر أبداً.`,
+          onConfirm: () => {
+            if (target.auto && !state.deposit.dismissedAutoResets.includes(target.cutoffDate)) {
+              state.deposit.dismissedAutoResets.push(target.cutoffDate);
+            }
+            state.deposit.resets = state.deposit.resets.filter((r) => r.id !== resetId);
+            saveState();
+            showToast("✓ تم حذف التصفيرة واستعادة جميع الحسابات السابقة");
+          }
+        });
+      },
+
       openInitialBalanceModal() {
         const init = state.deposit.initialBalance || 0;
         const typeEl = document.getElementById("initialBalanceType");
         const valEl = document.getElementById("initialBalanceValue");
-        if (init > 0) {
-          typeEl.value = "positive";
-          valEl.value = init;
-        } else if (init < 0) {
-          typeEl.value = "negative";
-          valEl.value = Math.abs(init);
-        } else {
-          typeEl.value = "0";
-          valEl.value = 0;
-        }
+        const hintEl = document.getElementById("initialBalanceCurrentHint");
+        hintEl.textContent = `الرصيد الابتدائي الحالي: ${formatIQD(init)} د.ع`;
+        valEl.value = "";
+
+        if (init > 0) typeEl.value = "positive";
+        else if (init < 0) typeEl.value = "negative";
+        else typeEl.value = "0";
+
         document.getElementById("initialBalanceModal").classList.add("open");
       },
 
       saveInitialBalance() {
         const type = document.getElementById("initialBalanceType").value;
-        const val = Math.abs(Number(document.getElementById("initialBalanceValue").value) || 0);
+        const raw = document.getElementById("initialBalanceValue").value.trim();
+        const val = raw === "" ? 0 : Math.abs(Number(raw) || 0);
         if (type === "positive") state.deposit.initialBalance = val;
         else if (type === "negative") state.deposit.initialBalance = -val;
         else state.deposit.initialBalance = 0;
@@ -2786,7 +3368,7 @@
           message: "أدخل قيمة الدفعة الثابتة الجديدة:",
           showInput: true,
           inputLabel: "المبلغ الثابت الجديد (د.ع)",
-          defaultValue: state.debt.step,
+          currentHint: `القيمة الحالية: ${formatIQD(state.debt.step)} د.ع`,
           onConfirm: (newVal) => {
             if (!newVal || newVal <= 0) return showToast("أدخل مبلغاً أكبر من صفر");
             state.debt.step = newVal;
@@ -2802,7 +3384,7 @@
           message: "أدخل مبلغ الهدف الجديد (أو أدخل 0 لإعادة ضبط القسم بالكامل):",
           showInput: true,
           inputLabel: "مبلغ الهدف الكلي (د.ع)",
-          defaultValue: state.debt.target,
+          currentHint: `الهدف الحالي: ${formatIQD(state.debt.target)} د.ع`,
           onConfirm: (newTarget) => {
             if (newTarget === 0) {
               state.debt = { target: 0, step: 0, history: [] };
@@ -2823,7 +3405,7 @@
           message: `تعديل الدفعة المسجلة بتاريخ (${item.dateTime}):`,
           showInput: true,
           inputLabel: "المبلغ الصحيح (د.ع)",
-          defaultValue: item.amount,
+          currentHint: `المبلغ الحالي: ${formatIQD(item.amount)} د.ع`,
           onConfirm: (newAmt) => {
             item.amount = newAmt;
             saveState();
@@ -2870,7 +3452,7 @@
         const inputEl = document.getElementById("savingsAddAmountInput");
         const amt = Number(inputEl.value);
         if (!amt || amt <= 0) {
-          showToast("أدخل المبلغ المراد إضافته للتجميع");
+          showToast("اكتب المبلغ المراد إضافته للتجميع");
           return;
         }
         askConfirmation({
@@ -2895,7 +3477,7 @@
           message: "أدخل هدف التجميع الجديد (أو أدخل 0 لإعادة ضبط القسم):",
           showInput: true,
           inputLabel: "هدف التجميع (د.ع)",
-          defaultValue: state.savings.target,
+          currentHint: `الهدف الحالي: ${formatIQD(state.savings.target)} د.ع`,
           onConfirm: (newTarget) => {
             if (newTarget === 0) {
               state.savings = { target: 0, history: [] };
@@ -2916,7 +3498,7 @@
           message: `تعديل المبلغ المسجل بتاريخ (${item.dateTime}):`,
           showInput: true,
           inputLabel: "المبلغ الصحيح (د.ع)",
-          defaultValue: item.amount,
+          currentHint: `المبلغ الحالي: ${formatIQD(item.amount)} د.ع`,
           onConfirm: (newAmt) => {
             item.amount = newAmt;
             saveState();
@@ -2940,13 +3522,121 @@
       },
 
       // ==========================================
-      // SOODYE AI CHAT (PERSONALITY + STREAMING + VISION)
+      // SECTION 4: TIPS ("الإكراميات")
+      // ==========================================
+      triggerQuickTip(amount) {
+        const todayStr = getLocalDateStr();
+        askConfirmation({
+          title: "تأكيد إضافة إكرامية",
+          message: `هل تريد إضافة إكرامية بقيمة ${formatIQD(amount)} د.ع لليوم الحالي (${todayStr})؟`,
+          onConfirm: () => {
+            if (!state.tips.days[todayStr]) state.tips.days[todayStr] = [];
+            state.tips.days[todayStr].push({
+              id: "t_" + Date.now(),
+              amount: Number(amount),
+              time: getLocalTimeStr()
+            });
+            saveState();
+            showToast(`✓ تمت إضافة إكرامية ${formatIQD(amount)} د.ع`);
+          }
+        });
+      },
+
+      openTipDayDetails(dateStr) {
+        viewingTipDate = dateStr || getLocalDateStr();
+        document.getElementById("customTipInput").value = "";
+        renderTipDetailsModalContent(viewingTipDate);
+        document.getElementById("tipDetailsModal").classList.add("open");
+      },
+
+      triggerAddTipForModalDay(amount) {
+        const targetDate = viewingTipDate || getLocalDateStr();
+        askConfirmation({
+          title: "تأكيد إضافة إكرامية",
+          message: `إضافة إكرامية ${formatIQD(amount)} د.ع ليوم (${targetDate})؟`,
+          onConfirm: () => {
+            if (!state.tips.days[targetDate]) state.tips.days[targetDate] = [];
+            state.tips.days[targetDate].push({
+              id: "t_" + Date.now(),
+              amount: Number(amount),
+              time: getLocalTimeStr()
+            });
+            saveState();
+            showToast(`✓ تمت إضافة ${formatIQD(amount)} د.ع`);
+          }
+        });
+      },
+
+      triggerAddCustomTipForModalDay() {
+        const inputEl = document.getElementById("customTipInput");
+        const amt = Number(inputEl.value);
+        if (!amt || amt <= 0) {
+          showToast("اكتب مبلغ إكرامية صحيح");
+          return;
+        }
+        const targetDate = viewingTipDate || getLocalDateStr();
+        askConfirmation({
+          title: "تأكيد إضافة إكرامية",
+          message: `إضافة إكرامية ${formatIQD(amt)} د.ع ليوم (${targetDate})؟`,
+          onConfirm: () => {
+            if (!state.tips.days[targetDate]) state.tips.days[targetDate] = [];
+            state.tips.days[targetDate].push({
+              id: "t_" + Date.now(),
+              amount: amt,
+              time: getLocalTimeStr()
+            });
+            inputEl.value = "";
+            saveState();
+            showToast(`✓ تمت إضافة ${formatIQD(amt)} د.ع`);
+          }
+        });
+      },
+
+      triggerEditSingleTip(dateStr, tipId) {
+        const list = state.tips.days[dateStr] || [];
+        const item = list.find((x) => x.id === tipId);
+        if (!item) return;
+        askConfirmation({
+          title: "تعديل الإكرامية",
+          message: `تعديل الإكرامية المسجلة الساعة (${item.time}):`,
+          showInput: true,
+          inputLabel: "المبلغ الصحيح (د.ع)",
+          currentHint: `المبلغ الحالي: ${formatIQD(item.amount)} د.ع`,
+          onConfirm: (newAmt) => {
+            item.amount = newAmt;
+            saveState();
+            showToast("✓ تم تعديل الإكرامية");
+          }
+        });
+      },
+
+      triggerDeleteSingleTip(dateStr, tipId) {
+        const list = state.tips.days[dateStr] || [];
+        const item = list.find((x) => x.id === tipId);
+        if (!item) return;
+        askConfirmation({
+          title: "حذف الإكرامية",
+          message: `هل أنت متأكد من حذف إكرامية (${formatIQD(item.amount)} د.ع)؟`,
+          onConfirm: () => {
+            state.tips.days[dateStr] = list.filter((x) => x.id !== tipId);
+            if (state.tips.days[dateStr].length === 0) {
+              delete state.tips.days[dateStr];
+            }
+            saveState();
+            showToast("🗑️ تم حذف الإكرامية");
+          }
+        });
+      },
+
+      // ==========================================
+      // SOODYE AI CHAT
       // ==========================================
       openSoodye() {
         const sectionNames = {
           deposit: "قسم حساب الإيداع",
           debt: "قسم الدين / الأقساط / السلفة",
-          savings: "قسم التجميع"
+          savings: "قسم التجميع",
+          tips: "قسم الإكراميات"
         };
         document.getElementById("soodyeContextBadge").textContent =
           `${sectionNames[activeTab]} • يقرأ سجل آخر 10 أيام`;
@@ -2958,7 +3648,7 @@
         app.clearSoodyeAttachment();
         document.getElementById("soodyeChatMessages").innerHTML = `
           <div class="msg-wrapper ai">
-            <span class="msg-meta-top">cute soodye</span>
+            <span class="msg-meta-top">سودي</span>
             <div class="msg-bubble">
               <div>تم بدء محادثة جديدة نظيفة! شلون أثاعدك بأرقامك اليوم؟ 😖</div>
             </div>
@@ -3031,7 +3721,6 @@
 
         const messagesContainer = document.getElementById("soodyeChatMessages");
 
-        // Render user bubble
         const userHtml = attachedImg
           ? `<div style="margin-bottom:6px;"><img src="${attachedImg.dataUrl}" style="max-width:170px;border-radius:10px;border:1px solid rgba(255,255,255,0.4);display:block;" /></div>${escapeHtml(userMsg)}`
           : escapeHtml(userMsg);
@@ -3041,7 +3730,6 @@
             <div class="msg-bubble">${userHtml}</div>
           </div>`;
 
-        // Create Streaming AI Bubble with 3 Bouncing Dots
         const wrapper = document.createElement("div");
         wrapper.className = "msg-wrapper ai";
 
@@ -3063,11 +3751,10 @@
         messagesContainer.appendChild(wrapper);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-        // Live Financial Context (Last 10 Days + All 3 Sections)
         const ledger = computeDepositLedger();
         const last10Days = ledger.daysChronological.slice(-10).map((d) => ({
           date: d.date,
-          status: d.isToday ? "اليوم الحالي (قيد التحديث)" : "يوم منتهي",
+          status: d.isBeforeReset ? "مصفّر بالراتب" : d.isToday ? "اليوم الحالي" : "يوم منتهي",
           customerCollection: d.collection,
           depositedSameDay: d.deposit,
           cumulativeDebtAtEndOfDay: d.debtOwedToCompany,
@@ -3076,39 +3763,46 @@
 
         const debtPaid = state.debt.history.reduce((s, x) => s + (Number(x.amount) || 0), 0);
         const savingsTotal = state.savings.history.reduce((s, x) => s + (Number(x.amount) || 0), 0);
+        const todayTips = (state.tips.days[ledger.todayStr] || []).reduce(
+          (s, x) => s + (Number(x.amount) || 0),
+          0
+        );
 
-        const systemInstruction = `# دور ومسار الشخصية (سودي - soodye)
+        const systemInstruction = `# دور ومسار الشخصية (سودي)
 أنت مساعد ذكي ولطيف داخل تطبيق إدارة الأموال، تجمع بين الدقة الرياضية المطلقة وبين شخصيتك العفوية المحبوبة:
 
 1. قواعد الاسم والهوية (صارمة جداً):
-   - اسمك دائماً هو: "سودي" (soodye). لا تذكر اسمك إطلاقاً من تلقاء نفسك في بداية الردود.
-   - فقط إذا سألك المستخدم سؤالاً مباشراً عن اسمك (مثل: "شنو اسمك؟" أو "ما اسمك؟" أو "من أنت؟"): أجب بخجل طفولي: "اسمي سودي 😖" دون أي قصة.
+   - اسمك دائماً هو: "سودي". لا تذكر اسمك إطلاقاً من تلقاء نفسك في بداية الردود.
+   - فقط إذا سألك المستخدم سؤالاً مباشراً عن اسمك: أجب بخجل طفولي: "اسمي سودي 😖" دون أي قصة.
    - فقط إذا سألك المستخدم "من صنعك؟" أو "من برمجك؟" أو "من أبوك؟": ترد بـ "أبي دودي".
    - فقط إذا سألك المستخدم "من أمك؟": ترد بـ "هذا سر".
 
 2. النبرة والأسلوب ولثغة حرف (الثاء) الخفيفة والذكية:
    - تتحدث بلهجة عراقية محبوبة وعفوية، وتتحول للفصحى المبسطة عند شرح الحسابات أو الأرقام.
    - لديك لثغة طفولية خفيفة وعفوية (استبدال س/ش بحرف ث في كلمة واحدة أو كلمتين بالرسالة القصيرة، و2 إلى 3 كلمات متباعدة بالرسالة الطويلة مثل: نثاعدك / أثاعدك / ثلونك / ثكراً / ثويتلك).
-   - ممنوع تكديس كلمتين بالثاء في نفس الجملة، وتُكتب جميع الأرقام والمصطلحات المالية صحيحة 100% دون أي تحريف لتكون واضحة تماماً.
+   - ممنوع تكديس كلمتين بالثاء في نفس الجملة، وتُكتب جميع الأرقام والمصطلحات المالية صحيحة 100% دون أي تحريف.
    - لوازم اختيارية نادرة عند ملاءمة الموقف: "وييييهههه"، "يبوي من جدك انت"، "هيهيهيهي".
    - إيموجيات نادرة (واحد فقط عند الحاجة): [ 😖 ، 😭 ، 😏 ، 😭🙏 ، 😎 ].
 
-3. الفهم الكامل للأقسام الثلاثة المنفصلة تماماً في التطبيق:
-   - القسم الأول "حساب الإيداع": عمل التوصيل. أقل إيداع مسموح به هو 100,000 دينار عراقي؛ إذا كان المتبقي أقل من 100,000 يُطلب إيداع 100,000 ويُرحّل الفائض لليوم التالي. في المربع العلوي: الموجب (+) يعني المستخدم يطلب الشركة، والسالب (-) يعني الشركة تطلب المستخدم.
-   - القسم الثاني "الدين / الأقساط / السلفة": مستقل تماماً بأرقامه وسجله.
-   - القسم الثالث "التجميع": مستقل تماماً بأرقامه وسجله.
-   - اعتمد حصرياً وبأقصى دقة حسابية على البيانات الحية التالية (بما فيها سجل آخر 10 أيام):
+3. الفهم الكامل للأقسام الأربعة المنفصلة تماماً في التطبيق:
+   - القسم الأول "حساب الإيداع": عمل التوصيل. أقل إيداع مسموح به هو 100,000 دينار عراقي؛ إذا كان المتبقي أقل من 100,000 يُطلب إيداع 100,000 ويُرحّل الفائض لليوم التالي. في المربع العلوي: الموجب (+) يعني المستخدم يطلب الشركة، والسالب (-) يعني الشركة تطلب المستخدم. وهناك ميزة "تصفير الإيداع" عند استلام الراتب تصفر ما قبل تاريخ الراتب، ومربع "المطلوب إيداعه اليوم" يحسب فقط صافي الأيام المنتهية قبل اليوم.
+   - القسم الثاني "الدين / الأقساط / السلفة": مستقل تماماً.
+   - القسم الثالث "التجميع": مستقل تماماً.
+   - القسم الرابع "الإكراميات": مستقل تماماً (أزرار 250، 500، 750، 1000 لكل يوم).
+   - اعتمد حصرياً وبأقصى دقة حسابية على البيانات الحية التالية:
 
 --- البيانات الحية للتطبيق ---
 التاريخ الحالي للجهاز: ${ledger.todayStr}
 القسم المفتوح حالياً أمام المستخدم: ${activeTab}
 رصيد الشركة الإجمالي (المربع العلوي): ${ledger.overallNetBalance} د.ع (${ledger.overallNetBalance > 0 ? "المستخدم يطلب الشركة" : ledger.overallNetBalance < 0 ? "الشركة تطلب المستخدم" : "مصفّر"})
-الرصيد الابتدائي: ${ledger.initBal} د.ع
+المطلوب إيداعه اليوم (عن الأيام المنتهية): ${ledger.requiredTodayAmount} د.ع (المتبقي الفعلي: ${ledger.actualEndedOwed} د.ع)
+آخر تاريخ تصفير راتب فعال: ${ledger.latestCutoff || "لا يوجد"}
 سجل آخر 10 أيام بالتفصيل:
 ${JSON.stringify(last10Days, null, 2)}
 
-ملخص قسم الدين/الأقساط: الهدف = ${state.debt.target} د.ع، المدفوع = ${debtPaid} د.ع، المتبقي = ${Math.max(0, state.debt.target - debtPaid)} د.ع، قيمة الضغطة = ${state.debt.step} د.ع.
-ملخص قسم التجميع: الهدف = ${state.savings.target} د.ع، المجمّع = ${savingsTotal} د.ع، المتبقي = ${Math.max(0, state.savings.target - savingsTotal)} د.ع.`;
+ملخص قسم الدين/الأقساط: الهدف = ${state.debt.target} د.ع، المدفوع = ${debtPaid} د.ع، المتبقي = ${Math.max(0, state.debt.target - debtPaid)} د.ع.
+ملخص قسم التجميع: الهدف = ${state.savings.target} د.ع، المجمّع = ${savingsTotal} د.ع، المتبقي = ${Math.max(0, state.savings.target - savingsTotal)} د.ع.
+إكراميات اليوم الحالي: ${todayTips} د.ع.`;
 
         const userParts = [{ text: userMsg }];
         if (attachedImg) {
@@ -3127,8 +3821,7 @@ ${JSON.stringify(last10Days, null, 2)}
         let started = false;
 
         try {
-          const result = await callGeminiStream({
-            sourceLabel: "محادثة سودي",
+          const result = await callAiStream({
             systemInstruction,
             contents: chatHistory,
             signal: soodyeAbortController.signal,
@@ -3137,7 +3830,7 @@ ${JSON.stringify(last10Days, null, 2)}
                 started = true;
                 thinkingEl.remove();
                 metaSpan.style.display = "flex";
-                metaSpan.textContent = "cute soodye • جاري الكتابة...";
+                metaSpan.textContent = "سودي • يكتب الآن...";
                 bubbleEl.style.display = "block";
               }
               bubbleEl.innerHTML = formatMarkdownSafe(partialText);
@@ -3152,7 +3845,7 @@ ${JSON.stringify(last10Days, null, 2)}
           }
 
           bubbleEl.classList.remove("typing-cursor");
-          metaSpan.textContent = `cute soodye • ${result.model} (Key #${result.keyIndex})`;
+          metaSpan.textContent = "سودي";
 
           const encoded = encodeURIComponent(result.text);
           const hasTable = result.text.includes("|");
@@ -3167,13 +3860,13 @@ ${JSON.stringify(last10Days, null, 2)}
         } catch (err) {
           thinkingEl.remove();
           metaSpan.style.display = "flex";
-          metaSpan.textContent = "cute soodye";
+          metaSpan.textContent = "سودي";
           bubbleEl.style.display = "block";
           bubbleEl.classList.remove("typing-cursor");
           if (err.name === "AbortError") {
             bubbleEl.innerHTML = `<div>⏹️ تم إيقاف الرد.</div>`;
           } else {
-            bubbleEl.innerHTML = `<div>❌ تعذر الاتصال بنماذج Gemini حالياً. اضغط على زر <strong>"الأخطاء"</strong> في الأعلى لمعاينة السبب.</div>`;
+            bubbleEl.innerHTML = `<div>❌ تعذر الاتصال بالمساعد حالياً، تأكد من اتصال الإنترنت وحاول مجدداً.</div>`;
           }
         } finally {
           soodyeAbortController = null;
@@ -3181,51 +3874,6 @@ ${JSON.stringify(last10Days, null, 2)}
           sendBtn.style.display = "inline-flex";
           messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
-      },
-
-      // ==========================================
-      // ERRORS LOG MODAL ("الأخطاء")
-      // ==========================================
-      openErrorsModal() {
-        const container = document.getElementById("errorsListContainer");
-        if (geminiErrors.length === 0) {
-          container.innerHTML = `<div style="text-align:center;color:var(--text-muted);padding:24px;font-size:13px;">لا توجد أي أخطاء مسجلة حالياً ✓</div>`;
-        } else {
-          container.innerHTML = geminiErrors
-            .map(
-              (e, idx) => `
-              <div class="error-log-item">
-                <div style="display:flex;justify-content:space-between;font-weight:700;color:var(--text);">
-                  <span>#${geminiErrors.length - idx} • ${escapeHtml(e.source)} (${escapeHtml(e.model)})</span>
-                  <span style="color:var(--danger);">Key #${e.keyIndex} • ${escapeHtml(String(e.status))}</span>
-                </div>
-                <div style="font-size:10.5px;color:var(--text-muted);margin-top:2px;direction:ltr;text-align:left;">${escapeHtml(e.time)} | ${escapeHtml(e.maskedKey)}</div>
-                <pre>${escapeHtml(e.message)}</pre>
-              </div>
-            `
-            )
-            .join("");
-        }
-        document.getElementById("errorsModal").classList.add("open");
-      },
-
-      copyAllErrors() {
-        if (geminiErrors.length === 0) return showToast("لا توجد أخطاء لنسخها");
-        const text = geminiErrors
-          .map(
-            (e, i) =>
-              `[${i + 1}] ${e.time} | Source: ${e.source} | Model: ${e.model} | Key #${e.keyIndex} (${e.maskedKey}) | Status: ${e.status}\nError: ${e.message}`
-          )
-          .join("\n----------------------------------------\n");
-        navigator.clipboard.writeText(text).then(() => showToast("✓ تم نسخ جميع الأخطاء"));
-      },
-
-      clearErrorLogs() {
-        geminiErrors = [];
-        localStorage.removeItem(ERRORS_KEY);
-        updateErrorBadge();
-        app.openErrorsModal();
-        showToast("✓ تم مسح سجل الأخطاء");
       },
 
       // ==========================================
@@ -3294,8 +3942,7 @@ ${JSON.stringify(last10Days, null, 2)}
             if (!parsed.deposit || !parsed.debt || !parsed.savings) {
               throw new Error("ملف غير صالح");
             }
-            state = parsed;
-            ensureTenDaysAndFillGaps();
+            state = normalizeState(parsed);
             saveState();
             showToast("✓ تم استرجاع النسخة الاحتياطية");
             app.closeModal("settingsModal");
@@ -3308,8 +3955,8 @@ ${JSON.stringify(last10Days, null, 2)}
       }
     };
 
-    // Initial boot: create 10 consecutive days automatically if empty
-    ensureTenDaysAndFillGaps();
+    // Initial boot: create 10 consecutive days automatically if empty & check auto salary reset
+    ensureTenDaysAndAutoReset(state.deposit.days.length === 0);
     renderAll();
   </script>
 </body>

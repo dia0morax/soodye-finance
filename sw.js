@@ -1,4 +1,4 @@
-const CACHE_NAME = 'soodye-finance-v2';
+const CACHE_NAME = 'soodye-finance-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
