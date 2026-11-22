@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -1384,6 +1384,17 @@
     /* ==========================================
        MODALS
        ========================================== */
+    /* Desktop PWA wider comfortable layout */
+    @media (min-width: 768px) {
+      .header-inner, .container, .nav-inner, .guest-banner {
+        max-width: 760px;
+      }
+      .nav-item {
+        font-size: 11px;
+        padding: 7px 4px;
+      }
+    }
+
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -1397,6 +1408,8 @@
       padding: 16px;
     }
     .modal-backdrop.open { display: flex; }
+    #subEditModal, #subHistoryEditModal { z-index: 130; }
+    #confirmModal { z-index: 160; }
 
     .modal-box {
       background: var(--card);
@@ -2999,10 +3012,24 @@
     let soodyeAbortController = null;
     let confirmModalSmartMode = "none"; // "none" | "standard" | "tip"
 
+    // Universal Numeric Parser (handles Arabic-Indic ٠-٩, Persian ۰-۹, commas, spaces)
+    function parseNumericInput(raw) {
+      if (raw === null || raw === undefined) return NaN;
+      let s = String(raw).trim();
+      if (!s) return NaN;
+      const arabicDigits = "٠١٢٣٤٥٦٧٨٩";
+      const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+      s = s.replace(/[٠-٩]/g, (d) => String(arabicDigits.indexOf(d)))
+           .replace(/[۰-۹]/g, (d) => String(persianDigits.indexOf(d)))
+           .replace(/[,،\s]/g, "");
+      const num = Number(s);
+      return Number.isFinite(num) ? num : NaN;
+    }
+
     // Smart Amount Expansion Rules (ONLY for Initial Additions, NEVER for Edits)
     // Standard fields (Deposits, Collections, Debt, Savings): < 1000 adds 3 zeros (e.g. 100 -> 100,000, 150 -> 150,000)
     function smartExpandStandard(val) {
-      const num = Number(val);
+      const num = parseNumericInput(val);
       if (isNaN(num) || num <= 0) return 0;
       if (num < 1000) return Math.round(num * 1000);
       return Math.round(num);
@@ -3010,7 +3037,7 @@
 
     // Tips free-number field: < 100 adds 3 zeros (e.g. 2 -> 2,000, 5 -> 5,000), while 250, 500, 750, 1500 stay exact
     function smartExpandTip(val) {
-      const num = Number(val);
+      const num = parseNumericInput(val);
       if (isNaN(num) || num <= 0) return 0;
       if (num < 100) return Math.round(num * 1000);
       return Math.round(num);
@@ -3165,20 +3192,53 @@
       }
     }
 
+    const LAST_UID_KEY = "soodye_last_uid_v4";
+    let cloudSyncInFlight = false;
+    let cloudSyncPending = false;
+    let loadedCloudUid = null;
+
+    function sanitizeForFirestore(rawState) {
+      // Deep-clean so no undefined, NaN, or non-plain objects ever reach Firestore setDoc
+      return JSON.parse(JSON.stringify(normalizeState(rawState)));
+    }
+
+    async function flushCloudSync() {
+      if (!currentUser) return;
+      if (cloudSyncInFlight) {
+        cloudSyncPending = true;
+        return;
+      }
+      cloudSyncInFlight = true;
+      updateSyncUI("syncing", "جاري المزامنة...");
+      try {
+        do {
+          cloudSyncPending = false;
+          const uid = currentUser ? currentUser.uid : null;
+          if (!uid) break;
+          const payload = sanitizeForFirestore(state);
+          await setDoc(doc(db, "users", uid, "financeApp", "main"), payload);
+          safeStorageSet(LAST_UID_KEY, uid);
+        } while (cloudSyncPending && currentUser);
+        if (currentUser) {
+          updateSyncUI("online", `متصل (${currentUser.email.split("@")[0]})`);
+        }
+      } catch (err) {
+        console.error("Firestore save error:", err);
+        updateSyncUI("guest", "تعذرت المزامنة السحابية");
+        showToast("تعذر الحفظ السحابي مؤقتاً — تم الحفظ محلياً", "alert");
+      } finally {
+        cloudSyncInFlight = false;
+      }
+    }
+
     async function saveState(skipCloud = false) {
+      state = normalizeState(state);
       state.updatedAt = Date.now();
       safeStorageSet(STORAGE_KEY, JSON.stringify(state));
       renderAll();
 
       if (currentUser && !skipCloud) {
-        updateSyncUI("syncing", "جاري المزامنة...");
-        try {
-          await setDoc(doc(db, "users", currentUser.uid, "financeApp", "main"), state);
-          updateSyncUI("online", `متصل (${currentUser.email.split("@")[0]})`);
-        } catch (err) {
-          console.error("Firestore save error:", err);
-          updateSyncUI("guest", "تعذرت المزامنة السحابية");
-        }
+        await flushCloudSync();
       }
     }
 
@@ -3250,11 +3310,11 @@
     }
 
     setInterval(() => {
-      ensureTenDaysAndAutoReset(false);
-      renderDepositSection();
-      renderTipsSection();
-      renderOilSection();
-      renderSubsSection();
+      const nowToday = getLocalDateStr();
+      if (nowToday !== lastKnownTodayStr) {
+        ensureTenDaysAndAutoReset(false);
+        renderAll();
+      }
     }, 15000);
 
     // ==========================================
@@ -3272,16 +3332,36 @@
       if (user) {
         welcomeModal.classList.remove("open");
         guestBanner.style.display = "none";
+
+        // Prevent token refreshes from re-downloading and overwriting active edits
+        if (loadedCloudUid === user.uid) {
+          updateSyncUI("online", `متصل (${user.email.split("@")[0]})`);
+          return;
+        }
+
         updateSyncUI("syncing", "جاري تحميل بياناتك...");
         try {
           const ref = doc(db, "users", user.uid, "financeApp", "main");
           const snap = await getDoc(ref);
+          const lastUid = safeStorageGet(LAST_UID_KEY);
+
           if (snap.exists()) {
-            state = normalizeState(snap.data());
-            safeStorageSet(STORAGE_KEY, JSON.stringify(state));
+            const cloudState = normalizeState(snap.data());
+            const localIsSameUser = lastUid === user.uid;
+            const localIsNewer = localIsSameUser && (state.updatedAt || 0) > (cloudState.updatedAt || 0);
+
+            if (localIsNewer) {
+              await setDoc(ref, sanitizeForFirestore(state));
+            } else {
+              state = cloudState;
+              safeStorageSet(STORAGE_KEY, JSON.stringify(state));
+            }
           } else {
-            await setDoc(ref, state);
+            await setDoc(ref, sanitizeForFirestore(state));
           }
+
+          loadedCloudUid = user.uid;
+          safeStorageSet(LAST_UID_KEY, user.uid);
           ensureTenDaysAndAutoReset(state.deposit.days.length === 0);
           renderAll();
           updateSyncUI("online", `متصل (${user.email.split("@")[0]})`);
@@ -3291,6 +3371,7 @@
           showToast("تعذر جلب البيانات السحابية، تأكد من قواعد Firestore", "alert");
         }
       } else {
+        loadedCloudUid = null;
         const isGuest = safeStorageGet(GUEST_FLAG_KEY) === "1" || safeStorageGet("soodye_guest_mode_v3") === "1";
         if (!isGuest) {
           welcomeModal.classList.add("open");
@@ -4270,6 +4351,7 @@
       showInput = false,
       inputLabel = "",
       currentHint = "",
+      initialValue = "",
       smartMode = "none",
       onConfirm
     }) {
@@ -4286,7 +4368,7 @@
         inputWrap.style.display = "block";
         document.getElementById("confirmModalInputLabel").textContent = inputLabel;
         hintEl.textContent = currentHint;
-        inputEl.value = "";
+        inputEl.value = initialValue !== "" && initialValue !== null && initialValue !== undefined ? String(initialValue) : "";
         previewEl.style.display = "none";
 
         if (smartMode === "none") {
@@ -4305,7 +4387,7 @@
         let val = null;
         if (showInput) {
           const raw = inputEl.value.trim();
-          const parsed = Number(raw);
+          const parsed = parseNumericInput(raw);
           if (raw === "" || isNaN(parsed) || parsed < 0) {
             showToast("يرجى إدخال رقم صحيح", "alert");
             return;
@@ -4319,7 +4401,12 @@
       };
 
       document.getElementById("confirmModal").classList.add("open");
-      if (showInput) setTimeout(() => inputEl.focus(), 80);
+      if (showInput) {
+        setTimeout(() => {
+          inputEl.focus();
+          if (inputEl.value) inputEl.select();
+        }, 80);
+      }
     }
 
     function formatMarkdownSafe(text) {
@@ -4401,9 +4488,13 @@
           await signInWithPopup(auth, googleProvider);
           showToast("تم تسجيل الدخول بحساب Google");
         } catch (err) {
-          if (err.code === "auth/popup-blocked" || err.code === "auth/cancelled-popup-request") {
+          if (
+            err.code === "auth/popup-blocked" ||
+            err.code === "auth/cancelled-popup-request" ||
+            err.code === "auth/operation-not-supported-in-this-environment"
+          ) {
             await signInWithRedirect(auth, googleProvider);
-          } else {
+          } else if (err.code !== "auth/popup-closed-by-user") {
             showToast("خطأ بتسجيل الدخول: " + err.message, "alert");
           }
         }
@@ -4460,11 +4551,19 @@
         const isEditingExisting = cur > 0;
         const raw = document.getElementById("collectionAmountInput").value.trim();
         const previewEl = document.getElementById("collectionLivePreview");
-        const num = Number(raw);
+        const num = parseNumericInput(raw);
 
-        if (!isEditingExisting && raw !== "" && !isNaN(num) && num > 0 && num < 1000) {
+        if (raw !== "" && !isNaN(num) && num > 0 && num < 1000) {
+          const expanded = smartExpandStandard(num);
           previewEl.style.display = "inline-flex";
-          previewEl.innerHTML = `${ICONS.sparkles}<span>سيتم حفظه: ${formatIQD(smartExpandStandard(num))} د.ع</span>`;
+          if (!isEditingExisting) {
+            previewEl.innerHTML = `${ICONS.sparkles}<span>سيتم حفظه: ${formatIQD(expanded)} د.ع</span>`;
+          } else {
+            previewEl.innerHTML = `${ICONS.sparkles}<span>حفظ نهائي: ${formatIQD(Math.round(num))} د.ع • إضافة فوق الحالي: +${formatIQD(expanded)} (المجموع ${formatIQD(cur + expanded)})</span>`;
+          }
+        } else if (isEditingExisting && raw !== "" && !isNaN(num) && num >= 0) {
+          previewEl.style.display = "inline-flex";
+          previewEl.innerHTML = `${ICONS.edit}<span>حفظ نهائي: ${formatIQD(Math.round(num))} د.ع • إضافة فوق الحالي: ${formatIQD(cur + Math.round(num))} د.ع</span>`;
         } else {
           previewEl.style.display = "none";
         }
@@ -4479,7 +4578,7 @@
 
       saveCollectionValue(mode) {
         const raw = document.getElementById("collectionAmountInput").value.trim();
-        const parsed = Number(raw);
+        const parsed = parseNumericInput(raw);
         if (raw === "" || isNaN(parsed) || parsed < 0) {
           showToast("اكتب رقماً صحيحاً", "alert");
           return;
@@ -4575,11 +4674,19 @@
         const isEditingExisting = cur > 0;
         const raw = document.getElementById("depositDayAmountInput").value.trim();
         const previewEl = document.getElementById("depositLivePreview");
-        const num = Number(raw);
+        const num = parseNumericInput(raw);
 
-        if (!isEditingExisting && raw !== "" && !isNaN(num) && num > 0 && num < 1000) {
+        if (raw !== "" && !isNaN(num) && num > 0 && num < 1000) {
+          const expanded = smartExpandStandard(num);
           previewEl.style.display = "inline-flex";
-          previewEl.innerHTML = `${ICONS.sparkles}<span>سيتم حفظه: ${formatIQD(smartExpandStandard(num))} د.ع</span>`;
+          if (!isEditingExisting) {
+            previewEl.innerHTML = `${ICONS.sparkles}<span>سيتم حفظه: ${formatIQD(expanded)} د.ع</span>`;
+          } else {
+            previewEl.innerHTML = `${ICONS.sparkles}<span>حفظ نهائي: ${formatIQD(Math.round(num))} د.ع • إضافة إيداع آخر: +${formatIQD(expanded)} (المجموع ${formatIQD(cur + expanded)})</span>`;
+          }
+        } else if (isEditingExisting && raw !== "" && !isNaN(num) && num >= 0) {
+          previewEl.style.display = "inline-flex";
+          previewEl.innerHTML = `${ICONS.edit}<span>حفظ نهائي: ${formatIQD(Math.round(num))} د.ع • إضافة إيداع آخر: ${formatIQD(cur + Math.round(num))} د.ع</span>`;
         } else {
           previewEl.style.display = "none";
         }
@@ -4597,7 +4704,7 @@
 
       saveDepositDayValue(mode) {
         const raw = document.getElementById("depositDayAmountInput").value.trim();
-        const parsed = Number(raw);
+        const parsed = parseNumericInput(raw);
         if (raw === "" || isNaN(parsed) || parsed < 0) {
           showToast("اكتب رقماً صحيحاً", "alert");
           return;
@@ -4753,7 +4860,7 @@
         const hintEl = document.getElementById("initialBalanceCurrentHint");
         const badgeEl = document.getElementById("initBalModeBadge");
         hintEl.textContent = `الرصيد الابتدائي الحالي: ${formatIQD(init)} د.ع`;
-        valEl.value = "";
+        valEl.value = init !== 0 ? String(Math.abs(init)) : "";
         document.getElementById("initBalLivePreview").style.display = "none";
 
         if (init !== 0) {
@@ -4788,7 +4895,8 @@
         const init = state.deposit.initialBalance || 0;
         const type = document.getElementById("initialBalanceType").value;
         const raw = document.getElementById("initialBalanceValue").value.trim();
-        const parsed = raw === "" ? 0 : Math.abs(Number(raw) || 0);
+        const parsedNum = parseNumericInput(raw);
+        const parsed = raw === "" || isNaN(parsedNum) ? 0 : Math.abs(parsedNum);
         const val = init === 0 ? smartExpandStandard(parsed) : Math.round(parsed);
 
         if (type === "positive") state.deposit.initialBalance = val;
@@ -4848,6 +4956,7 @@
           showInput: true,
           inputLabel: "المبلغ الثابت الجديد (د.ع)",
           currentHint: `القيمة الحالية: ${formatIQD(state.debt.step)} د.ع`,
+          initialValue: state.debt.step,
           smartMode: "none",
           onConfirm: (newVal) => {
             if (!newVal || newVal <= 0) return showToast("أدخل مبلغاً أكبر من صفر", "alert");
@@ -4865,6 +4974,7 @@
           showInput: true,
           inputLabel: "مبلغ الهدف الكلي (د.ع)",
           currentHint: `الهدف الحالي: ${formatIQD(state.debt.target)} د.ع`,
+          initialValue: state.debt.target,
           smartMode: "none",
           onConfirm: (newTarget) => {
             if (newTarget === 0) {
@@ -4887,6 +4997,7 @@
           showInput: true,
           inputLabel: "المبلغ الصحيح (د.ع)",
           currentHint: `المبلغ الحالي: ${formatIQD(item.amount)} د.ع`,
+          initialValue: item.amount,
           smartMode: "none",
           onConfirm: (newAmt) => {
             item.amount = newAmt;
@@ -4963,6 +5074,7 @@
           showInput: true,
           inputLabel: "هدف التجميع (د.ع)",
           currentHint: `الهدف الحالي: ${formatIQD(state.savings.target)} د.ع`,
+          initialValue: state.savings.target,
           smartMode: "none",
           onConfirm: (newTarget) => {
             if (newTarget === 0) {
@@ -4985,6 +5097,7 @@
           showInput: true,
           inputLabel: "المبلغ الصحيح (د.ع)",
           currentHint: `المبلغ الحالي: ${formatIQD(item.amount)} د.ع`,
+          initialValue: item.amount,
           smartMode: "none",
           onConfirm: (newAmt) => {
             item.amount = newAmt;
@@ -5115,6 +5228,7 @@
           showInput: true,
           inputLabel: "المبلغ الصحيح (د.ع)",
           currentHint: `المبلغ الحالي: ${formatIQD(item.amount)} د.ع`,
+          initialValue: item.amount,
           smartMode: "none",
           onConfirm: (newAmt) => {
             item.amount = newAmt;
@@ -5217,6 +5331,7 @@
           showInput: true,
           inputLabel: "المبلغ الصحيح (د.ع)",
           currentHint: `المبلغ الحالي: ${formatIQD(item.amount)} د.ع`,
+          initialValue: item.amount,
           smartMode: "none",
           onConfirm: (newAmt) => {
             item.amount = newAmt;
@@ -5286,7 +5401,7 @@
       saveOilEntry() {
         const dateVal = document.getElementById("oilDateInput").value;
         const rawKm = document.getElementById("oilKmInput").value.trim();
-        const kmVal = rawKm === "" ? 0 : Math.round(Number(rawKm));
+        const kmVal = rawKm === "" ? 0 : Math.round(parseNumericInput(rawKm));
         const noteVal = document.getElementById("oilNoteInput").value.trim();
 
         if (!dateVal) {
@@ -5365,8 +5480,8 @@
         const description = document.getElementById("subDescInput").value.trim();
         const url = document.getElementById("subUrlInput").value.trim();
 
-        const price = Math.round(Number(priceRaw));
-        const durationDays = Math.round(Number(durationRaw));
+        const price = Math.round(parseNumericInput(priceRaw));
+        const durationDays = Math.round(parseNumericInput(durationRaw));
 
         if (!name) {
           showToast("يرجى كتابة اسم الاشتراك", "alert");
@@ -5459,13 +5574,15 @@
         const sub = (state.subscriptions || []).find((s) => s.id === editingSubId);
         if (!sub) return;
         const name = document.getElementById("editSubNameInput").value.trim();
-        const price = Math.round(Number(document.getElementById("editSubPriceInput").value));
-        const durationDays = Math.round(Number(document.getElementById("editSubDurationInput").value));
+        const priceParsed = parseNumericInput(document.getElementById("editSubPriceInput").value);
+        const durParsed = parseNumericInput(document.getElementById("editSubDurationInput").value);
+        const price = Math.round(priceParsed);
+        const durationDays = Math.round(durParsed);
         const startDate = document.getElementById("editSubStartDateInput").value;
         const description = document.getElementById("editSubDescInput").value.trim();
         const url = document.getElementById("editSubUrlInput").value.trim();
 
-        if (!name || isNaN(price) || price < 0 || !durationDays || durationDays < 1 || !startDate) {
+        if (!name || isNaN(price) || price < 0 || isNaN(durationDays) || durationDays < 1 || !startDate) {
           showToast("تأكد من إدخال الاسم والسعر والمدة والتاريخ بشكل صحيح", "alert");
           return;
         }
@@ -5477,9 +5594,16 @@
         sub.description = description;
         sub.url = url;
 
+        // Keep initial history record aligned when there is only 1 record
+        if (Array.isArray(sub.history) && sub.history.length === 1) {
+          sub.history[0].price = price;
+          sub.history[0].durationDays = durationDays;
+          sub.history[0].date = startDate;
+        }
+
         editingSubId = null;
-        saveState();
         app.closeModal("subEditModal");
+        saveState();
         showToast("تم تعديل بيانات الاشتراك");
       },
 
@@ -5522,8 +5646,8 @@
         if (!entry) return;
 
         const dateVal = document.getElementById("editSubHistDateInput").value;
-        const priceVal = Math.round(Number(document.getElementById("editSubHistPriceInput").value));
-        const durVal = Math.round(Number(document.getElementById("editSubHistDurationInput").value));
+        const priceVal = Math.round(parseNumericInput(document.getElementById("editSubHistPriceInput").value));
+        const durVal = Math.round(parseNumericInput(document.getElementById("editSubHistDurationInput").value));
 
         if (!dateVal || isNaN(priceVal) || priceVal < 0 || !durVal || durVal < 1) {
           showToast("يرجى إدخال بيانات صحيحة", "alert");
@@ -5910,6 +6034,45 @@ ${JSON.stringify(last10Days, null, 2)}
         event.target.value = "";
       }
     };
+
+    // Desktop & Mobile UX: Escape closes topmost modal, backdrop click closes modal, Enter confirms
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        const openModals = Array.from(document.querySelectorAll(".modal-backdrop.open"))
+          .filter((el) => el.id !== "welcomeModal");
+        if (openModals.length > 0) {
+          openModals.sort((a, b) => (Number(getComputedStyle(a).zIndex) || 100) - (Number(getComputedStyle(b).zIndex) || 100));
+          openModals[openModals.length - 1].classList.remove("open");
+        }
+      } else if (e.key === "Enter") {
+        const activeId = document.activeElement?.id;
+        if (activeId === "confirmModalInput") {
+          e.preventDefault();
+          document.getElementById("confirmModalYesBtn")?.click();
+        } else if (activeId === "collectionAmountInput") {
+          e.preventDefault();
+          app.saveCollectionValue("set");
+        } else if (activeId === "depositDayAmountInput") {
+          e.preventDefault();
+          app.saveDepositDayValue("set");
+        } else if (activeId === "savingsAddAmountInput") {
+          e.preventDefault();
+          app.triggerAddSavings();
+        } else if (activeId === "oilKmInput" || activeId === "oilNoteInput") {
+          e.preventDefault();
+          app.saveOilEntry();
+        }
+      }
+    });
+
+    document.querySelectorAll(".modal-backdrop").forEach((backdrop) => {
+      if (backdrop.id === "welcomeModal") return;
+      backdrop.addEventListener("click", (e) => {
+        if (e.target === backdrop) {
+          backdrop.classList.remove("open");
+        }
+      });
+    });
 
     // Initial boot
     ensureTenDaysAndAutoReset(state.deposit.days.length === 0);

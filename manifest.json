@@ -1,11 +1,11 @@
 {
   "name": "سودي المالي | Soodye Finance",
   "short_name": "سودي المالي",
-  "description": "نظام ذكي لإدارة إيداعات التوصيل، الأقساط والديون، أهداف التجميع، والإكراميات",
+  "description": "نظام ذكي لإدارة إيداعات التوصيل، الأقساط والديون، أهداف التجميع، الإكراميات، دهن الدراجة، والاشتراكات",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "any",
   "background_color": "#f8fafc",
   "theme_color": "#0284c7",
   "dir": "rtl",

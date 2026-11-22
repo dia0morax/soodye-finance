@@ -1,4 +1,4 @@
-const CACHE_NAME = 'soodye-finance-v4';
+const CACHE_NAME = 'soodye-finance-v5';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -24,19 +24,16 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
-  if (
-    url.hostname.includes('googleapis.com') ||
-    url.hostname.includes('firebaseio.com') ||
-    url.hostname.includes('gstatic.com') ||
-    url.hostname.includes('google.com')
-  ) {
-    return;
-  }
+
+  // Never intercept cross-origin requests (Firebase Auth, Firestore, Google APIs, CDNs)
+  if (url.origin !== self.location.origin) return;
+  // Never intercept Firebase Auth handler routes
+  if (url.pathname.startsWith('/__/auth')) return;
 
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        if (response && response.status === 200) {
+        if (response && response.status === 200 && response.type === 'basic') {
           const clone = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
         }
