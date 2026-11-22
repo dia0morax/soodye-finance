@@ -1767,6 +1767,12 @@
       </div>
 
       <div class="header-actions">
+        <!-- Temporary Error Log Button -->
+        <button class="btn-action" id="debugErrorsBtn" style="padding:7px 9px;border-color:var(--danger-border);color:var(--danger);background:var(--danger-bg);" onclick="app.openErrorLogModal()" title="سجل الأخطاء المؤقت">
+          <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <span id="debugErrorsCount">0</span>
+        </button>
+
         <!-- Soodye AI Chat Button -->
         <button class="btn-action btn-soodye-trigger" onclick="app.openSoodye()">
           <svg class="lucide" viewBox="0 0 24 24">
@@ -2877,6 +2883,28 @@
   </div>
 
   <!-- ==========================================
+       MODAL 17: TEMPORARY ERROR LOG MODAL
+       ========================================== -->
+  <div id="errorLogModal" class="modal-backdrop" style="z-index: 200;">
+    <div class="modal-box" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3>سجل الأخطاء (مؤقت للفحص)</h3>
+        <button class="close-btn" onclick="app.closeModal('errorLogModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:12px;">
+        <button type="button" class="btn-primary" style="flex:1;" onclick="app.copyErrorLogs()">
+          <svg class="lucide lucide-sm" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          <span>نسخ كل الأخطاء</span>
+        </button>
+        <button type="button" class="btn-secondary" onclick="app.clearErrorLogs()">مسح</button>
+      </div>
+      <pre id="errorLogText" style="background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:12px;font-size:11.5px;line-height:1.55;direction:ltr;text-align:left;white-space:pre-wrap;word-break:break-word;max-height:55vh;overflow-y:auto;color:var(--text);"></pre>
+    </div>
+  </div>
+
+  <!-- ==========================================
        APPLICATION LOGIC
        ========================================== -->
   <script type="module">
@@ -2912,6 +2940,38 @@
     const auth = getAuth(firebaseApp);
     const db = getFirestore(firebaseApp);
     const googleProvider = new GoogleAuthProvider();
+
+    // ==========================================
+    // TEMPORARY ERROR LOGGER
+    // ==========================================
+    const appErrorLogs = [];
+    function logAppError(context, err) {
+      const time = new Date().toISOString();
+      let detail = "";
+      if (err && typeof err === "object") {
+        detail = [
+          err.name ? `name: ${err.name}` : "",
+          err.code ? `code: ${err.code}` : "",
+          err.message ? `message: ${err.message}` : "",
+          err.stack ? `stack:\n${err.stack}` : ""
+        ].filter(Boolean).join("\n");
+      } else {
+        detail = String(err);
+      }
+      const entry = `[${time}] [${context}]\n${detail}`;
+      appErrorLogs.push(entry);
+      const countEl = document.getElementById("debugErrorsCount");
+      if (countEl) countEl.textContent = String(appErrorLogs.length);
+      const preEl = document.getElementById("errorLogText");
+      if (preEl) preEl.textContent = appErrorLogs.join("\n\n----------------------------------------\n\n");
+    }
+
+    window.addEventListener("error", (ev) => {
+      logAppError("window.error", ev.error || `${ev.message} (${ev.filename}:${ev.lineno})`);
+    });
+    window.addEventListener("unhandledrejection", (ev) => {
+      logAppError("unhandledrejection", ev.reason);
+    });
 
     // 2. AI API Keys (Base64 encoded)
     const AI_KEYS_B64 = [
@@ -3223,6 +3283,7 @@
         }
       } catch (err) {
         console.error("Firestore save error:", err);
+        logAppError("flushCloudSync", err);
         const code = err?.code || "error";
         updateSyncUI("guest", `فشل الحفظ في Firebase (${code})`);
         showToast(
@@ -3371,7 +3432,8 @@
           updateSyncUI("online", `متصل (${user.email.split("@")[0]})`);
         } catch (err) {
           console.error(err);
-          const code = err?.code || "error";
+          logAppError("onAuthStateChanged", err);
+          const code = err?.code || err?.name || "error";
           updateSyncUI("guest", `خطأ في Firebase (${code})`);
           showToast(
             code === "permission-denied"
@@ -4439,6 +4501,28 @@
     // PUBLIC APP METHODS (window.app)
     // ==========================================
     window.app = {
+      openErrorLogModal() {
+        const preEl = document.getElementById("errorLogText");
+        if (preEl) {
+          preEl.textContent = appErrorLogs.length > 0
+            ? appErrorLogs.join("\n\n----------------------------------------\n\n")
+            : "لا توجد أخطاء مسجلة حتى الآن.\n\nUser: " + (currentUser ? currentUser.email + " (" + currentUser.uid + ")" : "Not signed in") + "\nGuest: " + isGuestActive;
+        }
+        document.getElementById("errorLogModal").classList.add("open");
+      },
+
+      copyErrorLogs() {
+        const txt = document.getElementById("errorLogText")?.textContent || "";
+        app.copyText(encodeURIComponent(txt));
+      },
+
+      clearErrorLogs() {
+        appErrorLogs.length = 0;
+        const countEl = document.getElementById("debugErrorsCount");
+        if (countEl) countEl.textContent = "0";
+        const preEl = document.getElementById("errorLogText");
+        if (preEl) preEl.textContent = "تم مسح السجل.";
+      },
       switchTab(tab) {
         activeTab = tab;
         document.querySelectorAll(".section-view").forEach((el) => el.classList.remove("active"));
