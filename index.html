@@ -2997,7 +2997,7 @@
       };
     }
 
-    let state = loadLocalState();
+    let state = createDefaultState();
     let currentUser = null;
     let activeTab = "deposit";
     let editingDayDate = null;
@@ -3192,10 +3192,10 @@
       }
     }
 
-    const LAST_UID_KEY = "soodye_last_uid_v4";
     let cloudSyncInFlight = false;
     let cloudSyncPending = false;
     let loadedCloudUid = null;
+    let isGuestActive = false;
 
     function sanitizeForFirestore(rawState) {
       // Deep-clean so no undefined, NaN, or non-plain objects ever reach Firestore setDoc
@@ -3209,7 +3209,7 @@
         return;
       }
       cloudSyncInFlight = true;
-      updateSyncUI("syncing", "جاري المزامنة...");
+      updateSyncUI("syncing", "جاري الحفظ في Firebase...");
       try {
         do {
           cloudSyncPending = false;
@@ -3217,15 +3217,20 @@
           if (!uid) break;
           const payload = sanitizeForFirestore(state);
           await setDoc(doc(db, "users", uid, "financeApp", "main"), payload);
-          safeStorageSet(LAST_UID_KEY, uid);
         } while (cloudSyncPending && currentUser);
         if (currentUser) {
           updateSyncUI("online", `متصل (${currentUser.email.split("@")[0]})`);
         }
       } catch (err) {
         console.error("Firestore save error:", err);
-        updateSyncUI("guest", "تعذرت المزامنة السحابية");
-        showToast("تعذر الحفظ السحابي مؤقتاً — تم الحفظ محلياً", "alert");
+        const code = err?.code || "error";
+        updateSyncUI("guest", `فشل الحفظ في Firebase (${code})`);
+        showToast(
+          code === "permission-denied"
+            ? "تعذر الحفظ في Firebase: صلاحيات قواعد Firestore مغلقة (permission-denied)"
+            : `تعذر الحفظ في Firebase (${code})، تحقق من الاتصال`,
+          "alert"
+        );
       } finally {
         cloudSyncInFlight = false;
       }
@@ -3234,11 +3239,17 @@
     async function saveState(skipCloud = false) {
       state = normalizeState(state);
       state.updatedAt = Date.now();
-      safeStorageSet(STORAGE_KEY, JSON.stringify(state));
       renderAll();
 
-      if (currentUser && !skipCloud) {
-        await flushCloudSync();
+      // Exclusive storage split:
+      // 1) Signed in with Google -> Firebase Firestore ONLY (never localStorage)
+      // 2) Guest Mode -> Browser localStorage ONLY (never Firestore)
+      if (currentUser) {
+        if (!skipCloud) {
+          await flushCloudSync();
+        }
+      } else if (isGuestActive) {
+        safeStorageSet(STORAGE_KEY, JSON.stringify(state));
       }
     }
 
@@ -3330,6 +3341,8 @@
       const guestBanner = document.getElementById("guestBanner");
 
       if (user) {
+        isGuestActive = false;
+        safeStorageRemove(GUEST_FLAG_KEY);
         welcomeModal.classList.remove("open");
         guestBanner.style.display = "none";
 
@@ -3339,49 +3352,54 @@
           return;
         }
 
-        updateSyncUI("syncing", "جاري تحميل بياناتك...");
+        updateSyncUI("syncing", "جاري جلب البيانات من Firebase...");
         try {
           const ref = doc(db, "users", user.uid, "financeApp", "main");
           const snap = await getDoc(ref);
-          const lastUid = safeStorageGet(LAST_UID_KEY);
 
           if (snap.exists()) {
-            const cloudState = normalizeState(snap.data());
-            const localIsSameUser = lastUid === user.uid;
-            const localIsNewer = localIsSameUser && (state.updatedAt || 0) > (cloudState.updatedAt || 0);
-
-            if (localIsNewer) {
-              await setDoc(ref, sanitizeForFirestore(state));
-            } else {
-              state = cloudState;
-              safeStorageSet(STORAGE_KEY, JSON.stringify(state));
-            }
+            state = normalizeState(snap.data());
           } else {
+            state = createDefaultState();
+            ensureTenDaysAndAutoReset(true);
             await setDoc(ref, sanitizeForFirestore(state));
           }
 
           loadedCloudUid = user.uid;
-          safeStorageSet(LAST_UID_KEY, user.uid);
           ensureTenDaysAndAutoReset(state.deposit.days.length === 0);
           renderAll();
           updateSyncUI("online", `متصل (${user.email.split("@")[0]})`);
         } catch (err) {
           console.error(err);
-          updateSyncUI("guest", "خطأ بالاتصال السحابي");
-          showToast("تعذر جلب البيانات السحابية، تأكد من قواعد Firestore", "alert");
+          const code = err?.code || "error";
+          updateSyncUI("guest", `خطأ في Firebase (${code})`);
+          showToast(
+            code === "permission-denied"
+              ? "تعذر جلب البيانات من Firebase: تأكد من تفعيل قواعد Firestore"
+              : `تعذر جلب البيانات من Firebase (${code})`,
+            "alert"
+          );
+          renderAll();
         }
       } else {
         loadedCloudUid = null;
         const isGuest = safeStorageGet(GUEST_FLAG_KEY) === "1" || safeStorageGet("soodye_guest_mode_v3") === "1";
         if (!isGuest) {
+          isGuestActive = false;
+          state = createDefaultState();
           welcomeModal.classList.add("open");
+          guestBanner.style.display = "none";
+          updateSyncUI("guest", "بانتظار تسجيل الدخول...");
+          renderAll();
         } else {
+          isGuestActive = true;
+          state = loadLocalState();
           welcomeModal.classList.remove("open");
           guestBanner.style.display = "flex";
+          updateSyncUI("guest", "وضع الضيف (محلي بالمتصفح)");
+          ensureTenDaysAndAutoReset(state.deposit.days.length === 0);
+          renderAll();
         }
-        updateSyncUI("guest", "وضع الضيف (محلي)");
-        ensureTenDaysAndAutoReset(state.deposit.days.length === 0);
-        renderAll();
       }
     });
 
@@ -4501,18 +4519,25 @@
       },
 
       enterAsGuest() {
+        isGuestActive = true;
         safeStorageSet(GUEST_FLAG_KEY, "1");
+        state = loadLocalState();
         document.getElementById("welcomeModal").classList.remove("open");
         document.getElementById("guestBanner").style.display = "flex";
+        updateSyncUI("guest", "وضع الضيف (محلي بالمتصفح)");
         ensureTenDaysAndAutoReset(state.deposit.days.length === 0);
         renderAll();
       },
 
       async logoutGoogle() {
+        loadedCloudUid = null;
+        isGuestActive = false;
+        state = createDefaultState();
         await signOut(auth);
         safeStorageRemove(GUEST_FLAG_KEY);
         app.closeModal("settingsModal");
         document.getElementById("welcomeModal").classList.add("open");
+        renderAll();
       },
 
       // ==========================================
@@ -6074,8 +6099,7 @@ ${JSON.stringify(last10Days, null, 2)}
       });
     });
 
-    // Initial boot
-    ensureTenDaysAndAutoReset(state.deposit.days.length === 0);
+    // Initial render (data loads exclusively from Firebase when signed in, or localStorage only in Guest mode)
     renderAll();
   </script>
 </body>
