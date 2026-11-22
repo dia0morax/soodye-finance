@@ -778,11 +778,11 @@
        ========================================== */
     .tips-quick-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 6px;
       margin-top: 14px;
     }
-    @media (max-width: 400px) {
+    @media (max-width: 480px) {
       .tips-quick-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
@@ -820,6 +820,306 @@
     }
     .tip-quick-btn.free-btn span {
       color: #d1fae5;
+    }
+    .tip-quick-btn.deduct-btn {
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      border-color: #dc2626;
+      color: #ffffff;
+    }
+    .tip-quick-btn.deduct-btn span {
+      color: #fee2e2;
+    }
+    .tips-total-box {
+      margin-top: 14px;
+      padding: 13px 15px;
+      border-radius: 16px;
+      border: 1.5px solid var(--border-sky-strong);
+      background: var(--card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow-sm);
+    }
+    .tips-total-box.negative {
+      border-color: var(--danger-border);
+      background: var(--danger-bg);
+    }
+
+    /* ==========================================
+       OIL SECTION (SECTION 5)
+       ========================================== */
+    .oil-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .oil-stat-box {
+      background: var(--card);
+      border: 1.5px solid var(--border-sky);
+      border-radius: 14px;
+      padding: 10px 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    .oil-stat-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+    .oil-stat-val {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .oil-stat-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .oil-alert-strip {
+      margin-top: 14px;
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    .oil-alert-strip-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .oil-alert-boxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .oil-alert-box {
+      border-radius: 13px;
+      padding: 10px 12px;
+      border: 1.5px solid;
+      text-align: center;
+    }
+    .oil-alert-box.yellow {
+      background: var(--amber-bg);
+      border-color: var(--amber-border);
+      color: var(--amber);
+    }
+    .oil-alert-box.red {
+      background: var(--danger-bg);
+      border-color: var(--danger-border);
+      color: var(--danger);
+    }
+    .oil-alert-box-tag {
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .oil-alert-box-km {
+      font-size: 20px;
+      font-weight: 700;
+      direction: ltr;
+      display: inline-block;
+    }
+    .oil-alert-box-sub {
+      font-size: 10.5px;
+      opacity: 0.9;
+      margin-top: 2px;
+    }
+
+    /* ==========================================
+       SUBSCRIPTIONS SECTION (SECTION 6)
+       ========================================== */
+    .sub-add-card {
+      background: var(--card);
+      border: 1.5px solid var(--border-sky-strong);
+      border-radius: 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .sub-add-trigger {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      transition: background 0.2s ease;
+    }
+    .sub-add-trigger:hover {
+      background: var(--card-soft);
+    }
+    .sub-arrow-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      border: 1px solid var(--border-sky-strong);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s ease;
+    }
+    .sub-add-card.open .sub-arrow-circle {
+      transform: rotate(180deg);
+    }
+    .sub-add-panel {
+      display: none;
+      padding: 4px 16px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .sub-add-card.open .sub-add-panel {
+      display: block;
+      animation: slideUpFade 0.2s ease;
+    }
+    .sub-duration-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .sub-pill-btn {
+      background: var(--card-soft);
+      color: var(--accent-dark);
+      border: 1px solid var(--border-sky);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .sub-pill-btn:hover {
+      background: var(--accent-soft);
+      border-color: var(--border-sky-strong);
+    }
+    .sub-card {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 14px 15px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sub-card:hover {
+      border-color: var(--border-sky-strong);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+    .sub-card.warn {
+      border-color: var(--amber-border);
+    }
+    .sub-card.danger {
+      border-color: var(--danger-border);
+      background: linear-gradient(145deg, var(--danger-bg), var(--card));
+    }
+    .sub-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .sub-card-name {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .sub-card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      line-height: 1.45;
+    }
+    .sub-price-badge {
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      border: 1px solid var(--border-sky);
+      padding: 4px 10px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .sub-progress-wrap {
+      background: var(--bg);
+      height: 12px;
+      border-radius: 99px;
+      overflow: hidden;
+      margin: 10px 0 8px;
+      border: 1px solid var(--border);
+    }
+    .sub-progress-fill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width 0.35s ease, background 0.35s ease;
+    }
+    .sub-progress-fill.ok {
+      background: linear-gradient(90deg, #059669, #34d399);
+    }
+    .sub-progress-fill.warn {
+      background: linear-gradient(90deg, #d97706, #fbbf24);
+    }
+    .sub-progress-fill.danger {
+      background: linear-gradient(90deg, #dc2626, #f87171);
+    }
+    .sub-expired-banner {
+      background: var(--danger-bg);
+      border: 1px solid var(--danger-border);
+      color: var(--danger);
+      border-radius: 10px;
+      padding: 7px 11px;
+      font-size: 12.5px;
+      font-weight: 700;
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sub-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      padding-top: 9px;
+      border-top: 1px solid var(--border);
+    }
+    .sub-link-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 9px;
+      background: var(--card-soft);
+      border: 1px solid var(--border-sky-strong);
+      color: var(--accent-dark);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .sub-link-chip:hover {
+      background: var(--accent-soft);
     }
 
     .tip-day-strip {
@@ -1053,8 +1353,8 @@
       max-width: 680px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 4px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 3px;
     }
 
     .nav-item {
@@ -1062,13 +1362,15 @@
       border: 1.5px solid transparent;
       color: var(--text-muted);
       padding: 6px 2px;
-      border-radius: 13px;
+      border-radius: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 3px;
-      font-size: 11px;
+      font-size: 9.5px;
       font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
       cursor: pointer;
       transition: all 0.2s ease;
     }
@@ -1693,7 +1995,20 @@
           <span class="hero-status-pill" id="tipsTodayCountPill">0 إكراميات مسجلة اليوم</span>
         </div>
 
-        <!-- 4 Quick Tip Buttons + Free Number Button ("رقم حر") -->
+        <!-- Total Tips Across All Days minus Deductions -->
+        <div id="tipsTotalBox" class="tips-total-box">
+          <div>
+            <div class="today-req-title">مجموع الإكراميات الكلي (المتاح لديك الآن)</div>
+            <div class="today-req-amount" id="tipsGrandTotalAmount" style="color:var(--emerald);">0 د.ع</div>
+            <div class="today-req-note" id="tipsGrandTotalSub">مجموع كل الأيام: 0 د.ع • المنقوص: 0 د.ع</div>
+          </div>
+          <button type="button" class="btn-secondary" style="padding: 6px 11px; font-size: 11.5px;" onclick="app.openTipDeductionsModal()">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>
+            <span id="tipsDeductionsBtnLabel">سجل التنقيص (0)</span>
+          </button>
+        </div>
+
+        <!-- 4 Quick Tip Buttons + Free Number + Deduct Button ("تنقيص") -->
         <div class="tips-quick-grid">
           <button type="button" class="tip-quick-btn" onclick="app.triggerQuickTip(250)">
             +250
@@ -1715,6 +2030,10 @@
             <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
             <span style="font-size:11px;font-weight:700;">رقم حر</span>
           </button>
+          <button type="button" class="tip-quick-btn deduct-btn" onclick="app.triggerDeductTips()">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>
+            <span style="font-size:11px;font-weight:700;">تنقيص</span>
+          </button>
         </div>
       </div>
 
@@ -1726,10 +2045,160 @@
       <div id="tipsDaysListContainer"></div>
     </section>
 
+    <!-- ==========================================
+         SECTION 5: دهن (BIKE OIL TRACKER)
+         ========================================== -->
+    <section id="sec-oil" class="section-view">
+      <div id="oilSetupView" class="setup-card" style="display: none;">
+        <div style="width:54px;height:54px;border-radius:18px;background:var(--amber-bg);color:var(--amber);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+          <svg class="lucide lucide-lg" viewBox="0 0 24 24">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+          </svg>
+        </div>
+        <h3>قسم دهن الدراجة</h3>
+        <p>سجّل تاريخ أول تعبئة دهن وعداد الكيلومترات للدراجة، ليحسب التطبيق الأيام تلقائياً ويعرض تنبيهات الـ 1,500 و 2,000 كم.</p>
+        <button type="button" class="btn-primary" style="width:100%;padding:13px;font-size:14.5px;" onclick="app.openOilModal(null)">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          <span>قمت بالتعبئة (تسجيل أول تعبئة)</span>
+        </button>
+      </div>
+
+      <div id="oilActiveView" style="display: none;">
+        <div class="hero-card neutral">
+          <div class="hero-label">
+            <span>المدة منذ آخر تعبئة دهن</span>
+            <span id="oilLastDatePill" style="color:var(--accent-dark);font-weight:700;direction:ltr;"></span>
+          </div>
+          <div class="hero-amount" id="oilDaysSinceLast" style="direction:rtl;">0 يوم</div>
+          <div>
+            <span class="hero-status-pill" id="oilLastKmPill">آخر قراءة عداد: 0 كم</span>
+          </div>
+
+          <div class="oil-stats-grid">
+            <div class="oil-stat-box">
+              <div class="oil-stat-label">عدد مرات التعبئة</div>
+              <div class="oil-stat-val" id="oilTotalChanges">0 مرات</div>
+              <div class="oil-stat-sub">إجمالي السجل</div>
+            </div>
+            <div class="oil-stat-box">
+              <div class="oil-stat-label">الوقت منذ أول تعبئة</div>
+              <div class="oil-stat-val" id="oilDaysSinceFirst">0 يوم</div>
+              <div class="oil-stat-sub" id="oilFirstDateSub" style="direction:ltr;text-align:right;"></div>
+            </div>
+          </div>
+
+          <!-- KM Warning Strip: Yellow (+1500) & Red (+2000) -->
+          <div class="oil-alert-strip">
+            <div class="oil-alert-strip-title">
+              <span>شريط إخطار الكيلومترات للتبديل القادم</span>
+              <span id="oilAlertBaseKm" style="font-size:11px;color:var(--text-muted);"></span>
+            </div>
+            <div class="oil-alert-boxes">
+              <div class="oil-alert-box yellow">
+                <div class="oil-alert-box-tag">تحذير أصفر (+1,500 كم)</div>
+                <div class="oil-alert-box-km" id="oilYellowKm">1,500 كم</div>
+                <div class="oil-alert-box-sub">تبديل موصى به</div>
+              </div>
+              <div class="oil-alert-box red">
+                <div class="oil-alert-box-tag">تحذير أحمر (+2,000 كم)</div>
+                <div class="oil-alert-box-km" id="oilRedKm">2,000 كم</div>
+                <div class="oil-alert-box-sub">الحد الأقصى للتبديل</div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn-emerald" style="width:100%;padding:13px;font-size:15px;margin-top:14px;" onclick="app.openOilModal(null)">
+            <svg class="lucide" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            <span>قمت بالتعبئة</span>
+          </button>
+        </div>
+
+        <div class="toolbar">
+          <h2>سجل تعبئة الدهن</h2>
+          <span style="font-size:12px;color:var(--text-muted);font-weight:600;" id="oilHistoryCount">0 تعبئات</span>
+        </div>
+        <div id="oilHistoryList" class="history-list"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 6: الاشتراكات (SUBSCRIPTIONS)
+         ========================================== -->
+    <section id="sec-subs" class="section-view">
+      <div class="hero-card neutral">
+        <div class="hero-label">
+          <span>كم أدفع بالشهر لمجموع كل الاشتراكات</span>
+          <span id="subsActiveBadge" style="color:var(--accent-dark);font-weight:700;">0 اشتراكات</span>
+        </div>
+        <div class="hero-amount" id="subsMonthlyTotal" style="direction:rtl;">0 د.ع</div>
+        <div>
+          <span class="hero-status-pill" id="subsSummaryPill">لا توجد اشتراكات مسجلة بعد</span>
+        </div>
+      </div>
+
+      <!-- Expandable Arrow Card to Add a Subscription -->
+      <div id="subAddCard" class="sub-add-card">
+        <button type="button" class="sub-add-trigger" onclick="app.toggleSubAddPanel()">
+          <span style="display:inline-flex;align-items:center;gap:8px;">
+            <svg class="lucide" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <span>إضافة اشتراك جديد</span>
+          </span>
+          <span class="sub-arrow-circle" aria-label="فتح نموذج إضافة اشتراك">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+
+        <div class="sub-add-panel">
+          <div class="form-group">
+            <label>اسم الاشتراك</label>
+            <input type="text" id="subNameInput" class="form-control" placeholder="مثال: إنترنت، نتفلكس، سبوتيفاي..." />
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div class="form-group">
+              <label>السعر (د.ع)</label>
+              <input type="number" id="subPriceInput" class="form-control" placeholder="مثال: 15000" min="0" />
+            </div>
+            <div class="form-group">
+              <label>المدة (بالأيام)</label>
+              <input type="number" id="subDurationInput" class="form-control" value="30" min="1" />
+            </div>
+          </div>
+          <div class="sub-duration-pills" style="margin-bottom:14px;">
+            <button type="button" class="sub-pill-btn" onclick="app.setSubDurationPreset(7)">أسبوع (7 أيام)</button>
+            <button type="button" class="sub-pill-btn" onclick="app.setSubDurationPreset(30)">شهر (30 يوم)</button>
+            <button type="button" class="sub-pill-btn" onclick="app.setSubDurationPreset(90)">3 أشهر (90 يوم)</button>
+            <button type="button" class="sub-pill-btn" onclick="app.setSubDurationPreset(365)">سنة (365 يوم)</button>
+          </div>
+          <div class="form-group">
+            <label>تاريخ البدء</label>
+            <input type="date" id="subStartDateInput" class="form-control" style="direction:ltr;" />
+          </div>
+          <div class="form-group">
+            <label>الوصف (اختياري)</label>
+            <input type="text" id="subDescInput" class="form-control" placeholder="ملاحظات أو تفاصيل الاشتراك..." />
+          </div>
+          <div class="form-group">
+            <label>الرابط (اختياري — قابل للضغط)</label>
+            <input type="url" id="subUrlInput" class="form-control" style="direction:ltr;" placeholder="https://example.com" />
+          </div>
+          <button type="button" class="btn-primary" style="width:100%;padding:12px;" onclick="app.saveNewSubscription()">
+            <svg class="lucide lucide-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>حفظ وإضافة الاشتراك</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <h2>اشتراكاتي (اضغط على أي شريط للسجل)</h2>
+        <span style="font-size:12px;color:var(--text-muted);font-weight:600;" id="subsCountLabel">0 اشتراكات</span>
+      </div>
+      <div id="subsListContainer"></div>
+    </section>
+
   </main>
 
   <!-- ==========================================
-       BOTTOM NAVIGATION BAR (4 TABS)
+       BOTTOM NAVIGATION BAR (6 TABS)
        ========================================== -->
   <nav class="bottom-nav">
     <div class="nav-inner">
@@ -1761,6 +2230,23 @@
           <path d="M12 7v10M9 10h6M9 14h6"/>
         </svg>
         <span>الإكراميات</span>
+      </button>
+
+      <button class="nav-item" id="nav-oil" onclick="app.switchTab('oil')">
+        <svg class="lucide" viewBox="0 0 24 24">
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+        </svg>
+        <span>دهن</span>
+      </button>
+
+      <button class="nav-item" id="nav-subs" onclick="app.switchTab('subs')">
+        <svg class="lucide" viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span>الاشتراكات</span>
       </button>
     </div>
   </nav>
@@ -2214,6 +2700,170 @@
   </div>
 
   <!-- ==========================================
+       MODAL 12: TIP DEDUCTIONS HISTORY & EDIT
+       ========================================== -->
+  <div id="tipDeductionsModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>سجل تنقيص الإكراميات</h3>
+        <button class="close-btn" onclick="app.closeModal('tipDeductionsModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div style="background:var(--danger-bg);border:1.5px solid var(--danger-border);border-radius:14px;padding:11px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:12.5px;font-weight:700;color:var(--danger);">مجموع المنقوص (المصروف)</span>
+        <strong style="font-size:18px;color:var(--danger);" id="tipDeductionsTotalLabel">0 د.ع</strong>
+      </div>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.5;">
+        التنقيص يخصم من مجموع الإكراميات الكلي فقط دون تعديل سجل الأيام الطبيعية.
+      </p>
+      <div style="display:flex;gap:8px;margin-bottom:8px;">
+        <input type="number" id="modalDeductTipInput" class="form-control" placeholder="اكتب مبلغ التنقيص (مثال: 5 = 5,000 أو 1500)..." min="1" oninput="app.updateTipSmartPreview('modalDeductTipInput', 'modalDeductPreview')" />
+        <button type="button" class="btn-primary" style="background:linear-gradient(135deg,#dc2626,#b91c1c);white-space:nowrap;" onclick="app.addTipDeductionFromModal()">
+          <svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>
+          <span>تنقيص</span>
+        </button>
+      </div>
+      <div id="modalDeductPreview" class="smart-preview-pill" style="display:none;margin-bottom:10px;"></div>
+      <div class="form-group" style="margin-bottom:12px;">
+        <input type="text" id="modalDeductNoteInput" class="form-control" placeholder="ملاحظة اختيارية (مثلاً: مصروف، غداء...)" />
+      </div>
+      <div id="tipDeductionsList" class="history-list" style="max-height:42vh;overflow-y:auto;"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 13: OIL CHANGE ADD / EDIT MODAL
+       ========================================== -->
+  <div id="oilModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="oilModalTitle">تسجيل تعبئة دهن</h3>
+        <button class="close-btn" onclick="app.closeModal('oilModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="form-group">
+        <label>تاريخ التعبئة</label>
+        <input type="date" id="oilDateInput" class="form-control" style="direction:ltr;" />
+      </div>
+      <div class="form-group">
+        <label>كم ماشية الدراجة عند التعبئة (كيلومتر)</label>
+        <input type="number" id="oilKmInput" class="form-control" placeholder="مثال: 33000" min="0" oninput="app.onOilKmInputChanged()" />
+        <div id="oilModalKmPreview" style="display:none;margin-top:8px;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="oil-alert-box yellow" style="padding:7px 8px;">
+            <div class="oil-alert-box-tag">الأصفر (+1,500)</div>
+            <div style="font-size:14px;font-weight:700;direction:ltr;" id="oilPreviewYellow">0 كم</div>
+          </div>
+          <div class="oil-alert-box red" style="padding:7px 8px;">
+            <div class="oil-alert-box-tag">الأحمر (+2,000)</div>
+            <div style="font-size:14px;font-weight:700;direction:ltr;" id="oilPreviewRed">0 كم</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>ملاحظة (اختياري)</label>
+        <input type="text" id="oilNoteInput" class="form-control" placeholder="مثلاً: نوع الدهن أو الورشة..." />
+      </div>
+      <button type="button" class="btn-emerald" style="width:100%;padding:12px;" onclick="app.saveOilEntry()">
+        <svg class="lucide lucide-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>حفظ تعبئة الدهن</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 14: SUBSCRIPTION DETAILS & HISTORY
+       ========================================== -->
+  <div id="subDetailsModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="subDetailsModalTitle">تفاصيل الاشتراك وسجله</h3>
+        <button class="close-btn" onclick="app.closeModal('subDetailsModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div id="subDetailsBody"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 15: EDIT SUBSCRIPTION
+       ========================================== -->
+  <div id="subEditModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>تعديل الاشتراك</h3>
+        <button class="close-btn" onclick="app.closeModal('subEditModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="form-group">
+        <label>اسم الاشتراك</label>
+        <input type="text" id="editSubNameInput" class="form-control" />
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="form-group">
+          <label>السعر (د.ع)</label>
+          <input type="number" id="editSubPriceInput" class="form-control" min="0" />
+        </div>
+        <div class="form-group">
+          <label>المدة (بالأيام)</label>
+          <input type="number" id="editSubDurationInput" class="form-control" min="1" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>تاريخ البدء الحالي</label>
+        <input type="date" id="editSubStartDateInput" class="form-control" style="direction:ltr;" />
+      </div>
+      <div class="form-group">
+        <label>الوصف (اختياري)</label>
+        <input type="text" id="editSubDescInput" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>الرابط (اختياري)</label>
+        <input type="url" id="editSubUrlInput" class="form-control" style="direction:ltr;" placeholder="https://example.com" />
+      </div>
+      <button type="button" class="btn-primary" style="width:100%;padding:12px;" onclick="app.saveEditedSubscription()">
+        <svg class="lucide lucide-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>حفظ التعديلات</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL 16: EDIT SUBSCRIPTION HISTORY ENTRY
+       ========================================== -->
+  <div id="subHistoryEditModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>تعديل سجل الاشتراك</h3>
+        <button class="close-btn" onclick="app.closeModal('subHistoryEditModal')">
+          <svg class="lucide" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="form-group">
+        <label>التاريخ</label>
+        <input type="date" id="editSubHistDateInput" class="form-control" style="direction:ltr;" />
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="form-group">
+          <label>السعر (د.ع)</label>
+          <input type="number" id="editSubHistPriceInput" class="form-control" min="0" />
+        </div>
+        <div class="form-group">
+          <label>المدة (بالأيام)</label>
+          <input type="number" id="editSubHistDurationInput" class="form-control" min="1" />
+        </div>
+      </div>
+      <button type="button" class="btn-primary" style="width:100%;padding:12px;" onclick="app.saveEditedSubHistory()">
+        <svg class="lucide lucide-sm" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>حفظ التعديل</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
        APPLICATION LOGIC
        ========================================== -->
   <script type="module">
@@ -2283,8 +2933,22 @@
       chevronLeft: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>`,
       sparkles: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>`,
       award: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>`,
-      stop: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>`
+      stop: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>`,
+      minus: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>`,
+      droplet: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`,
+      externalLink: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`,
+      calendar: `<svg class="lucide lucide-sm" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`
     };
+
+    function safeStorageGet(key) {
+      try { return localStorage.getItem(key); } catch { return null; }
+    }
+    function safeStorageSet(key, val) {
+      try { localStorage.setItem(key, val); } catch {}
+    }
+    function safeStorageRemove(key) {
+      try { localStorage.removeItem(key); } catch {}
+    }
 
     const STORAGE_KEY = "soodye_finance_state_v4";
     const GUEST_FLAG_KEY = "soodye_guest_mode_v4";
@@ -2310,8 +2974,13 @@
           history: []
         },
         tips: {
-          days: {}
-        }
+          days: {},
+          deductions: []
+        },
+        oil: {
+          history: []
+        },
+        subscriptions: []
       };
     }
 
@@ -2320,6 +2989,10 @@
     let activeTab = "deposit";
     let editingDayDate = null;
     let viewingTipDate = null;
+    let editingOilId = null;
+    let viewingSubId = null;
+    let editingSubId = null;
+    let editingSubHistContext = null;
     let deferredInstallPrompt = null;
     let chatHistory = [];
     let soodyePendingImage = null;
@@ -2344,7 +3017,7 @@
     }
 
     // Theme Setup
-    let isDarkTheme = localStorage.getItem(THEME_KEY) === "dark";
+    let isDarkTheme = safeStorageGet(THEME_KEY) === "dark";
     function applyThemeUI() {
       document.body.classList.toggle("dark-theme", isDarkTheme);
       const btn = document.getElementById("themeToggleBtn");
@@ -2398,6 +3071,23 @@
       const dt = new Date(y, m - 1, d);
       dt.setDate(dt.getDate() + deltaDays);
       return getLocalDateStr(dt);
+    }
+
+    function diffDays(fromDateStr, toDateStr) {
+      if (!fromDateStr || !toDateStr) return 0;
+      const [y1, m1, d1] = fromDateStr.split("-").map(Number);
+      const [y2, m2, d2] = toDateStr.split("-").map(Number);
+      const utc1 = Date.UTC(y1, m1 - 1, d1);
+      const utc2 = Date.UTC(y2, m2 - 1, d2);
+      return Math.floor((utc2 - utc1) / 86400000);
+    }
+
+    function normalizeUrl(raw) {
+      const trimmed = String(raw || "").trim();
+      if (!trimmed) return "";
+      if (/^javascript:/i.test(trimmed)) return "";
+      if (/^https?:\/\//i.test(trimmed)) return trimmed;
+      return "https://" + trimmed;
     }
 
     function formatArabicDayName(dateStr) {
@@ -2454,15 +3144,20 @@
           history: Array.isArray(parsed?.savings?.history) ? parsed.savings.history : []
         },
         tips: {
-          days: parsed?.tips?.days && typeof parsed.tips.days === "object" ? parsed.tips.days : {}
-        }
+          days: parsed?.tips?.days && typeof parsed.tips.days === "object" ? parsed.tips.days : {},
+          deductions: Array.isArray(parsed?.tips?.deductions) ? parsed.tips.deductions : []
+        },
+        oil: {
+          history: Array.isArray(parsed?.oil?.history) ? parsed.oil.history : []
+        },
+        subscriptions: Array.isArray(parsed?.subscriptions) ? parsed.subscriptions : []
       };
     }
 
     function loadLocalState() {
       try {
         // Migrate from v3 if v4 not present yet
-        const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem("soodye_finance_state_v3");
+        const raw = safeStorageGet(STORAGE_KEY) || safeStorageGet("soodye_finance_state_v3");
         if (!raw) return createDefaultState();
         return normalizeState(JSON.parse(raw));
       } catch {
@@ -2472,7 +3167,7 @@
 
     async function saveState(skipCloud = false) {
       state.updatedAt = Date.now();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      safeStorageSet(STORAGE_KEY, JSON.stringify(state));
       renderAll();
 
       if (currentUser && !skipCloud) {
@@ -2558,6 +3253,8 @@
       ensureTenDaysAndAutoReset(false);
       renderDepositSection();
       renderTipsSection();
+      renderOilSection();
+      renderSubsSection();
     }, 15000);
 
     // ==========================================
@@ -2581,7 +3278,7 @@
           const snap = await getDoc(ref);
           if (snap.exists()) {
             state = normalizeState(snap.data());
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            safeStorageSet(STORAGE_KEY, JSON.stringify(state));
           } else {
             await setDoc(ref, state);
           }
@@ -2594,7 +3291,7 @@
           showToast("تعذر جلب البيانات السحابية، تأكد من قواعد Firestore", "alert");
         }
       } else {
-        const isGuest = localStorage.getItem(GUEST_FLAG_KEY) === "1" || localStorage.getItem("soodye_guest_mode_v3") === "1";
+        const isGuest = safeStorageGet(GUEST_FLAG_KEY) === "1" || safeStorageGet("soodye_guest_mode_v3") === "1";
         if (!isGuest) {
           welcomeModal.classList.add("open");
         } else {
@@ -2844,6 +3541,8 @@
       renderDebtSection();
       renderSavingsSection();
       renderTipsSection();
+      renderOilSection();
+      renderSubsSection();
       renderSettingsAccount();
     }
 
@@ -3145,15 +3844,47 @@
       }
     }
 
+    function computeTipsTotals() {
+      const daysMap = state.tips.days || {};
+      let allDaysTotal = 0;
+      Object.values(daysMap).forEach((entries) => {
+        if (Array.isArray(entries)) {
+          entries.forEach((x) => {
+            allDaysTotal += Number(x.amount) || 0;
+          });
+        }
+      });
+      const deductions = Array.isArray(state.tips.deductions) ? state.tips.deductions : [];
+      const totalDeducted = deductions.reduce((s, x) => s + (Number(x.amount) || 0), 0);
+      const netAvailable = allDaysTotal - totalDeducted;
+      return { allDaysTotal, totalDeducted, netAvailable, deductionsCount: deductions.length };
+    }
+
     function renderTipsSection() {
       const todayStr = getLocalDateStr();
       const daysMap = state.tips.days || {};
       const todayEntries = Array.isArray(daysMap[todayStr]) ? daysMap[todayStr] : [];
       const todayTotal = todayEntries.reduce((s, x) => s + (Number(x.amount) || 0), 0);
+      const totals = computeTipsTotals();
 
       document.getElementById("tipsTodayHeaderLabel").textContent = `إكراميات اليوم (${todayStr})`;
       document.getElementById("tipsTodayTotalAmount").textContent = `${formatIQD(todayTotal)} د.ع`;
       document.getElementById("tipsTodayCountPill").textContent = `${todayEntries.length} إكراميات مسجلة اليوم`;
+
+      const totalBox = document.getElementById("tipsTotalBox");
+      const grandAmtEl = document.getElementById("tipsGrandTotalAmount");
+      const grandSubEl = document.getElementById("tipsGrandTotalSub");
+      const deductBtnLbl = document.getElementById("tipsDeductionsBtnLabel");
+
+      totalBox.classList.toggle("negative", totals.netAvailable < 0);
+      grandAmtEl.style.color = totals.netAvailable < 0 ? "var(--danger)" : "var(--emerald)";
+      grandAmtEl.textContent = `${formatIQD(totals.netAvailable)} د.ع`;
+      grandSubEl.textContent = `مجموع كل الأيام: ${formatIQD(totals.allDaysTotal)} د.ع • المنقوص: ${formatIQD(totals.totalDeducted)} د.ع`;
+      deductBtnLbl.textContent = `سجل التنقيص (${totals.deductionsCount})`;
+
+      if (document.getElementById("tipDeductionsModal").classList.contains("open")) {
+        renderTipDeductionsModalContent();
+      }
 
       const allDates = Object.keys(daysMap)
         .filter((d) => Array.isArray(daysMap[d]) && daysMap[d].length > 0)
@@ -3224,6 +3955,297 @@
           )
           .join("");
       }
+    }
+
+    function renderTipDeductionsModalContent() {
+      const deductions = Array.isArray(state.tips.deductions) ? state.tips.deductions : [];
+      const totalDed = deductions.reduce((s, x) => s + (Number(x.amount) || 0), 0);
+      document.getElementById("tipDeductionsTotalLabel").textContent = `${formatIQD(totalDed)} د.ع`;
+
+      const listEl = document.getElementById("tipDeductionsList");
+      if (deductions.length === 0) {
+        listEl.innerHTML = `<div style="text-align:center;color:var(--text-muted);font-size:13px;padding:16px;">لا توجد عمليات تنقيص مسجلة بعد.</div>`;
+      } else {
+        listEl.innerHTML = [...deductions]
+          .reverse()
+          .map(
+            (item) => `
+            <div class="history-item">
+              <div class="history-info">
+                <strong style="color:var(--danger);">-${formatIQD(item.amount)} د.ع</strong>
+                <span>${escapeHtml(item.dateTime || "")}${item.note ? " • " + escapeHtml(item.note) : ""}</span>
+              </div>
+              <div class="history-btns">
+                <button type="button" class="icon-btn" title="تعديل" onclick="app.triggerEditTipDeduction('${item.id}')">${ICONS.edit}</button>
+                <button type="button" class="icon-btn danger" title="حذف" onclick="app.triggerDeleteTipDeduction('${item.id}')">${ICONS.trash}</button>
+              </div>
+            </div>
+          `
+          )
+          .join("");
+      }
+    }
+
+    function renderOilSection() {
+      const todayStr = getLocalDateStr();
+      const rawHistory = Array.isArray(state.oil?.history) ? state.oil.history : [];
+      const setupView = document.getElementById("oilSetupView");
+      const activeView = document.getElementById("oilActiveView");
+
+      if (rawHistory.length === 0) {
+        setupView.style.display = "block";
+        activeView.style.display = "none";
+        return;
+      }
+
+      setupView.style.display = "none";
+      activeView.style.display = "block";
+
+      const sorted = [...rawHistory].sort((a, b) => {
+        const cmp = (a.date || "").localeCompare(b.date || "");
+        if (cmp !== 0) return cmp;
+        return (a.createdAt || 0) - (b.createdAt || 0);
+      });
+
+      const firstEntry = sorted[0];
+      const lastEntry = sorted[sorted.length - 1];
+      const daysSinceLast = Math.max(0, diffDays(lastEntry.date, todayStr));
+      const daysSinceFirst = Math.max(0, diffDays(firstEntry.date, todayStr));
+      const lastKm = Number(lastEntry.km) || 0;
+      const yellowKm = lastKm + 1500;
+      const redKm = lastKm + 2000;
+
+      document.getElementById("oilLastDatePill").textContent = `آخر تعبئة: ${lastEntry.date}`;
+      document.getElementById("oilDaysSinceLast").textContent = `${daysSinceLast} يوم`;
+      document.getElementById("oilLastKmPill").textContent =
+        lastKm > 0 ? `آخر قراءة عداد: ${formatIQD(lastKm)} كم` : "لم يتم إدخال قراءة العداد بعد";
+      document.getElementById("oilTotalChanges").textContent = `${sorted.length} ${sorted.length === 1 ? "مرة" : "مرات"}`;
+      document.getElementById("oilDaysSinceFirst").textContent = `${daysSinceFirst} يوم`;
+      document.getElementById("oilFirstDateSub").textContent = `أول تعبئة: ${firstEntry.date}`;
+      document.getElementById("oilAlertBaseKm").textContent = lastKm > 0 ? `بناءً على ${formatIQD(lastKm)} كم` : "من 0 كم";
+      document.getElementById("oilYellowKm").textContent = `${formatIQD(yellowKm)} كم`;
+      document.getElementById("oilRedKm").textContent = `${formatIQD(redKm)} كم`;
+      document.getElementById("oilHistoryCount").textContent = `${sorted.length} تعبئات`;
+
+      const listEl = document.getElementById("oilHistoryList");
+      const annotated = sorted.map((item, idx) => {
+        const prev = idx > 0 ? sorted[idx - 1] : null;
+        const deltaDays = prev ? Math.max(0, diffDays(prev.date, item.date)) : null;
+        const deltaKm = prev && item.km > 0 && prev.km > 0 ? item.km - prev.km : null;
+        return { ...item, indexNum: idx + 1, deltaDays, deltaKm };
+      });
+
+      listEl.innerHTML = [...annotated]
+        .reverse()
+        .map((item) => {
+          const kmText = item.km > 0 ? `${formatIQD(item.km)} كم` : "بدون عداد";
+          const extraParts = [];
+          if (item.deltaDays !== null) extraParts.push(`بعد ${item.deltaDays} يوم`);
+          if (item.deltaKm !== null && item.deltaKm >= 0) extraParts.push(`+${formatIQD(item.deltaKm)} كم`);
+          const extraLine = extraParts.length > 0 ? ` • ${extraParts.join(" / ")}` : "";
+          const noteLine = item.note ? `<div style="font-size:11.5px;color:var(--text-secondary);margin-top:2px;">${escapeHtml(item.note)}</div>` : "";
+
+          return `
+            <div class="history-item">
+              <div class="history-info">
+                <strong>تعبئة #${item.indexNum} — ${kmText}</strong>
+                <span>${escapeHtml(item.date)} (${escapeHtml(formatArabicDayName(item.date))})${escapeHtml(extraLine)}</span>
+                ${noteLine}
+              </div>
+              <div class="history-btns">
+                <button type="button" class="icon-btn" title="تعديل" onclick="app.openOilModal('${item.id}')">${ICONS.edit}</button>
+                <button type="button" class="icon-btn danger" title="حذف" onclick="app.triggerDeleteOilEntry('${item.id}')">${ICONS.trash}</button>
+              </div>
+            </div>
+          `;
+        })
+        .join("");
+    }
+
+    function computeSubMetrics(sub, todayStr) {
+      const durationDays = Math.max(1, Number(sub.durationDays) || 30);
+      const startDate = sub.startDate || todayStr;
+      const endDate = addDaysToStr(startDate, durationDays);
+      const elapsed = Math.max(0, diffDays(startDate, todayStr));
+      const remaining = Math.max(0, durationDays - elapsed);
+      const isExpired = remaining <= 0;
+      const pctRemaining = isExpired ? 0 : Math.min(100, Math.max(4, Math.round((remaining / durationDays) * 100)));
+      const monthlyCost = (Number(sub.price) || 0) * (30 / durationDays);
+
+      let statusLevel = "ok";
+      if (isExpired || remaining <= 2) {
+        statusLevel = "danger";
+      } else if (remaining <= 5 || remaining / durationDays <= 0.3) {
+        statusLevel = "warn";
+      }
+
+      return { durationDays, startDate, endDate, elapsed, remaining, isExpired, pctRemaining, monthlyCost, statusLevel };
+    }
+
+    function renderSubsSection() {
+      const todayStr = getLocalDateStr();
+      const subs = Array.isArray(state.subscriptions) ? state.subscriptions : [];
+      const startInput = document.getElementById("subStartDateInput");
+      if (startInput && !startInput.value) startInput.value = todayStr;
+
+      let totalMonthly = 0;
+      let expiredCount = 0;
+
+      const enriched = subs.map((sub) => {
+        const m = computeSubMetrics(sub, todayStr);
+        totalMonthly += m.monthlyCost;
+        if (m.isExpired) expiredCount++;
+        return { sub, m };
+      });
+
+      document.getElementById("subsMonthlyTotal").textContent = `${formatIQD(totalMonthly)} د.ع / شهرياً`;
+      document.getElementById("subsActiveBadge").textContent = `${subs.length} اشتراكات`;
+      document.getElementById("subsCountLabel").textContent = `${subs.length} اشتراكات`;
+
+      const pillEl = document.getElementById("subsSummaryPill");
+      if (subs.length === 0) {
+        pillEl.textContent = "لا توجد اشتراكات مسجلة بعد — اضغط السهم بالأسفل للإضافة";
+      } else if (expiredCount > 0) {
+        pillEl.textContent = `${subs.length - expiredCount} نشط • ${expiredCount} منتهي يحتاج تجديد`;
+      } else {
+        pillEl.textContent = `جميع الاشتراكات (${subs.length}) نشطة حالياً`;
+      }
+
+      const listEl = document.getElementById("subsListContainer");
+      if (enriched.length === 0) {
+        listEl.innerHTML = `<div style="text-align:center;color:var(--text-muted);font-size:13px;padding:22px;">اضغط على السهم في بطاقة "إضافة اشتراك جديد" لبدء تتبع اشتراكاتك.</div>`;
+      } else {
+        listEl.innerHTML = enriched
+          .map(({ sub, m }) => {
+            const safeUrl = normalizeUrl(sub.url);
+            const barWidth = m.isExpired ? 100 : m.pctRemaining;
+            const statusText = m.isExpired
+              ? "0 يوم متبقي"
+              : `متبقي ${m.remaining} يوم من ${m.durationDays} يوم`;
+            const expiredBanner = m.isExpired
+              ? `<div class="sub-expired-banner">${ICONS.alert}<span>لقد انتهى الاشتراك جدده</span></div>`
+              : "";
+            const linkChip = safeUrl
+              ? `<a href="${escapeHtml(safeUrl)}" target="_blank" rel="noopener noreferrer" class="sub-link-chip" onclick="event.stopPropagation()">${ICONS.externalLink}<span>فتح الرابط</span></a>`
+              : "";
+
+            return `
+              <article class="sub-card ${m.statusLevel}" onclick="app.openSubDetailsModal('${sub.id}')">
+                <div class="sub-card-top">
+                  <div style="min-width:0;">
+                    <div class="sub-card-name">${escapeHtml(sub.name)}</div>
+                    ${sub.description ? `<div class="sub-card-desc">${escapeHtml(sub.description)}</div>` : ""}
+                  </div>
+                  <span class="sub-price-badge">${formatIQD(sub.price)} د.ع / ${m.durationDays} يوم</span>
+                </div>
+
+                <div style="display:flex;justify-content:space-between;align-items:center;font-size:11.5px;font-weight:700;color:${m.statusLevel === "danger" ? "var(--danger)" : m.statusLevel === "warn" ? "var(--amber)" : "var(--emerald)"};">
+                  <span>${statusText}</span>
+                  <span style="color:var(--text-muted);direction:ltr;">ينتهي: ${m.endDate}</span>
+                </div>
+
+                <div class="sub-progress-wrap">
+                  <div class="sub-progress-fill ${m.statusLevel}" style="width:${barWidth}%;"></div>
+                </div>
+
+                ${expiredBanner}
+
+                <div class="sub-card-footer">
+                  <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+                    <button type="button" class="btn-emerald" style="padding:6px 12px;font-size:12px;" onclick="event.stopPropagation(); app.triggerRenewSubscription('${sub.id}')">
+                      ${ICONS.refresh}
+                      <span>جددت الاشتراك</span>
+                    </button>
+                    ${linkChip}
+                  </div>
+                  <span style="font-size:11.5px;color:var(--accent-dark);font-weight:700;display:inline-flex;align-items:center;gap:3px;">
+                    <span>السجل والتفاصيل</span>${ICONS.chevronLeft}
+                  </span>
+                </div>
+              </article>
+            `;
+          })
+          .join("");
+      }
+
+      if (viewingSubId && document.getElementById("subDetailsModal").classList.contains("open")) {
+        renderSubDetailsModalContent(viewingSubId);
+      }
+    }
+
+    function renderSubDetailsModalContent(subId) {
+      const sub = (state.subscriptions || []).find((s) => s.id === subId);
+      if (!sub) {
+        app.closeModal("subDetailsModal");
+        return;
+      }
+      const todayStr = getLocalDateStr();
+      const m = computeSubMetrics(sub, todayStr);
+      const safeUrl = normalizeUrl(sub.url);
+      const history = Array.isArray(sub.history) ? sub.history : [];
+
+      document.getElementById("subDetailsModalTitle").textContent = `سجل اشتراك: ${sub.name}`;
+
+      const barWidth = m.isExpired ? 100 : m.pctRemaining;
+      const bodyEl = document.getElementById("subDetailsBody");
+      bodyEl.innerHTML = `
+        <div style="background:var(--bg);border:1.5px solid var(--border-sky);border-radius:16px;padding:13px 14px;margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+            <strong style="font-size:16px;color:var(--text);">${escapeHtml(sub.name)}</strong>
+            <span class="sub-price-badge">${formatIQD(sub.price)} د.ع / ${m.durationDays} يوم</span>
+          </div>
+          ${sub.description ? `<p style="font-size:12.5px;color:var(--text-secondary);margin-bottom:8px;line-height:1.5;">${escapeHtml(sub.description)}</p>` : ""}
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-bottom:4px;">
+            <span>البدء: <strong style="color:var(--text);direction:ltr;">${m.startDate}</strong></span>
+            <span>الانتهاء: <strong style="color:var(--text);direction:ltr;">${m.endDate}</strong></span>
+          </div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;">
+            المكافئ الشهري: <strong style="color:var(--accent-dark);">${formatIQD(m.monthlyCost)} د.ع / شهرياً</strong>
+          </div>
+          <div class="sub-progress-wrap">
+            <div class="sub-progress-fill ${m.statusLevel}" style="width:${barWidth}%;"></div>
+          </div>
+          ${m.isExpired
+            ? `<div class="sub-expired-banner">${ICONS.alert}<span>لقد انتهى الاشتراك جدده</span></div>`
+            : `<div style="font-size:12.5px;font-weight:700;color:${m.statusLevel === "danger" ? "var(--danger)" : m.statusLevel === "warn" ? "var(--amber)" : "var(--emerald)"};">متبقي ${m.remaining} يوم</div>`
+          }
+          ${safeUrl ? `<div style="margin-top:10px;"><a href="${escapeHtml(safeUrl)}" target="_blank" rel="noopener noreferrer" class="sub-link-chip">${ICONS.externalLink}<span>${escapeHtml(safeUrl)}</span></a></div>` : ""}
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;">
+          <button type="button" class="btn-emerald" style="padding:9px 8px;font-size:12px;" onclick="app.triggerRenewSubscription('${sub.id}')">
+            ${ICONS.refresh}<span>جددت</span>
+          </button>
+          <button type="button" class="btn-secondary" style="padding:9px 8px;font-size:12px;" onclick="app.openSubEditModal('${sub.id}')">
+            ${ICONS.edit}<span>تعديل</span>
+          </button>
+          <button type="button" class="btn-secondary" style="padding:9px 8px;font-size:12px;color:var(--danger);border-color:var(--danger-border);" onclick="app.triggerDeleteSubscription('${sub.id}')">
+            ${ICONS.trash}<span>حذف</span>
+          </button>
+        </div>
+
+        <div style="font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">
+          <span>سجل أوقات وتجديدات هذا الاشتراك</span>
+          <span style="font-size:11.5px;color:var(--text-muted);">${history.length} سجلات</span>
+        </div>
+        <div class="history-list" style="max-height:34vh;overflow-y:auto;">
+          ${history.length === 0
+            ? `<div style="text-align:center;color:var(--text-muted);font-size:12.5px;padding:14px;">لا يوجد سجل بعد.</div>`
+            : [...history].reverse().map((h) => `
+              <div class="history-item">
+                <div class="history-info">
+                  <strong>${h.type === "renew" ? "تجديد اشتراك" : "بداية اشتراك"} — ${formatIQD(h.price)} د.ع</strong>
+                  <span>${escapeHtml(h.date)} • المدة: ${h.durationDays} يوم</span>
+                </div>
+                <div class="history-btns">
+                  <button type="button" class="icon-btn" title="تعديل" onclick="app.openSubHistoryEditModal('${sub.id}', '${h.id}')">${ICONS.edit}</button>
+                  <button type="button" class="icon-btn danger" title="حذف" onclick="app.triggerDeleteSubHistory('${sub.id}', '${h.id}')">${ICONS.trash}</button>
+                </div>
+              </div>
+            `).join("")
+          }
+        </div>
+      `;
     }
 
     function renderSettingsAccount() {
@@ -3326,7 +4348,7 @@
 
       toggleTheme() {
         isDarkTheme = !isDarkTheme;
-        localStorage.setItem(THEME_KEY, isDarkTheme ? "dark" : "light");
+        safeStorageSet(THEME_KEY, isDarkTheme ? "dark" : "light");
         applyThemeUI();
         showToast(isDarkTheme ? "تم تفعيل الوضع الليلي المريح" : "تم تفعيل الوضع النهاري", isDarkTheme ? "moon" : "sun");
       },
@@ -3388,7 +4410,7 @@
       },
 
       enterAsGuest() {
-        localStorage.setItem(GUEST_FLAG_KEY, "1");
+        safeStorageSet(GUEST_FLAG_KEY, "1");
         document.getElementById("welcomeModal").classList.remove("open");
         document.getElementById("guestBanner").style.display = "flex";
         ensureTenDaysAndAutoReset(state.deposit.days.length === 0);
@@ -3397,7 +4419,7 @@
 
       async logoutGoogle() {
         await signOut(auth);
-        localStorage.removeItem(GUEST_FLAG_KEY);
+        safeStorageRemove(GUEST_FLAG_KEY);
         app.closeModal("settingsModal");
         document.getElementById("welcomeModal").classList.add("open");
       },
@@ -4121,6 +5143,420 @@
       },
 
       // ==========================================
+      // SECTION 4B: TIPS DEDUCTIONS (AFFECTS TOTAL TIPS ONLY)
+      // ==========================================
+      triggerDeductTips() {
+        const totals = computeTipsTotals();
+        askConfirmation({
+          title: "تنقيص من مجموع الإكراميات الكلي",
+          message: "أدخل المبلغ الذي صرفته لتنقيصه من مجموع الإكراميات الكلي فقط (لن تتأثر إكراميات الأيام):",
+          showInput: true,
+          inputLabel: "مبلغ التنقيص (د.ع)",
+          currentHint: `المتاح حالياً: ${formatIQD(totals.netAvailable)} د.ع (مثال: 5 = 5,000 أو 1500)`,
+          smartMode: "tip",
+          onConfirm: (amt) => {
+            if (!amt || amt <= 0) return showToast("أدخل مبلغاً صحيحاً أكبر من صفر", "alert");
+            if (!Array.isArray(state.tips.deductions)) state.tips.deductions = [];
+            state.tips.deductions.push({
+              id: "td_" + Date.now(),
+              amount: amt,
+              dateTime: getLocalDateTimeStr(),
+              note: ""
+            });
+            saveState();
+            showToast(`تم تنقيص ${formatIQD(amt)} د.ع من مجموع الإكراميات`);
+          }
+        });
+      },
+
+      openTipDeductionsModal() {
+        document.getElementById("modalDeductTipInput").value = "";
+        document.getElementById("modalDeductNoteInput").value = "";
+        document.getElementById("modalDeductPreview").style.display = "none";
+        renderTipDeductionsModalContent();
+        document.getElementById("tipDeductionsModal").classList.add("open");
+      },
+
+      addTipDeductionFromModal() {
+        const inputEl = document.getElementById("modalDeductTipInput");
+        const noteEl = document.getElementById("modalDeductNoteInput");
+        const rawAmt = Number(inputEl.value);
+        const amt = smartExpandTip(rawAmt);
+        if (!amt || amt <= 0) {
+          showToast("اكتب مبلغ تنقيص صحيح", "alert");
+          return;
+        }
+        const note = noteEl.value.trim();
+        askConfirmation({
+          title: "تأكيد التنقيص",
+          message: `هل تريد تنقيص ${formatIQD(amt)} د.ع من مجموع الإكراميات الكلي فقط؟`,
+          onConfirm: () => {
+            if (!Array.isArray(state.tips.deductions)) state.tips.deductions = [];
+            state.tips.deductions.push({
+              id: "td_" + Date.now(),
+              amount: amt,
+              dateTime: getLocalDateTimeStr(),
+              note
+            });
+            inputEl.value = "";
+            noteEl.value = "";
+            document.getElementById("modalDeductPreview").style.display = "none";
+            saveState();
+            showToast(`تم تنقيص ${formatIQD(amt)} د.ع`);
+          }
+        });
+      },
+
+      triggerEditTipDeduction(dedId) {
+        const list = Array.isArray(state.tips.deductions) ? state.tips.deductions : [];
+        const item = list.find((x) => x.id === dedId);
+        if (!item) return;
+        askConfirmation({
+          title: "تعديل عملية التنقيص",
+          message: `تعديل المبلغ المنقوص بتاريخ (${item.dateTime || ""}):`,
+          showInput: true,
+          inputLabel: "المبلغ الصحيح (د.ع)",
+          currentHint: `المبلغ الحالي: ${formatIQD(item.amount)} د.ع`,
+          smartMode: "none",
+          onConfirm: (newAmt) => {
+            item.amount = newAmt;
+            saveState();
+            showToast("تم تعديل عملية التنقيص");
+          }
+        });
+      },
+
+      triggerDeleteTipDeduction(dedId) {
+        const list = Array.isArray(state.tips.deductions) ? state.tips.deductions : [];
+        const item = list.find((x) => x.id === dedId);
+        if (!item) return;
+        askConfirmation({
+          title: "حذف عملية التنقيص",
+          message: `هل أنت متأكد من حذف تنقيص (${formatIQD(item.amount)} د.ع)؟ سيعود المبلغ لمجموع الإكراميات الكلي.`,
+          onConfirm: () => {
+            state.tips.deductions = list.filter((x) => x.id !== dedId);
+            saveState();
+            showToast("تم حذف التنقيص واسترجاع المبلغ للمجموع", "trash");
+          }
+        });
+      },
+
+      // ==========================================
+      // SECTION 5: OIL ("دهن")
+      // ==========================================
+      openOilModal(oilId) {
+        editingOilId = oilId || null;
+        const dateEl = document.getElementById("oilDateInput");
+        const kmEl = document.getElementById("oilKmInput");
+        const noteEl = document.getElementById("oilNoteInput");
+        const titleEl = document.getElementById("oilModalTitle");
+
+        if (editingOilId) {
+          const item = (state.oil.history || []).find((x) => x.id === editingOilId);
+          if (!item) return;
+          titleEl.textContent = "تعديل سجل تعبئة الدهن";
+          dateEl.value = item.date || getLocalDateStr();
+          kmEl.value = item.km > 0 ? item.km : "";
+          noteEl.value = item.note || "";
+        } else {
+          titleEl.textContent = "قمت بالتعبئة — تسجيل تعبئة دهن";
+          dateEl.value = getLocalDateStr();
+          kmEl.value = "";
+          noteEl.value = "";
+        }
+
+        app.onOilKmInputChanged();
+        document.getElementById("oilModal").classList.add("open");
+        setTimeout(() => kmEl.focus(), 80);
+      },
+
+      onOilKmInputChanged() {
+        const raw = document.getElementById("oilKmInput").value.trim();
+        const previewWrap = document.getElementById("oilModalKmPreview");
+        const num = Number(raw);
+        if (raw !== "" && !isNaN(num) && num >= 0) {
+          previewWrap.style.display = "grid";
+          document.getElementById("oilPreviewYellow").textContent = `${formatIQD(Math.round(num) + 1500)} كم`;
+          document.getElementById("oilPreviewRed").textContent = `${formatIQD(Math.round(num) + 2000)} كم`;
+        } else {
+          previewWrap.style.display = "none";
+        }
+      },
+
+      saveOilEntry() {
+        const dateVal = document.getElementById("oilDateInput").value;
+        const rawKm = document.getElementById("oilKmInput").value.trim();
+        const kmVal = rawKm === "" ? 0 : Math.round(Number(rawKm));
+        const noteVal = document.getElementById("oilNoteInput").value.trim();
+
+        if (!dateVal) {
+          showToast("يرجى اختيار تاريخ التعبئة", "alert");
+          return;
+        }
+        if (isNaN(kmVal) || kmVal < 0) {
+          showToast("يرجى إدخال رقم عداد كيلومترات صحيح", "alert");
+          return;
+        }
+
+        if (!state.oil || !Array.isArray(state.oil.history)) {
+          state.oil = { history: [] };
+        }
+
+        if (editingOilId) {
+          const item = state.oil.history.find((x) => x.id === editingOilId);
+          if (item) {
+            item.date = dateVal;
+            item.km = kmVal;
+            item.note = noteVal;
+          }
+          showToast("تم تعديل سجل تعبئة الدهن");
+        } else {
+          state.oil.history.push({
+            id: "oil_" + Date.now(),
+            date: dateVal,
+            km: kmVal,
+            note: noteVal,
+            createdAt: Date.now()
+          });
+          showToast("تم تسجيل التعبئة وتصفير عداد الأيام");
+        }
+
+        editingOilId = null;
+        saveState();
+        app.closeModal("oilModal");
+      },
+
+      triggerDeleteOilEntry(oilId) {
+        const item = (state.oil.history || []).find((x) => x.id === oilId);
+        if (!item) return;
+        askConfirmation({
+          title: "حذف سجل تعبئة دهن",
+          message: `هل أنت متأكد من حذف تعبئة بتاريخ (${item.date}) وعدّاد (${formatIQD(item.km)} كم)؟`,
+          onConfirm: () => {
+            state.oil.history = state.oil.history.filter((x) => x.id !== oilId);
+            saveState();
+            showToast("تم حذف السجل", "trash");
+          }
+        });
+      },
+
+      // ==========================================
+      // SECTION 6: SUBSCRIPTIONS ("الاشتراكات")
+      // ==========================================
+      toggleSubAddPanel() {
+        const card = document.getElementById("subAddCard");
+        const isOpen = card.classList.toggle("open");
+        if (isOpen) {
+          const startEl = document.getElementById("subStartDateInput");
+          if (!startEl.value) startEl.value = getLocalDateStr();
+          setTimeout(() => document.getElementById("subNameInput").focus(), 80);
+        }
+      },
+
+      setSubDurationPreset(days) {
+        document.getElementById("subDurationInput").value = days;
+      },
+
+      saveNewSubscription() {
+        const name = document.getElementById("subNameInput").value.trim();
+        const priceRaw = document.getElementById("subPriceInput").value.trim();
+        const durationRaw = document.getElementById("subDurationInput").value.trim();
+        const startDate = document.getElementById("subStartDateInput").value || getLocalDateStr();
+        const description = document.getElementById("subDescInput").value.trim();
+        const url = document.getElementById("subUrlInput").value.trim();
+
+        const price = Math.round(Number(priceRaw));
+        const durationDays = Math.round(Number(durationRaw));
+
+        if (!name) {
+          showToast("يرجى كتابة اسم الاشتراك", "alert");
+          return;
+        }
+        if (priceRaw === "" || isNaN(price) || price < 0) {
+          showToast("يرجى كتابة سعر صحيح للاشتراك", "alert");
+          return;
+        }
+        if (!durationDays || isNaN(durationDays) || durationDays < 1) {
+          showToast("يرجى كتابة مدة الاشتراك بالأيام (1 فأكثر)", "alert");
+          return;
+        }
+
+        if (!Array.isArray(state.subscriptions)) state.subscriptions = [];
+        state.subscriptions.push({
+          id: "sub_" + Date.now(),
+          name,
+          price,
+          durationDays,
+          startDate,
+          description,
+          url,
+          history: [
+            {
+              id: "sh_" + Date.now(),
+              date: startDate,
+              price,
+              durationDays,
+              type: "start"
+            }
+          ]
+        });
+
+        document.getElementById("subNameInput").value = "";
+        document.getElementById("subPriceInput").value = "";
+        document.getElementById("subDurationInput").value = "30";
+        document.getElementById("subStartDateInput").value = getLocalDateStr();
+        document.getElementById("subDescInput").value = "";
+        document.getElementById("subUrlInput").value = "";
+        document.getElementById("subAddCard").classList.remove("open");
+
+        saveState();
+        showToast(`تمت إضافة اشتراك (${name})`);
+      },
+
+      triggerRenewSubscription(subId) {
+        const sub = (state.subscriptions || []).find((s) => s.id === subId);
+        if (!sub) return;
+        const todayStr = getLocalDateStr();
+        askConfirmation({
+          title: "تجديد الاشتراك",
+          message: `هل جددت اشتراك (${sub.name}) اليوم (${todayStr}) لمدة ${sub.durationDays} يوم بسعر ${formatIQD(sub.price)} د.ع؟ سيُعاد حساب الوقت من جديد ويُحفظ بالسجل.`,
+          onConfirm: () => {
+            sub.startDate = todayStr;
+            if (!Array.isArray(sub.history)) sub.history = [];
+            sub.history.push({
+              id: "sh_" + Date.now(),
+              date: todayStr,
+              price: Number(sub.price) || 0,
+              durationDays: Number(sub.durationDays) || 30,
+              type: "renew"
+            });
+            saveState();
+            showToast(`تم تجديد اشتراك (${sub.name}) بنجاح`);
+          }
+        });
+      },
+
+      openSubDetailsModal(subId) {
+        viewingSubId = subId;
+        renderSubDetailsModalContent(subId);
+        document.getElementById("subDetailsModal").classList.add("open");
+      },
+
+      openSubEditModal(subId) {
+        const sub = (state.subscriptions || []).find((s) => s.id === subId);
+        if (!sub) return;
+        editingSubId = subId;
+        document.getElementById("editSubNameInput").value = sub.name || "";
+        document.getElementById("editSubPriceInput").value = sub.price ?? 0;
+        document.getElementById("editSubDurationInput").value = sub.durationDays || 30;
+        document.getElementById("editSubStartDateInput").value = sub.startDate || getLocalDateStr();
+        document.getElementById("editSubDescInput").value = sub.description || "";
+        document.getElementById("editSubUrlInput").value = sub.url || "";
+        document.getElementById("subEditModal").classList.add("open");
+      },
+
+      saveEditedSubscription() {
+        const sub = (state.subscriptions || []).find((s) => s.id === editingSubId);
+        if (!sub) return;
+        const name = document.getElementById("editSubNameInput").value.trim();
+        const price = Math.round(Number(document.getElementById("editSubPriceInput").value));
+        const durationDays = Math.round(Number(document.getElementById("editSubDurationInput").value));
+        const startDate = document.getElementById("editSubStartDateInput").value;
+        const description = document.getElementById("editSubDescInput").value.trim();
+        const url = document.getElementById("editSubUrlInput").value.trim();
+
+        if (!name || isNaN(price) || price < 0 || !durationDays || durationDays < 1 || !startDate) {
+          showToast("تأكد من إدخال الاسم والسعر والمدة والتاريخ بشكل صحيح", "alert");
+          return;
+        }
+
+        sub.name = name;
+        sub.price = price;
+        sub.durationDays = durationDays;
+        sub.startDate = startDate;
+        sub.description = description;
+        sub.url = url;
+
+        editingSubId = null;
+        saveState();
+        app.closeModal("subEditModal");
+        showToast("تم تعديل بيانات الاشتراك");
+      },
+
+      triggerDeleteSubscription(subId) {
+        const sub = (state.subscriptions || []).find((s) => s.id === subId);
+        if (!sub) return;
+        askConfirmation({
+          title: "حذف الاشتراك نهائياً",
+          message: `هل أنت متأكد من حذف اشتراك (${sub.name}) مع كامل سجله؟`,
+          onConfirm: () => {
+            state.subscriptions = state.subscriptions.filter((s) => s.id !== subId);
+            if (viewingSubId === subId) {
+              viewingSubId = null;
+              app.closeModal("subDetailsModal");
+            }
+            saveState();
+            showToast(`تم حذف اشتراك (${sub.name})`, "trash");
+          }
+        });
+      },
+
+      openSubHistoryEditModal(subId, histId) {
+        const sub = (state.subscriptions || []).find((s) => s.id === subId);
+        if (!sub) return;
+        const entry = (sub.history || []).find((h) => h.id === histId);
+        if (!entry) return;
+        editingSubHistContext = { subId, histId };
+        document.getElementById("editSubHistDateInput").value = entry.date || getLocalDateStr();
+        document.getElementById("editSubHistPriceInput").value = entry.price ?? 0;
+        document.getElementById("editSubHistDurationInput").value = entry.durationDays || 30;
+        document.getElementById("subHistoryEditModal").classList.add("open");
+      },
+
+      saveEditedSubHistory() {
+        if (!editingSubHistContext) return;
+        const { subId, histId } = editingSubHistContext;
+        const sub = (state.subscriptions || []).find((s) => s.id === subId);
+        if (!sub) return;
+        const entry = (sub.history || []).find((h) => h.id === histId);
+        if (!entry) return;
+
+        const dateVal = document.getElementById("editSubHistDateInput").value;
+        const priceVal = Math.round(Number(document.getElementById("editSubHistPriceInput").value));
+        const durVal = Math.round(Number(document.getElementById("editSubHistDurationInput").value));
+
+        if (!dateVal || isNaN(priceVal) || priceVal < 0 || !durVal || durVal < 1) {
+          showToast("يرجى إدخال بيانات صحيحة", "alert");
+          return;
+        }
+
+        entry.date = dateVal;
+        entry.price = priceVal;
+        entry.durationDays = durVal;
+
+        editingSubHistContext = null;
+        saveState();
+        app.closeModal("subHistoryEditModal");
+        showToast("تم تعديل سجل الاشتراك");
+      },
+
+      triggerDeleteSubHistory(subId, histId) {
+        const sub = (state.subscriptions || []).find((s) => s.id === subId);
+        if (!sub) return;
+        const entry = (sub.history || []).find((h) => h.id === histId);
+        if (!entry) return;
+        askConfirmation({
+          title: "حذف سجل من الاشتراك",
+          message: `هل تريد حذف السجل بتاريخ (${entry.date})؟`,
+          onConfirm: () => {
+            sub.history = (sub.history || []).filter((h) => h.id !== histId);
+            saveState();
+            showToast("تم حذف السجل", "trash");
+          }
+        });
+      },
+
+      // ==========================================
       // SOODYE AI CHAT
       // ==========================================
       openSoodye() {
@@ -4128,7 +5564,9 @@
           deposit: "قسم حساب الإيداع",
           debt: "قسم الدين / الأقساط / السلفة",
           savings: "قسم التجميع",
-          tips: "قسم الإكراميات"
+          tips: "قسم الإكراميات",
+          oil: "قسم دهن الدراجة",
+          subs: "قسم الاشتراكات"
         };
         document.getElementById("soodyeContextBadge").textContent =
           `${sectionNames[activeTab]} • يقرأ سجل آخر 10 أيام`;
@@ -4180,7 +5618,25 @@
 
       copyText(encodedText) {
         const text = decodeURIComponent(encodedText);
-        navigator.clipboard.writeText(text).then(() => showToast("تم نسخ النص", "copy"));
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => showToast("تم نسخ النص", "copy")).catch(() => {
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            ta.remove();
+            showToast("تم نسخ النص", "copy");
+          });
+        } else {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+          showToast("تم نسخ النص", "copy");
+        }
       },
 
       openFullscreenFromBubble(btnEl) {
@@ -4259,6 +5715,17 @@
           (s, x) => s + (Number(x.amount) || 0),
           0
         );
+        const tipsTotals = computeTipsTotals();
+        const oilSorted = [...(state.oil?.history || [])].sort((a, b) => (a.date || "").localeCompare(b.date || ""));
+        const lastOil = oilSorted.length > 0 ? oilSorted[oilSorted.length - 1] : null;
+        const oilSummary = lastOil
+          ? `آخر تعبئة: ${lastOil.date} (مر ${Math.max(0, diffDays(lastOil.date, ledger.todayStr))} يوم)، عدد المرات: ${oilSorted.length}، العداد: ${lastOil.km} كم، التحذير الأصفر: ${lastOil.km + 1500} كم، الأحمر: ${lastOil.km + 2000} كم.`
+          : "لا توجد تعبئات مسجلة بعد.";
+        const subsList = (state.subscriptions || []).map((s) => {
+          const m = computeSubMetrics(s, ledger.todayStr);
+          return `${s.name}: ${s.price} د.ع / ${m.durationDays} يوم (متبقي ${m.remaining} يوم)`;
+        });
+        const subsMonthlySum = (state.subscriptions || []).reduce((acc, s) => acc + computeSubMetrics(s, ledger.todayStr).monthlyCost, 0);
 
         const systemInstruction = `# دور ومسار الشخصية (سودي)
 أنت مساعد ذكي ولطيف داخل تطبيق إدارة الأموال، تجمع بين الدقة الرياضية المطلقة وبين شخصيتك العفوية المحبوبة:
@@ -4293,7 +5760,9 @@ ${JSON.stringify(last10Days, null, 2)}
 
 ملخص قسم الدين/الأقساط: الهدف = ${state.debt.target} د.ع، المدفوع = ${debtPaid} د.ع، المتبقي = ${Math.max(0, state.debt.target - debtPaid)} د.ع.
 ملخص قسم التجميع: الهدف = ${state.savings.target} د.ع، المجمّع = ${savingsTotal} د.ع، المتبقي = ${Math.max(0, state.savings.target - savingsTotal)} د.ع.
-إكراميات اليوم الحالي: ${todayTips} د.ع.`;
+ملخص قسم الإكراميات: اليوم = ${todayTips} د.ع، مجموع كل الأيام = ${tipsTotals.allDaysTotal} د.ع، المنقوص = ${tipsTotals.totalDeducted} د.ع، المتاح الآن = ${tipsTotals.netAvailable} د.ع.
+ملخص قسم دهن الدراجة: ${oilSummary}
+ملخص قسم الاشتراكات: المجموع الشهري = ${Math.round(subsMonthlySum)} د.ع، الاشتراكات = ${subsList.length > 0 ? subsList.join(" | ") : "لا يوجد"}.`;
 
         const userParts = [{ text: userMsg }];
         if (attachedImg) {
@@ -4383,9 +5852,7 @@ ${JSON.stringify(last10Days, null, 2)}
           if (choice.outcome === "accepted") showToast("جاري تثبيت التطبيق...");
           deferredInstallPrompt = null;
         } else {
-          alert(
-            "لتثبيت التطبيق مباشرة على هاتفك:\n1. اضغط على قائمة المتصفح (النقاط الثلاث في الأعلى).\n2. اختر (تثبيت التطبيق / Install App) أو (الإضافة إلى الشاشة الرئيسية)."
-          );
+          showToast("من قائمة المتصفح (النقاط الثلاث) اختر: الإضافة إلى الشاشة الرئيسية", "alert");
         }
       },
 
@@ -4401,12 +5868,10 @@ ${JSON.stringify(last10Days, null, 2)}
             a.click();
             a.remove();
           } else {
-            alert(
-              "ملف الـ APK غير مرفوع في المستودع بعد.\n\nلتفعيله:\n1. ولّد ملف app.apk عبر موقع PWABuilder باستخدام رابط GitHub Pages.\n2. ارفع الملف داخل مجلد باسم download في مستودعك ليصبح المسار: download/app.apk\n\n(يمكنك حالياً التثبيت المباشر فوراً من زر التثبيت أعلاه)."
-            );
+            showToast("ملف الـ APK غير مرفوع في المسار download/app.apk بعد", "alert");
           }
         } catch {
-          alert("تعذر التحقق من ملف الـ APK. تأكد من رفع الملف في المسار download/app.apk داخل المستودع.");
+          showToast("تعذر التحقق من ملف الـ APK في المسار download/app.apk", "alert");
         }
       },
 
